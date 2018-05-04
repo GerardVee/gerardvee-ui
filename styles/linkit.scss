@@ -1,0 +1,177 @@
+// http://paletton.com/#uid=52P0u0kfhEg5sWeayOijuvdnrri
+
+@import url('https://fonts.googleapis.com/css?family=Share');
+
+$title-size: 65px;
+$link-size: 27px;
+
+*
+{
+    font-family: 'Share';
+}
+
+a
+{
+    text-decoration: none;
+    color: #90D6D6;
+    &:visited
+    {
+        color: #90D6D6;
+    }
+}
+
+.linkit-home, .linkit-new, .titles, .nav, .options
+{
+    display: flex;
+}
+
+.linkit-home, .linkit-new, .titles, .options
+{
+    flex-direction: column;
+}
+
+.nav
+{
+    align-items: center;
+    margin-bottom: 2em;
+    & > .options
+    {
+        margin-right: 1em;
+        margin-bottom: 30px;
+    }
+    & > img
+    {
+        padding-right: 1em;
+    }
+}
+
+.titles
+{
+    flex: 5;
+}
+
+.title
+{
+    font-size: $title-size;
+}
+
+.colored
+{
+    color: #9DEB9D;
+}
+
+.subtitle
+{
+    font-weight: normal;
+    margin-top: 0;
+}
+
+.normal-link
+{
+    font-size: ($link-size - 6px);
+}
+
+.linkit-post
+{
+    display: flex;
+    align-items: center;
+    margin-left: 0.5em;
+}
+
+.voting-options
+{
+    display: flex;
+    flex-direction: column;
+}
+
+%vote
+{
+    cursor: pointer;
+    font-size: ($link-size - 8px);
+    margin: 0;
+    padding: 0;
+}
+
+.upvote
+{
+    @extend %vote;
+    &:hover
+    {
+        color: #4EC74E;
+    }
+}
+
+.downvote
+{
+    @extend %vote;
+    &:hover
+    {
+        color: #B9E85B;
+    }
+}
+
+.upvoted
+{
+    color: #2FAE2F;
+}
+
+.downvoted
+{
+    color: #99CB36;
+}
+
+.linkit-link
+{
+    font-weight: normal;
+    font-size: $link-size;
+    margin-left: 0.3em;
+    padding-bottom: 0.1em;
+    // transform: scaleX(1.2); scale messed with the margin
+}
+
+.linkit-post-form
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.inputs
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 2em;
+    & > *
+    {
+        margin: 10px;
+    }
+}
+
+.linkit-input
+{
+    border-style: solid;
+    border-radius: 4px;
+    font-size: 20px;
+    padding: 6px 6px 6px 10px;
+    width: 20%;
+}
+
+.submission
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.linkit-button
+{
+    cursor: pointer;
+    color: white;
+    background-color: #4EC74E;
+    border-style: none;
+    border-radius: 6px;
+    font-size: 20px;
+    padding: 6px;
+    width: 15%;
+}

@@ -1,0 +1,83 @@
+$small: 1px;
+$medium: 768px;
+$large: 1280px;
+
+@mixin container($type)
+{
+    display: flex;
+    flex-direction: $type;
+}
+
+.col
+{
+    @include container(column);
+}
+
+.row
+{
+    @include container(row);
+}
+
+.wrap
+{
+    flex-wrap: wrap;
+}
+
+.halign
+{
+    justify-content: center;
+}
+
+.valign
+{
+    align-items: center;
+}
+
+.halign-children
+{
+    &>*
+    {
+        justify-content: center;
+    }
+}
+
+.valign-children
+{
+    &>*
+    {
+        align-items: center;
+    }
+}
+
+@mixin size-exclude($size, $max: false)
+{
+    @if ($max)
+    {
+        @media screen and (min-width: $size) and (max-width: $max - 1)
+        {
+            display: none;
+        }
+    }
+    @else
+    {
+        @media screen and (min-width: $size)
+        {
+            display: none;
+        }
+    }
+}
+
+.hidden-lg
+{
+    @include size-exclude($large);
+}
+
+.hidden-md
+{
+    @include size-exclude($medium);
+}
+
+.hidden-sm
+{
+    @include size-exclude($small, $medium);
+}

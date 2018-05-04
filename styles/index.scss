@@ -1,0 +1,22 @@
+// https://stackoverflow.com/questions/18008700/using-include-vs-extend-in-sass
+@import './_helper.scss';
+@import url('https://fonts.googleapis.com/css?family=Share');
+
+$font-family: 'Share';
+$font-size: 22px; // 45
+
+.col-md-row-sm
+{
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: $medium)
+    {
+        flex-direction: row;
+    }
+}
+
+.posts
+{
+    display: flex;
+    flex-direction: column-reverse;
+}
