@@ -21,7 +21,7 @@ const FacebookLogin = ({ onClick }) =>
 
 const FacebookAuthenticate = () =>
 (
-    <FacebookAuth appId='176820699610596' callback={ auth } component={ FacebookLogin } />
+    <FacebookAuth autoLoad={ true } appId='176820699610596' callback={ auth } component={ FacebookLogin } />
 );
 
 const auth = (res) => console.log(res);
