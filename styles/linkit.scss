@@ -20,7 +20,7 @@ a
     }
 }
 
-.linkit-home, .linkit-new, .titles, .nav, .options
+.linkit-home, .linkit-new, .titles, .nav, .options, .user-options
 {
     display: flex;
 }
@@ -32,7 +32,6 @@ a
 
 .nav
 {
-    align-items: center;
     margin-bottom: 2em;
     & > .options
     {
@@ -43,6 +42,11 @@ a
     {
         padding-right: 1em;
     }
+}
+
+.user-options
+{
+    align-items: center;
 }
 
 .titles
