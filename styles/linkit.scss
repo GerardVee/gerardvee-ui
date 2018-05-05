@@ -34,14 +34,10 @@ a
 {
     align-items: center;
     margin-bottom: 2em;
-    & > .options
+    & > .options, & > .linkit-fb-picture
     {
         margin-right: 1em;
         margin-bottom: 30px;
-    }
-    & > img
-    {
-        padding-right: 1em;
     }
 }
 
