@@ -3,7 +3,7 @@
  */
 import 'isomorphic-fetch';
 import { Component } from 'react';
-import facebookLogin from 'facebook-login';
+import FacebookAuth from 'react-facebook-auth';
 import Link from 'next/link';
 import Head from 'next/head';
 
@@ -13,6 +13,18 @@ import post from '../../../lib/post';
 import '../../../styles/linkit.scss';
 
 const api = 'https://api.gerardvee.com/';
+
+const FacebookLogin = ({ onClick }) =>
+(
+    <a className='normal-link' onClick={ onClick }>Login with Facebook</a>
+);
+
+const FacebookAuthenticate = () =>
+(
+    <FacebookAuth appId='176820699610596' callback={ auth } component={ FacebookLogin } />
+);
+
+const auth = (res) => console.log(res);
 
 export default class extends Component
 {
@@ -32,12 +44,6 @@ export default class extends Component
         return { posts, user, picture: '', me: null };
     }
 
-    componentDidMount()
-    {
-        const api = facebookLogin({ appId: '176820699610596' });
-        api.login().then(res => console.log(res));
-    }
-
     render()
     {
         const { user, picture, posts, me } = this.props;
@@ -50,7 +56,7 @@ export default class extends Component
                 <div className='linkit-home'>
                     <Nav>
                         { user && <Link href={ api + 'linkit/logout' }><a className='normal-link'>Logout</a></Link> }
-                        { !user && <Link href={ api + 'linkit/auth/facebook/linkit' }><a className='normal-link'>Login with Facebook</a></Link> }
+                        { !user && <FacebookAuthenticate /> }
                         <Link href='./linkit/new'><a className='normal-link'>Make a new post</a></Link>
                     </Nav>
                     { (posts || [] ).map((post) => 
