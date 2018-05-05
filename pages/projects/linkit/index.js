@@ -61,9 +61,9 @@ export default class extends Component
                     <meta name='viewport' content='initial-scale=1.0, width=device-width' />
                 </Head>
                 <div className='linkit-home'>
-                    <Nav>
+                    <Nav picture={ user.picture.data.url }>
                         { user && <Link href={ api + 'linkit/logout' }><a className='normal-link'>Logout</a></Link> }
-                        { !user && <FacebookAuthenticate callback={ this.auth } /> }
+                        { !user && <FacebookAuthenticate callback={ (res) => this.auth(res) } /> }
                         <Link href='./linkit/new'><a className='normal-link'>Make a new post</a></Link>
                     </Nav>
                     {/* (posts || [] ).map((post) => 
