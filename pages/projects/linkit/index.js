@@ -66,9 +66,9 @@ export default class extends Component
                         { !user && <FacebookAuthenticate callback={ this.auth } /> }
                         <Link href='./linkit/new'><a className='normal-link'>Make a new post</a></Link>
                     </Nav>
-                    { (posts || [] ).map((post) => 
+                    {/* (posts || [] ).map((post) => 
                         <Post { ...post } key={ post.id } me={ me } className='linkit-post' />
-                    )}
+                    )*/}
                 </div>
             </div>
         );
