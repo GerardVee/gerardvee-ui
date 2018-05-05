@@ -19,34 +19,41 @@ const FacebookLogin = ({ onClick }) =>
     <a className='normal-link' onClick={ onClick }>Login with Facebook</a>
 );
 
-const FacebookAuthenticate = () =>
+const FacebookAuthenticate = ({ callback }) =>
 (
-    <FacebookAuth autoLoad={ true } appId='176820699610596' callback={ auth } component={ FacebookLogin } />
+    <FacebookAuth autoLoad={ true } appId='176820699610596' callback={ callback } component={ FacebookLogin } />
 );
-
-const auth = (res) => console.log(res);
 
 export default class extends Component
 {
 
+    state = { user: null };
+
     static async getInitialProps({ req })
     {
-        const { session } = req;
-        const user = !!session && session.passport ? !!session.passport.user : false;
+        /*const { session } = req;
+        const user = !!session && session.passport ? !!session.passport.user : false;*/
         const res = await fetch(api + 'linkit/posts');
         const posts = await res.json();
-        if (user)
+        /*if (user)
         {
             const myInfo = await fetch(api + 'linkit/me', post({ id: session.passport.user.id }));
             const me = await myInfo.json();
             return { picture: session.passport.user.photos[0].value, posts, user, me };
-        }        
-        return { posts, user, picture: '', me: null };
+        }*/
+        return { posts };
+    }
+    
+    auth(res)
+    {
+        console.log(res);
+        this.setState({ user: res });
     }
 
     render()
     {
-        const { user, picture, posts, me } = this.props;
+        const { posts } = this.props;
+        const { user } = this.state;
         return (
             <div>
                 <Head>
@@ -56,7 +63,7 @@ export default class extends Component
                 <div className='linkit-home'>
                     <Nav>
                         { user && <Link href={ api + 'linkit/logout' }><a className='normal-link'>Logout</a></Link> }
-                        { !user && <FacebookAuthenticate /> }
+                        { !user && <FacebookAuthenticate callback={ this.auth } /> }
                         <Link href='./linkit/new'><a className='normal-link'>Make a new post</a></Link>
                     </Nav>
                     { (posts || [] ).map((post) => 
