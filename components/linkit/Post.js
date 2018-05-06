@@ -37,9 +37,7 @@ export default class extends Component
 
     async componentDidMount()
     {
-        const { token, id } = this.props;
-        const res = await fetch(api + 'linkit/me', post({ token }));
-        const me = await res.json();
+        const { id, me } = this.props;
         if (!!me)
         {
             this.setState({ upvote: me.upvotes.includes(id), downvote: me.downvotes.includes(id) });

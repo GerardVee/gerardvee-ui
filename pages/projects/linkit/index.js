@@ -38,19 +38,17 @@ export default class extends Component
     
     auth(user)
     {
-        console.log(user);
         this.setState({ user });
         fetch(api + 'linkit/me', post({ token: user.accessToken })).then(res => res.json()).then(me =>
         {
-            console.log('me is ', JSON.stringify(me));
-        }, error => console.log('error is occurring ', JSON.stringify(error)))
-        .catch(error => console.log('error is occurring ', JSON.stringify(error)));
+            this.setState({ me });
+        });
     }
 
     render()
     {
         const { posts } = this.props;
-        const { user } = this.state;
+        const { user, me } = this.state;
         return (
             <div>
                 <Head>
@@ -62,9 +60,9 @@ export default class extends Component
                         { !user && <FacebookAuthenticate callback={ (res) => this.auth(res) } /> }
                         <Link href='./linkit/new'><a className='normal-link'>Make a new post</a></Link>
                     </Nav>
-                    {/* (posts || [] ).map((post) => 
-                        <Post { ...post } key={ post.id } me={ me } className='linkit-post' />
-                    )*/}
+                    {(posts || [] ).map((post) => 
+                        <Post { ...post } key={ post.id } me={ me } token={ !!user ? user.accessToken : '' } className='linkit-post' />
+                    )}
                 </div>
             </div>
         );
