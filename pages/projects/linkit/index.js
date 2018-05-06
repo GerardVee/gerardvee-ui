@@ -38,9 +38,9 @@ export default class extends Component
     
     auth(user)
     {
-        console.log(user)
+        console.log(user);
         this.setState({ user });
-        fetch(api + 'linkit/me', post({ token: user.accessToken })).then(res => res.json()).then(me =>
+        fetch(api + 'linkit/me', post({ token: user.accessToken })).then(res => res.json()).catch(error => console.log('error is occurring ', JSON.stringify(error))).then(me =>
         {
             console.log('me is ', JSON.stringify(me));
         }, error => console.log('error is occurring ', JSON.stringify(error)));
