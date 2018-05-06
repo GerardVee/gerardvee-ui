@@ -1,9 +1,11 @@
 // http://paletton.com/#uid=52P0u0kfhEg5sWeayOijuvdnrri
-
+@import './_helper.scss';
 @import url('https://fonts.googleapis.com/css?family=Share');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 $title-size: 65px;
-$link-size: 27px;
+$link-size: 35px;
+$regular-link-size: 21px;
 $error: red;
 $success: #4BB543;
 $modal-width: 500px;
@@ -23,20 +25,20 @@ a
     }
 }
 
-.linkit-home, .linkit-new, .titles, .nav, .options
+.linkit-home, .linkit-new, .heading, .nav, .options, .more
 {
     display: flex;
 }
 
-.linkit-home, .linkit-new, .titles, .options
+.linkit-home, .linkit-new, .options, .more
 {
     flex-direction: column;
 }
 
 .nav
 {
-    align-items: center;
-    margin-bottom: 2em;
+    flex-direction: column;
+    margin-bottom: 1em;
     & > .options, & > .linkit-fb-picture
     {
         margin-right: 1em;
@@ -44,14 +46,30 @@ a
     }
 }
 
-.titles
+.heading
 {
+    flex-direction: row;
     flex: 5;
+    align-items: center;
 }
 
 .title
 {
-    font-size: $title-size;
+    flex: 4;
+    font-size: $title-size - 10px;
+    @media screen and (min-width: $medium)
+    {
+        font-size: $title-size;
+    }
+}
+
+.head-link
+{
+    font-size: $regular-link-size - 5px!important;
+    @media screen and (min-width: $medium)
+    {
+        font-size: $regular-link-size!important;
+    }   
 }
 
 .colored
@@ -59,15 +77,37 @@ a
     color: #9DEB9D;
 }
 
+.more
+{
+    align-items: center;
+}
+
 .subtitle
 {
-    font-weight: normal;
     margin-top: 0;
+    font-size: 1.1em;
+    font-weight: 400;
+    @media screen and (min-width: $medium)
+    {
+        font-size: 1.7em;
+    }
+}
+
+.undertitle
+{
+    margin-top: 0;
+    color: grey;
+    font-size: 0.8em;
+    @media screen and (min-width: $medium)
+    {
+        font-size: 1em;
+    }
 }
 
 .normal-link
 {
-    font-size: ($link-size - 6px);
+    font-size: $regular-link-size;
+    cursor: pointer;
 }
 
 .linkit-post
@@ -86,7 +126,7 @@ a
 %vote
 {
     cursor: pointer;
-    font-size: ($link-size - 8px);
+    font-size: $regular-link-size + 5px;
     margin: 0;
     padding: 0;
 }

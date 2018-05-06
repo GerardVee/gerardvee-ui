@@ -1,4 +1,39 @@
-@import url(https://fonts.googleapis.com/css?family=Share);* {
+@import url(https://fonts.googleapis.com/css?family=Share);@import url(https://fonts.googleapis.com/icon?family=Material+Icons);.col {
+  display: flex;
+  flex-direction: column; }
+
+.row {
+  display: flex;
+  flex-direction: row; }
+
+.wrap {
+  flex-wrap: wrap; }
+
+.halign {
+  justify-content: center; }
+
+.valign {
+  align-items: center; }
+
+.halign-children > * {
+  justify-content: center; }
+
+.valign-children > * {
+  align-items: center; }
+
+@media screen and (min-width: 1280px) {
+  .hidden-lg {
+    display: none; } }
+
+@media screen and (min-width: 768px) {
+  .hidden-md {
+    display: none; } }
+
+@media screen and (min-width: 1px) and (max-width: 767px) {
+  .hidden-sm {
+    display: none; } }
+
+* {
   font-family: 'Share'; }
 
 a {
@@ -7,34 +42,62 @@ a {
   a:visited {
     color: #90D6D6; }
 
-.linkit-home, .linkit-new, .titles, .nav, .options {
+.linkit-home, .linkit-new, .heading, .nav, .options, .more {
   display: flex; }
 
-.linkit-home, .linkit-new, .titles, .options {
+.linkit-home, .linkit-new, .options, .more {
   flex-direction: column; }
 
 .nav {
-  align-items: center;
-  margin-bottom: 2em; }
+  flex-direction: column;
+  margin-bottom: 1em; }
   .nav > .options, .nav > .linkit-fb-picture {
     margin-right: 1em;
     margin-bottom: 30px; }
 
-.titles {
-  flex: 5; }
+.heading {
+  flex-direction: row;
+  flex: 5;
+  align-items: center; }
 
 .title {
-  font-size: 65px; }
+  flex: 4;
+  font-size: 55px; }
+  @media screen and (min-width: 768px) {
+    .title {
+      font-size: 65px; } }
+
+.head-link {
+  font-size: 16px !important; }
+  @media screen and (min-width: 768px) {
+    .head-link {
+      font-size: 21px !important; } }
 
 .colored {
   color: #9DEB9D; }
 
+.more {
+  align-items: center; }
+
 .subtitle {
-  font-weight: normal;
-  margin-top: 0; }
+  margin-top: 0;
+  font-size: 1.1em;
+  font-weight: 400; }
+  @media screen and (min-width: 768px) {
+    .subtitle {
+      font-size: 1.7em; } }
+
+.undertitle {
+  margin-top: 0;
+  color: grey;
+  font-size: 0.8em; }
+  @media screen and (min-width: 768px) {
+    .undertitle {
+      font-size: 1em; } }
 
 .normal-link {
-  font-size: 21px; }
+  font-size: 21px;
+  cursor: pointer; }
 
 .linkit-post {
   display: flex;
@@ -47,7 +110,7 @@ a {
 
 .upvote, .downvote {
   cursor: pointer;
-  font-size: 19px;
+  font-size: 26px;
   margin: 0;
   padding: 0; }
 
@@ -65,7 +128,7 @@ a {
 
 .linkit-link {
   font-weight: normal;
-  font-size: 27px;
+  font-size: 35px;
   margin-left: 0.3em;
   padding-bottom: 0.1em; }
 
@@ -103,5 +166,15 @@ a {
   font-size: 20px;
   padding: 6px;
   width: 15%; }
+
+.linkit-error-title, .linkit-error-message {
+  color: red; }
+
+.linkit-success-title, .linkit-success-message {
+  color: #4BB543; }
+
+.linkit-error-title, .linkit-success-title {
+  border-bottom: 7px solid grey;
+  width: 500px; }
 
 /*# sourceMappingURL=style.css.map*/

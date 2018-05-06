@@ -19,7 +19,7 @@ const api = 'https://api.gerardvee.com/';
 
 const FacebookLogin = ({ onClick }) =>
 (
-    <a className='normal-link' onClick={ onClick }>Login with Facebook</a>
+    <a className='normal-link head-link' onClick={ onClick }>Login with Facebook</a>
 );
 
 const FacebookAuthenticate = ({ callback, auto }) =>
@@ -73,7 +73,7 @@ export default class extends Component
                 <div className='linkit-home'>
                     <Nav picture={ user ? user.picture.data.url : '' }>
                         { !user && <FacebookAuthenticate auto={ !!loggedIn } callback={ (res) => this.auth(res) } /> }
-                        <Link href={`./linkit/new?loggedIn=${ !!user }`}><a className='normal-link'>Make a new post</a></Link>
+                        <Link href={`./linkit/new?loggedIn=${ !!user }`}><a className='normal-link head-link'>Make a new post</a></Link>
                     </Nav>
                     {(posts || [] ).map((post) => 
                         <Post alert={ err => this.setError(err) } className='linkit-post' key={ post.id }

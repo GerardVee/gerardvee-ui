@@ -58,8 +58,8 @@ export default class extends Component
         return (
             <div className={ className ? className : '' }>
                 <div className='voting-options'>
-                    <h1 className={ `upvote ${ upvote ? 'upvoted' : '' }` } onClick={ () => this.onUpvote() }>&#11165;</h1>
-                    <h1 className={ `downvote ${ downvote ? 'downvoted' : '' }` } onClick={ () => this.onDownvote() }>&#11167;</h1>
+                    <i className={ `material-icons ${ upvote ? 'upvoted' : '' }` } onClick={ () => this.onUpvote() }>keyboard_arrow_up</i>
+                    <i className={ `material-icons ${ downvote ? 'downvoted' : '' }` } onClick={ () => this.onDownvote() }>keyboard_arrow_down</i>
                 </div>
                 <a href={ !/^((http|https|ftp):\/\/)/.test(link) ? `http://${ link }` : link }><h1 className='linkit-link'>{ title }</h1></a>
             </div>

@@ -10,7 +10,7 @@ module.exports =
 "use strict";
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/cjs/react.development.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var _jsxFileName = '/home/gerardvee/gerardvee-ui/components/linkit/Nav.js';
+var _jsxFileName = '/home/geevee/Desktop/projects/gerardvee-site/components/linkit/Nav.js';
 
 
 (function () {
@@ -31,7 +31,7 @@ var _default = function _default(_ref) {
         },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
-            { className: 'titles', __source: {
+            { className: 'heading', __source: {
                     fileName: _jsxFileName,
                     lineNumber: 3
                 }
@@ -64,29 +64,46 @@ var _default = function _default(_ref) {
                 ),
                 't'
             ),
+            picture && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'linkit-fb-picture', src: picture, height: '50', width: '50', __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 5
+                }
+            }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'options', __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 6
+                    }
+                },
+                children
+            )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'more', __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 10
+                }
+            },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'h2',
                 { className: 'subtitle', __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 5
+                        lineNumber: 11
                     }
                 },
-                'Relevant linking made easy. No sub categories, no comments, no displayed stats, just links. No account required to post.'
+                'Relevant linking made easy.'
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'p',
+                { 'class': 'undertitle', __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 12
+                    }
+                },
+                'No sub categories, comments, stats, account to post, just links.'
             )
-        ),
-        picture && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'linkit-fb-picture', src: picture, height: '50', width: '50', __source: {
-                fileName: _jsxFileName,
-                lineNumber: 7
-            }
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'options', __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 8
-                }
-            },
-            children
         )
     );
 };
@@ -103,7 +120,7 @@ var _default = function _default(_ref) {
         return;
     }
 
-    reactHotLoader.register(_default, 'default', '/home/gerardvee/gerardvee-ui/components/linkit/Nav.js');
+    reactHotLoader.register(_default, 'default', '/home/geevee/Desktop/projects/gerardvee-site/components/linkit/Nav.js');
     leaveModule(module);
 })();
 
@@ -126,7 +143,7 @@ var _default = function _default(_ref) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_next_link___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_next_link__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__lib_post__ = __webpack_require__("./lib/post.js");
 
-var _jsxFileName = '/home/gerardvee/gerardvee-ui/components/linkit/Post.js';
+var _jsxFileName = '/home/geevee/Desktop/projects/gerardvee-site/components/linkit/Post.js';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -171,39 +188,30 @@ var _default = function (_Component) {
     }
 
     _createClass(_default, [{
-        key: 'onUpvote',
+        key: 'componentDidUpdate',
         value: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                var _props, id, token, res, upvoted;
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(_props, _state, snapshot) {
+                var _props2, me, id;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                _props = this.props, id = _props.id, token = _props.token;
-                                _context.next = 3;
-                                return fetch(api + ('linkit/upvote/' + id), Object(__WEBPACK_IMPORTED_MODULE_4__lib_post__["a" /* default */])({ token: token }));
+                                _props2 = this.props, me = _props2.me, id = _props2.id;
 
-                            case 3:
-                                res = _context.sent;
-                                _context.next = 6;
-                                return res.json();
-
-                            case 6:
-                                upvoted = _context.sent;
-
-                                if (!upvoted.error) {
-                                    _context.next = 10;
+                                if (!(_props.me === me)) {
+                                    _context.next = 5;
                                     break;
                                 }
 
-                                alert(upvoted.error);
                                 return _context.abrupt('return');
 
-                            case 10:
-                                this.setState(upvoted);
+                            case 5:
+                                if (!!me) {
+                                    this.setState({ upvote: me.upvotes.includes(id), downvote: me.downvotes.includes(id) });
+                                }
 
-                            case 11:
+                            case 6:
                             case 'end':
                                 return _context.stop();
                         }
@@ -211,25 +219,25 @@ var _default = function (_Component) {
                 }, _callee, this);
             }));
 
-            function onUpvote() {
+            function componentDidUpdate(_x, _x2, _x3) {
                 return _ref2.apply(this, arguments);
             }
 
-            return onUpvote;
+            return componentDidUpdate;
         }()
     }, {
-        key: 'onDownvote',
+        key: 'onUpvote',
         value: function () {
             var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-                var _props2, id, token, res, downvoted;
+                var _props3, id, token, alert, res, upvoted;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
-                                _props2 = this.props, id = _props2.id, token = _props2.token;
+                                _props3 = this.props, id = _props3.id, token = _props3.token, alert = _props3.alert;
                                 _context2.next = 3;
-                                return fetch(api + ('linkit/downvote/' + id), Object(__WEBPACK_IMPORTED_MODULE_4__lib_post__["a" /* default */])({ token: token }));
+                                return fetch(api + ('linkit/upvote/' + id), Object(__WEBPACK_IMPORTED_MODULE_4__lib_post__["a" /* default */])({ token: token }));
 
                             case 3:
                                 res = _context2.sent;
@@ -237,18 +245,18 @@ var _default = function (_Component) {
                                 return res.json();
 
                             case 6:
-                                downvoted = _context2.sent;
+                                upvoted = _context2.sent;
 
-                                if (!downvoted.error) {
+                                if (!upvoted.error) {
                                     _context2.next = 10;
                                     break;
                                 }
 
-                                alert(downvoted.error);
+                                alert(upvoted.error);
                                 return _context2.abrupt('return');
 
                             case 10:
-                                this.setState(downvoted);
+                                this.setState(upvoted);
 
                             case 11:
                             case 'end':
@@ -258,25 +266,25 @@ var _default = function (_Component) {
                 }, _callee2, this);
             }));
 
-            function onDownvote() {
+            function onUpvote() {
                 return _ref3.apply(this, arguments);
             }
 
-            return onDownvote;
+            return onUpvote;
         }()
     }, {
-        key: 'componentDidMount',
+        key: 'onDownvote',
         value: function () {
             var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
-                var _props3, token, id, res, me;
+                var _props4, id, token, alert, res, downvoted;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                     while (1) {
                         switch (_context3.prev = _context3.next) {
                             case 0:
-                                _props3 = this.props, token = _props3.token, id = _props3.id;
+                                _props4 = this.props, id = _props4.id, token = _props4.token, alert = _props4.alert;
                                 _context3.next = 3;
-                                return fetch(api + 'linkit/me', Object(__WEBPACK_IMPORTED_MODULE_4__lib_post__["a" /* default */])({ token: token }));
+                                return fetch(api + ('linkit/downvote/' + id), Object(__WEBPACK_IMPORTED_MODULE_4__lib_post__["a" /* default */])({ token: token }));
 
                             case 3:
                                 res = _context3.sent;
@@ -284,13 +292,20 @@ var _default = function (_Component) {
                                 return res.json();
 
                             case 6:
-                                me = _context3.sent;
+                                downvoted = _context3.sent;
 
-                                if (!!me) {
-                                    this.setState({ upvote: me.upvotes.includes(id), downvote: me.downvotes.includes(id) });
+                                if (!downvoted.error) {
+                                    _context3.next = 10;
+                                    break;
                                 }
 
-                            case 8:
+                                alert(downvoted.error);
+                                return _context3.abrupt('return');
+
+                            case 10:
+                                this.setState(downvoted);
+
+                            case 11:
                             case 'end':
                                 return _context3.stop();
                         }
@@ -298,76 +313,76 @@ var _default = function (_Component) {
                 }, _callee3, this);
             }));
 
-            function componentDidMount() {
+            function onDownvote() {
                 return _ref4.apply(this, arguments);
             }
 
-            return componentDidMount;
+            return onDownvote;
         }()
     }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
 
-            var _state = this.state,
-                upvote = _state.upvote,
-                downvote = _state.downvote;
-            var _props4 = this.props,
-                title = _props4.title,
-                link = _props4.link,
-                stats = _props4.stats,
-                date = _props4.date,
-                className = _props4.className;
+            var _state2 = this.state,
+                upvote = _state2.upvote,
+                downvote = _state2.downvote;
+            var _props5 = this.props,
+                title = _props5.title,
+                link = _props5.link,
+                stats = _props5.stats,
+                date = _props5.date,
+                className = _props5.className;
 
             return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                 'div',
                 { className: className ? className : '', __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 54
+                        lineNumber: 59
                     }
                 },
                 __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                     'div',
                     { className: 'voting-options', __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 55
+                            lineNumber: 60
                         }
                     },
                     __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                        'h1',
-                        { className: 'upvote ' + (upvote ? 'upvoted' : ''), onClick: function onClick() {
+                        'i',
+                        { className: 'material-icons ' + (upvote ? 'upvoted' : ''), onClick: function onClick() {
                                 return _this2.onUpvote();
                             }, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 56
+                                lineNumber: 61
                             }
                         },
-                        '\u2B9D'
+                        'keyboard_arrow_up'
                     ),
                     __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                        'h1',
-                        { className: 'downvote ' + (downvote ? 'downvoted' : ''), onClick: function onClick() {
+                        'i',
+                        { className: 'material-icons ' + (downvote ? 'downvoted' : ''), onClick: function onClick() {
                                 return _this2.onDownvote();
                             }, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 57
+                                lineNumber: 62
                             }
                         },
-                        '\u2B9F'
+                        'keyboard_arrow_down'
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                     'a',
                     { href: !/^((http|https|ftp):\/\/)/.test(link) ? 'http://' + link : link, __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 59
+                            lineNumber: 64
                         }
                     },
                     __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                         'h1',
                         { className: 'linkit-link', __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 59
+                                lineNumber: 64
                             }
                         },
                         title
@@ -385,7 +400,7 @@ var _default = function (_Component) {
     return _default;
 }(__WEBPACK_IMPORTED_MODULE_1_react__["Component"]);
 
-/* unused harmony default export */ var _unused_webpack_default_export = (_default);
+/* harmony default export */ __webpack_exports__["a"] = (_default);
 ;
 
 (function () {
@@ -397,8 +412,8 @@ var _default = function (_Component) {
         return;
     }
 
-    reactHotLoader.register(api, 'api', '/home/gerardvee/gerardvee-ui/components/linkit/Post.js');
-    reactHotLoader.register(_default, 'default', '/home/gerardvee/gerardvee-ui/components/linkit/Post.js');
+    reactHotLoader.register(api, 'api', '/home/geevee/Desktop/projects/gerardvee-site/components/linkit/Post.js');
+    reactHotLoader.register(_default, 'default', '/home/geevee/Desktop/projects/gerardvee-site/components/linkit/Post.js');
     leaveModule(module);
 })();
 
@@ -423,8 +438,7 @@ var _default = function _default(data) {
         mode: 'cors',
         method: 'POST',
         headers: new Headers({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+            'Content-Type': 'application/json'
         })
     };
 };
@@ -441,7 +455,7 @@ var _default = function _default(data) {
         return;
     }
 
-    reactHotLoader.register(_default, 'default', '/home/gerardvee/gerardvee-ui/lib/post.js');
+    reactHotLoader.register(_default, 'default', '/home/geevee/Desktop/projects/gerardvee-site/lib/post.js');
     leaveModule(module);
 })();
 
@@ -454,6 +468,62 @@ var _default = function _default(data) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = { "default": __webpack_require__("./node_modules/core-js/library/fn/json/stringify.js"), __esModule: true };
+
+/***/ }),
+
+/***/ "./node_modules/classnames/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2016 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				classes.push(classNames.apply(null, arg));
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
 
 /***/ }),
 
@@ -530,6 +600,63 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
+
+/***/ }),
+
+/***/ "./node_modules/dom-helpers/class/addClass.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = addClass;
+
+var _hasClass = __webpack_require__("./node_modules/dom-helpers/class/hasClass.js");
+
+var _hasClass2 = _interopRequireDefault(_hasClass);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function addClass(element, className) {
+  if (element.classList) element.classList.add(className);else if (!(0, _hasClass2.default)(element, className)) if (typeof element.className === 'string') element.className = element.className + ' ' + className;else element.setAttribute('class', (element.className && element.className.baseVal || '') + ' ' + className);
+}
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/dom-helpers/class/hasClass.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = hasClass;
+function hasClass(element, className) {
+  if (element.classList) return !!className && element.classList.contains(className);else return (" " + (element.className.baseVal || element.className) + " ").indexOf(" " + className + " ") !== -1;
+}
+module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "./node_modules/dom-helpers/class/removeClass.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function replaceClassName(origClass, classToRemove) {
+  return origClass.replace(new RegExp('(^|\\s)' + classToRemove + '(?:\\s|$)', 'g'), '$1').replace(/\s+/g, ' ').replace(/^\s*|\s*$/g, '');
+}
+
+module.exports = function removeClass(element, className) {
+  if (element.classList) element.classList.remove(className);else if (typeof element.className === 'string') element.className = replaceClassName(element.className, className);else element.setAttribute('class', replaceClassName(element.className && element.className.baseVal || '', className));
+};
 
 /***/ }),
 
@@ -961,6 +1088,80 @@ module.exports = __webpack_require__("./node_modules/next/dist/lib/head.js")
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("./node_modules/next/dist/lib/link.js")
+
+
+/***/ }),
+
+/***/ "./node_modules/no-scroll/index.js":
+/***/ (function(module, exports) {
+
+(function(root) {
+  var isOn = false;
+  var scrollbarSize;
+  var scrollTop;
+
+  function getScrollbarSize() {
+    if (typeof scrollbarSize !== 'undefined') return scrollbarSize;
+
+    var doc = document.documentElement;
+    var dummyScroller = document.createElement('div');
+    dummyScroller.setAttribute('style', 'width:99px;height:99px;' + 'position:absolute;top:-9999px;overflow:scroll;');
+    doc.appendChild(dummyScroller);
+    scrollbarSize = dummyScroller.offsetWidth - dummyScroller.clientWidth;
+    doc.removeChild(dummyScroller);
+    return scrollbarSize;
+  }
+
+  function hasScrollbar() {
+    return document.documentElement.scrollHeight > window.innerHeight;
+  }
+
+  function on(options) {
+    if (typeof document === 'undefined') return;
+    var doc = document.documentElement;
+    scrollTop = window.pageYOffset;
+    if (hasScrollbar()) {
+      doc.style.width = 'calc(100% - '+ getScrollbarSize() +'px)';
+    } else {
+      doc.style.width = '100%';
+    }
+    doc.style.position = 'fixed';
+    doc.style.top = -scrollTop + 'px';
+    doc.style.overflow = 'hidden';
+    isOn = true;
+  }
+
+  function off() {
+    if (typeof document === 'undefined') return;
+    var doc = document.documentElement;
+    doc.style.width = '';
+    doc.style.position = '';
+    doc.style.top = '';
+    doc.style.overflow = '';
+    window.scroll(0, scrollTop);
+    isOn = false;
+  }
+
+  function toggle() {
+    if (isOn) {
+      off();
+      return;
+    }
+    on();
+  }
+
+  var noScroll = {
+    on: on,
+    off: off,
+    toggle: toggle,
+  };
+
+  if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = noScroll;
+  } else {
+    root.noScroll = noScroll;
+  }
+})(this);
 
 
 /***/ }),
@@ -1637,6 +1838,1638 @@ function isMobile() {
 
 /***/ }),
 
+/***/ "./node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return polyfill; });
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+function componentWillMount() {
+  // Call this.constructor.gDSFP to support sub-classes.
+  var state = this.constructor.getDerivedStateFromProps(this.props, this.state);
+  if (state !== null && state !== undefined) {
+    this.setState(state);
+  }
+}
+
+function componentWillReceiveProps(nextProps) {
+  // Call this.constructor.gDSFP to support sub-classes.
+  var state = this.constructor.getDerivedStateFromProps(nextProps, this.state);
+  if (state !== null && state !== undefined) {
+    this.setState(state);
+  }
+}
+
+function componentWillUpdate(nextProps, nextState) {
+  try {
+    var prevProps = this.props;
+    var prevState = this.state;
+    this.props = nextProps;
+    this.state = nextState;
+    this.__reactInternalSnapshotFlag = true;
+    this.__reactInternalSnapshot = this.getSnapshotBeforeUpdate(
+      prevProps,
+      prevState
+    );
+  } finally {
+    this.props = prevProps;
+    this.state = prevState;
+  }
+}
+
+// React may warn about cWM/cWRP/cWU methods being deprecated.
+// Add a flag to suppress these warnings for this special case.
+componentWillMount.__suppressDeprecationWarning = true;
+componentWillReceiveProps.__suppressDeprecationWarning = true;
+componentWillUpdate.__suppressDeprecationWarning = true;
+
+function polyfill(Component) {
+  var prototype = Component.prototype;
+
+  if (!prototype || !prototype.isReactComponent) {
+    throw new Error('Can only polyfill class components');
+  }
+
+  if (
+    typeof Component.getDerivedStateFromProps !== 'function' &&
+    typeof prototype.getSnapshotBeforeUpdate !== 'function'
+  ) {
+    return Component;
+  }
+
+  // If new component APIs are defined, "unsafe" lifecycles won't be called.
+  // Error if any of these lifecycles are present,
+  // Because they would work differently between older and newer (16.3+) versions of React.
+  var foundWillMountName = null;
+  var foundWillReceivePropsName = null;
+  var foundWillUpdateName = null;
+  if (typeof prototype.componentWillMount === 'function') {
+    foundWillMountName = 'componentWillMount';
+  } else if (typeof prototype.UNSAFE_componentWillMount === 'function') {
+    foundWillMountName = 'UNSAFE_componentWillMount';
+  }
+  if (typeof prototype.componentWillReceiveProps === 'function') {
+    foundWillReceivePropsName = 'componentWillReceiveProps';
+  } else if (typeof prototype.UNSAFE_componentWillReceiveProps === 'function') {
+    foundWillReceivePropsName = 'UNSAFE_componentWillReceiveProps';
+  }
+  if (typeof prototype.componentWillUpdate === 'function') {
+    foundWillUpdateName = 'componentWillUpdate';
+  } else if (typeof prototype.UNSAFE_componentWillUpdate === 'function') {
+    foundWillUpdateName = 'UNSAFE_componentWillUpdate';
+  }
+  if (
+    foundWillMountName !== null ||
+    foundWillReceivePropsName !== null ||
+    foundWillUpdateName !== null
+  ) {
+    var componentName = Component.displayName || Component.name;
+    var newApiName =
+      typeof Component.getDerivedStateFromProps === 'function'
+        ? 'getDerivedStateFromProps()'
+        : 'getSnapshotBeforeUpdate()';
+
+    throw Error(
+      'Unsafe legacy lifecycles will not be called for components using new component APIs.\n\n' +
+        componentName +
+        ' uses ' +
+        newApiName +
+        ' but also contains the following legacy lifecycles:' +
+        (foundWillMountName !== null ? '\n  ' + foundWillMountName : '') +
+        (foundWillReceivePropsName !== null
+          ? '\n  ' + foundWillReceivePropsName
+          : '') +
+        (foundWillUpdateName !== null ? '\n  ' + foundWillUpdateName : '') +
+        '\n\nThe above lifecycles should be removed. Learn more about this warning here:\n' +
+        'https://fb.me/react-async-component-lifecycle-hooks'
+    );
+  }
+
+  // React <= 16.2 does not support static getDerivedStateFromProps.
+  // As a workaround, use cWM and cWRP to invoke the new static lifecycle.
+  // Newer versions of React will ignore these lifecycles if gDSFP exists.
+  if (typeof Component.getDerivedStateFromProps === 'function') {
+    prototype.componentWillMount = componentWillMount;
+    prototype.componentWillReceiveProps = componentWillReceiveProps;
+  }
+
+  // React <= 16.2 does not support getSnapshotBeforeUpdate.
+  // As a workaround, use cWU to invoke the new lifecycle.
+  // Newer versions of React will ignore that lifecycle if gSBU exists.
+  if (typeof prototype.getSnapshotBeforeUpdate === 'function') {
+    if (typeof prototype.componentDidUpdate !== 'function') {
+      throw new Error(
+        'Cannot polyfill getSnapshotBeforeUpdate() for components that do not define componentDidUpdate() on the prototype'
+      );
+    }
+
+    prototype.componentWillUpdate = componentWillUpdate;
+
+    var componentDidUpdate = prototype.componentDidUpdate;
+
+    prototype.componentDidUpdate = function componentDidUpdatePolyfill(
+      prevProps,
+      prevState,
+      maybeSnapshot
+    ) {
+      // 16.3+ will not execute our will-update method;
+      // It will pass a snapshot value to did-update though.
+      // Older versions will require our polyfilled will-update value.
+      // We need to handle both cases, but can't just check for the presence of "maybeSnapshot",
+      // Because for <= 15.x versions this might be a "prevContext" object.
+      // We also can't just check "__reactInternalSnapshot",
+      // Because get-snapshot might return a falsy value.
+      // So check for the explicit __reactInternalSnapshotFlag flag to determine behavior.
+      var snapshot = this.__reactInternalSnapshotFlag
+        ? this.__reactInternalSnapshot
+        : maybeSnapshot;
+
+      componentDidUpdate.call(this, prevProps, prevState, snapshot);
+    };
+  }
+
+  return Component;
+}
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/react-minimalist-portal/lib/portal.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__("./node_modules/react/cjs/react.development.js");
+
+var _propTypes = __webpack_require__("./node_modules/next/node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactDom = __webpack_require__("./node_modules/react-dom/cjs/react-dom.development.js");
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var useCreatePortal = typeof _reactDom2.default.createPortal === 'function';
+
+var Portal = function (_Component) {
+  _inherits(Portal, _Component);
+
+  function Portal() {
+    _classCallCheck(this, Portal);
+
+    return _possibleConstructorReturn(this, (Portal.__proto__ || Object.getPrototypeOf(Portal)).apply(this, arguments));
+  }
+
+  _createClass(Portal, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.popup = document.createElement('div');
+      document.body.appendChild(this.popup);
+      this.renderLayer();
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      this.renderLayer();
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      if (!useCreatePortal) {
+        _reactDom2.default.unmountComponentAtNode(this.popup);
+      }
+      document.body.removeChild(this.popup);
+    }
+  }, {
+    key: 'renderLayer',
+    value: function renderLayer() {
+      if (!useCreatePortal) {
+        _reactDom2.default.unstable_renderSubtreeIntoContainer(this, this.props.children, this.popup);
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      if (useCreatePortal) {
+        return _reactDom2.default.createPortal(this.props.children, this.popup);
+      }
+      return null;
+    }
+  }]);
+
+  return Portal;
+}(_react.Component);
+
+Portal.propTypes = {
+  children: _propTypes2.default.node // eslint-disable-line
+};
+
+exports.default = Portal;
+
+/***/ }),
+
+/***/ "./node_modules/react-responsive-modal/lib/index.es.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/cjs/react.development.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__("./node_modules/classnames/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__("./node_modules/next/node_modules/prop-types/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_lifecycles_compat__ = __webpack_require__("./node_modules/react-lifecycles-compat/react-lifecycles-compat.es.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_minimalist_portal__ = __webpack_require__("./node_modules/react-minimalist-portal/lib/portal.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_minimalist_portal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_minimalist_portal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_transition_group_CSSTransition__ = __webpack_require__("./node_modules/react-transition-group/CSSTransition.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_transition_group_CSSTransition___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_transition_group_CSSTransition__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_no_scroll__ = __webpack_require__("./node_modules/no-scroll/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_no_scroll___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_no_scroll__);
+
+
+
+
+
+
+
+
+var CloseIcon = function CloseIcon(_ref) {
+  var classes = _ref.classes,
+      classNames = _ref.classNames,
+      styles = _ref.styles,
+      closeIconSize = _ref.closeIconSize,
+      closeIconSvgPath = _ref.closeIconSvgPath,
+      onClickCloseIcon = _ref.onClickCloseIcon;
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+    'button',
+    {
+      className: __WEBPACK_IMPORTED_MODULE_1_classnames___default()(classes.closeButton, classNames.closeButton),
+      style: styles.closeButton,
+      onClick: onClickCloseIcon
+    },
+    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'svg',
+      {
+        className: __WEBPACK_IMPORTED_MODULE_1_classnames___default()(classes.closeIcon, classNames.closeIcon),
+        style: styles.closeIcon,
+        xmlns: 'http://www.w3.org/2000/svg',
+        width: closeIconSize,
+        height: closeIconSize,
+        viewBox: '0 0 36 36'
+      },
+      closeIconSvgPath
+    )
+  );
+};
+
+CloseIcon.propTypes = {
+  classNames: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.object.isRequired,
+  styles: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.object.isRequired,
+  classes: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.object.isRequired,
+  closeIconSize: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.number.isRequired,
+  closeIconSvgPath: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.node.isRequired,
+  onClickCloseIcon: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.func.isRequired
+};
+
+function styleInject(css, ref) {
+  if ( ref === void 0 ) ref = {};
+  var insertAt = ref.insertAt;
+
+  if (!css || typeof document === 'undefined') { return; }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var css = ".styles_overlay__CLSq- {\n  background: rgba(0, 0, 0, 0.75);\n  display: flex;\n  align-items: flex-start;\n  justify-content: center;\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  overflow-y: auto;\n  overflow-x: hidden;\n  z-index: 1000;\n  padding: 1.2rem;\n}\n.styles_overlayCenter__YHoO7 {\n  align-items: center;\n}\n.styles_modal__gNwvD {\n  max-width: 800px;\n  position: relative;\n  padding: 1.2rem;\n  background: #ffffff;\n  background-clip: padding-box;\n  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.25);\n}\n.styles_closeButton__20ID4 {\n  position: absolute;\n  top: 14px;\n  right: 14px;\n  border: none;\n  padding: 0;\n  background-color: transparent;\n  display: flex;\n}\n.styles_closeIcon__1QwbI {\n}\n.styles_transitionEnter__3j_-a {\n  opacity: 0.01;\n}\n.styles_transitionEnterActive___eQs7 {\n  opacity: 1;\n  transition: opacity 500ms cubic-bezier(0.23, 1, 0.32, 1);\n}\n.styles_transitionExit__1KmEf {\n  opacity: 1;\n}\n.styles_transitionExitActive__1nQXw {\n  opacity: 0.01;\n  transition: opacity 500ms cubic-bezier(0.23, 1, 0.32, 1);\n}\n";
+var cssClasses = { "overlay": "styles_overlay__CLSq-", "overlayCenter": "styles_overlayCenter__YHoO7", "modal": "styles_modal__gNwvD", "closeButton": "styles_closeButton__20ID4", "closeIcon": "styles_closeIcon__1QwbI", "transitionEnter": "styles_transitionEnter__3j_-a", "transitionEnterActive": "styles_transitionEnterActive___eQs7", "transitionExit": "styles_transitionExit__1KmEf", "transitionExitActive": "styles_transitionExitActive__1nQXw" };
+styleInject(css);
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
+var inherits = function (subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+};
+
+var possibleConstructorReturn = function (self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return call && (typeof call === "object" || typeof call === "function") ? call : self;
+};
+
+var Modal = function (_Component) {
+  inherits(Modal, _Component);
+  createClass(Modal, null, [{
+    key: 'getDerivedStateFromProps',
+    value: function getDerivedStateFromProps(nextProps, prevState) {
+      if (!prevState.showPortal && nextProps.open) {
+        return {
+          showPortal: true
+        };
+      }
+      return null;
+    }
+  }]);
+
+  function Modal(props) {
+    classCallCheck(this, Modal);
+
+    var _this = possibleConstructorReturn(this, (Modal.__proto__ || Object.getPrototypeOf(Modal)).call(this, props));
+
+    _this.handleOpen = function () {
+      _this.blockScroll();
+      document.addEventListener('keydown', _this.handleKeydown);
+    };
+
+    _this.handleClose = function () {
+      _this.unblockScroll();
+      document.removeEventListener('keydown', _this.handleKeydown);
+    };
+
+    _this.handleClickOverlay = function (event) {
+      if (_this.shouldClose === null) {
+        _this.shouldClose = true;
+      }
+
+      if (!_this.shouldClose) {
+        _this.shouldClose = null;
+        return;
+      }
+
+      if (_this.props.onOverlayClick) {
+        _this.props.onOverlayClick(event);
+      }
+
+      if (_this.props.closeOnOverlayClick) {
+        _this.props.onClose(event);
+      }
+
+      _this.shouldClose = null;
+    };
+
+    _this.handleClickCloseIcon = function (event) {
+      _this.props.onClose(event);
+    };
+
+    _this.handleKeydown = function (event) {
+      if (event.keyCode !== 27) {
+        return;
+      }
+
+      if (_this.props.onEscKeyDown) {
+        _this.props.onEscKeyDown(event);
+      }
+
+      if (_this.props.closeOnEsc) {
+        _this.props.onClose(event);
+      }
+    };
+
+    _this.handleModalEvent = function () {
+      _this.shouldClose = false;
+    };
+
+    _this.handleEntered = function () {
+      if (_this.props.onEntered) {
+        _this.props.onEntered();
+      }
+    };
+
+    _this.handleExited = function () {
+      if (_this.props.onExited) {
+        _this.props.onExited();
+      }
+
+      _this.setState({ showPortal: false });
+      _this.unblockScroll();
+    };
+
+    _this.unblockScroll = function () {
+      var openedModals = document.getElementsByClassName(_this.props.classes.modal);
+      if (openedModals.length === 1) {
+        __WEBPACK_IMPORTED_MODULE_6_no_scroll___default.a.off();
+      }
+    };
+
+    _this.state = {
+      showPortal: props.open
+    };
+    _this.shouldClose = null;
+    return _this;
+  }
+
+  createClass(Modal, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // Block scroll when initial prop is open
+      if (this.props.open) {
+        this.handleOpen();
+      }
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (prevState.showPortal && !this.state.showPortal) {
+        this.handleClose();
+      } else if (!prevProps.open && this.props.open) {
+        this.handleOpen();
+      }
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      if (this.props.open) {
+        this.handleClose();
+      }
+    }
+  }, {
+    key: 'blockScroll',
+
+
+    // eslint-disable-next-line class-methods-use-this
+    value: function blockScroll() {
+      __WEBPACK_IMPORTED_MODULE_6_no_scroll___default.a.on();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          open = _props.open,
+          center = _props.center,
+          classes = _props.classes,
+          classNames = _props.classNames,
+          styles = _props.styles,
+          showCloseIcon = _props.showCloseIcon,
+          closeIconSize = _props.closeIconSize,
+          closeIconSvgPath = _props.closeIconSvgPath,
+          animationDuration = _props.animationDuration;
+      var showPortal = this.state.showPortal;
+
+
+      if (!showPortal) {
+        return null;
+      }
+
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_4_react_minimalist_portal___default.a,
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_5_react_transition_group_CSSTransition___default.a,
+          {
+            'in': open,
+            appear: true,
+            classNames: {
+              appear: classNames.transitionEnter || classes.transitionEnter,
+              appearActive: classNames.transitionEnterActive || classes.transitionEnterActive,
+              enter: classNames.transitionEnter || classes.transitionEnter,
+              enterActive: classNames.transitionEnterActive || classes.transitionEnterActive,
+              exit: classNames.transitionExit || classes.transitionExit,
+              exitActive: classNames.transitionExitActive || classes.transitionExitActive
+            },
+            timeout: animationDuration,
+            onEntered: this.handleEntered,
+            onExited: this.handleExited
+          },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            {
+              className: __WEBPACK_IMPORTED_MODULE_1_classnames___default()(classes.overlay, center ? classes.overlayCenter : null, classNames.overlay),
+              onClick: this.handleClickOverlay,
+              style: styles.overlay
+            },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              {
+                className: __WEBPACK_IMPORTED_MODULE_1_classnames___default()(classes.modal, classNames.modal),
+                style: styles.modal,
+                onMouseDown: this.handleModalEvent,
+                onMouseUp: this.handleModalEvent,
+                onClick: this.handleModalEvent
+              },
+              this.props.children,
+              showCloseIcon && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CloseIcon, {
+                classes: classes,
+                classNames: classNames,
+                styles: styles,
+                closeIconSize: closeIconSize,
+                closeIconSvgPath: closeIconSvgPath,
+                onClickCloseIcon: this.handleClickCloseIcon
+              })
+            )
+          )
+        )
+      );
+    }
+  }]);
+  return Modal;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+Modal.propTypes = {
+  /**
+   * Is the modal closable when user press esc key.
+   */
+  closeOnEsc: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool,
+  /**
+   * Is the modal closable when user click on overlay.
+   */
+  closeOnOverlayClick: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool,
+  /**
+   * Callback fired when the Modal is open and the animation is finished.
+   */
+  onEntered: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.func,
+  /**
+   * Callback fired when the Modal has exited and the animation is finished.
+   */
+  onExited: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.func,
+  /**
+   * Callback fired when the Modal is requested to be closed by a click on the overlay or when user press esc key.
+   */
+  onClose: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.func.isRequired,
+  /**
+   * Callback fired when the escape key is pressed.
+   */
+  onEscKeyDown: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.func,
+  /**
+   * Callback fired when the overlay is clicked.
+   */
+  onOverlayClick: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.func,
+  /**
+   * Control if the modal is open or not.
+   */
+  open: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool.isRequired,
+  /**
+   * An object containing classNames to style the modal, can have properties 'overlay' (classname for overlay div), 'modal' (classname for modal content div), 'closeButton' (classname for the button that contain the close icon), 'closeIcon' (classname for close icon svg). You can customize the transition with 'transitionEnter', 'transitionEnterActive', 'transitionExit', 'transitionExitActive'
+   */
+  classNames: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.object,
+  /**
+   * An object containing the styles objects to style the modal, can have properties 'overlay', 'modal', 'closeButton', 'closeIcon'.
+   */
+  styles: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.object,
+  /**
+   * The content of the modal.
+   */
+  children: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.node,
+  /**
+   * @internal
+   */
+  classes: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.object,
+  /**
+   * Is the dialog centered (**when you don't have a lot of content**).
+   */
+  center: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool,
+  /**
+   * Show the close icon.
+   */
+  showCloseIcon: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool,
+  /**
+   * Close icon size.
+   */
+  closeIconSize: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.number,
+  /**
+   * A valid svg path to show as icon.
+   */
+  closeIconSvgPath: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.node,
+  /**
+   * Animation duration in milliseconds.
+   */
+  animationDuration: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.number
+};
+
+Modal.defaultProps = {
+  classes: cssClasses,
+  closeOnEsc: true,
+  closeOnOverlayClick: true,
+  onEntered: null,
+  onExited: null,
+  onEscKeyDown: null,
+  onOverlayClick: null,
+  showCloseIcon: true,
+  closeIconSize: 28,
+  closeIconSvgPath: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('path', { d: 'M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z' }),
+  classNames: {},
+  styles: {},
+  children: null,
+  center: false,
+  animationDuration: 500
+};
+
+Object(__WEBPACK_IMPORTED_MODULE_3_react_lifecycles_compat__["a" /* polyfill */])(Modal);
+
+/* harmony default export */ __webpack_exports__["a"] = (Modal);
+//# sourceMappingURL=index.es.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/react-transition-group/CSSTransition.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _propTypes = __webpack_require__("./node_modules/next/node_modules/prop-types/index.js");
+
+var PropTypes = _interopRequireWildcard(_propTypes);
+
+var _addClass = __webpack_require__("./node_modules/dom-helpers/class/addClass.js");
+
+var _addClass2 = _interopRequireDefault(_addClass);
+
+var _removeClass = __webpack_require__("./node_modules/dom-helpers/class/removeClass.js");
+
+var _removeClass2 = _interopRequireDefault(_removeClass);
+
+var _react = __webpack_require__("./node_modules/react/cjs/react.development.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Transition = __webpack_require__("./node_modules/react-transition-group/Transition.js");
+
+var _Transition2 = _interopRequireDefault(_Transition);
+
+var _PropTypes = __webpack_require__("./node_modules/react-transition-group/utils/PropTypes.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var addClass = function addClass(node, classes) {
+  return node && classes && classes.split(' ').forEach(function (c) {
+    return (0, _addClass2.default)(node, c);
+  });
+};
+var removeClass = function removeClass(node, classes) {
+  return node && classes && classes.split(' ').forEach(function (c) {
+    return (0, _removeClass2.default)(node, c);
+  });
+};
+
+var propTypes = _extends({}, _Transition2.default.propTypes, {
+
+  /**
+   * The animation classNames applied to the component as it enters, exits or has finished the transition.
+   * A single name can be provided and it will be suffixed for each stage: e.g.
+   *
+   * `classNames="fade"` applies `fade-enter`, `fade-enter-active`, `fade-enter-done`,
+   * `fade-exit`, `fade-exit-active`, `fade-exit-done`, `fade-appear`, and `fade-appear-active`.
+   * Each individual classNames can also be specified independently like:
+   *
+   * ```js
+   * classNames={{
+   *  appear: 'my-appear',
+   *  appearActive: 'my-active-appear',
+   *  enter: 'my-enter',
+   *  enterActive: 'my-active-enter',
+   *  enterDone: 'my-done-enter',
+   *  exit: 'my-exit',
+   *  exitActive: 'my-active-exit',
+   *  exitDone: 'my-done-exit',
+   * }}
+   * ```
+   *
+   * @type {string | {
+   *  appear?: string,
+   *  appearActive?: string,
+   *  enter?: string,
+   *  enterActive?: string,
+   *  enterDone?: string,
+   *  exit?: string,
+   *  exitActive?: string,
+   *  exitDone?: string,
+   * }}
+   */
+  classNames: _PropTypes.classNamesShape,
+
+  /**
+   * A `<Transition>` callback fired immediately after the 'enter' or 'appear' class is
+   * applied.
+   *
+   * @type Function(node: HtmlElement, isAppearing: bool)
+   */
+  onEnter: PropTypes.func,
+
+  /**
+   * A `<Transition>` callback fired immediately after the 'enter-active' or
+   * 'appear-active' class is applied.
+   *
+   * @type Function(node: HtmlElement, isAppearing: bool)
+   */
+  onEntering: PropTypes.func,
+
+  /**
+   * A `<Transition>` callback fired immediately after the 'enter' or
+   * 'appear' classes are **removed** and the `done` class is added to the DOM node.
+   *
+   * @type Function(node: HtmlElement, isAppearing: bool)
+   */
+  onEntered: PropTypes.func,
+
+  /**
+   * A `<Transition>` callback fired immediately after the 'exit' class is
+   * applied.
+   *
+   * @type Function(node: HtmlElement)
+   */
+  onExit: PropTypes.func,
+
+  /**
+   * A `<Transition>` callback fired immediately after the 'exit-active' is applied.
+   *
+   * @type Function(node: HtmlElement
+   */
+  onExiting: PropTypes.func,
+
+  /**
+   * A `<Transition>` callback fired immediately after the 'exit' classes
+   * are **removed** and the `exit-done` class is added to the DOM node.
+   *
+   * @type Function(node: HtmlElement)
+   */
+  onExited: PropTypes.func
+});
+
+/**
+ * A `Transition` component using CSS transitions and animations.
+ * It's inspired by the excellent [ng-animate](http://www.nganimate.org/) library.
+ *
+ * `CSSTransition` applies a pair of class names during the `appear`, `enter`,
+ * and `exit` stages of the transition. The first class is applied and then a
+ * second "active" class in order to activate the css animation. After the animation,
+ * matching `done` class names are applied to persist the animation state.
+ *
+ * When the `in` prop is toggled to `true` the Component will get
+ * the `example-enter` CSS class and the `example-enter-active` CSS class
+ * added in the next tick. This is a convention based on the `classNames` prop.
+ *
+ * ## Example
+ *
+ * <iframe src="https://codesandbox.io/embed/m77l2vp00x?fontsize=14" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+ */
+
+var CSSTransition = function (_React$Component) {
+  _inherits(CSSTransition, _React$Component);
+
+  function CSSTransition() {
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, CSSTransition);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.onEnter = function (node, appearing) {
+      var _this$getClassNames = _this.getClassNames(appearing ? 'appear' : 'enter'),
+          className = _this$getClassNames.className;
+
+      _this.removeClasses(node, 'exit');
+      addClass(node, className);
+
+      if (_this.props.onEnter) {
+        _this.props.onEnter(node);
+      }
+    }, _this.onEntering = function (node, appearing) {
+      var _this$getClassNames2 = _this.getClassNames(appearing ? 'appear' : 'enter'),
+          activeClassName = _this$getClassNames2.activeClassName;
+
+      _this.reflowAndAddClass(node, activeClassName);
+
+      if (_this.props.onEntering) {
+        _this.props.onEntering(node);
+      }
+    }, _this.onEntered = function (node, appearing) {
+      var _this$getClassNames3 = _this.getClassNames('enter'),
+          doneClassName = _this$getClassNames3.doneClassName;
+
+      _this.removeClasses(node, appearing ? 'appear' : 'enter');
+      addClass(node, doneClassName);
+
+      if (_this.props.onEntered) {
+        _this.props.onEntered(node);
+      }
+    }, _this.onExit = function (node) {
+      var _this$getClassNames4 = _this.getClassNames('exit'),
+          className = _this$getClassNames4.className;
+
+      _this.removeClasses(node, 'appear');
+      _this.removeClasses(node, 'enter');
+      addClass(node, className);
+
+      if (_this.props.onExit) {
+        _this.props.onExit(node);
+      }
+    }, _this.onExiting = function (node) {
+      var _this$getClassNames5 = _this.getClassNames('exit'),
+          activeClassName = _this$getClassNames5.activeClassName;
+
+      _this.reflowAndAddClass(node, activeClassName);
+
+      if (_this.props.onExiting) {
+        _this.props.onExiting(node);
+      }
+    }, _this.onExited = function (node) {
+      var _this$getClassNames6 = _this.getClassNames('exit'),
+          doneClassName = _this$getClassNames6.doneClassName;
+
+      _this.removeClasses(node, 'exit');
+      addClass(node, doneClassName);
+
+      if (_this.props.onExited) {
+        _this.props.onExited(node);
+      }
+    }, _this.getClassNames = function (type) {
+      var classNames = _this.props.classNames;
+
+
+      var className = typeof classNames !== 'string' ? classNames[type] : classNames + '-' + type;
+
+      var activeClassName = typeof classNames !== 'string' ? classNames[type + 'Active'] : className + '-active';
+
+      var doneClassName = typeof classNames !== 'string' ? classNames[type + 'Done'] : className + '-done';
+
+      return {
+        className: className,
+        activeClassName: activeClassName,
+        doneClassName: doneClassName
+      };
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  CSSTransition.prototype.removeClasses = function removeClasses(node, type) {
+    var _getClassNames = this.getClassNames(type),
+        className = _getClassNames.className,
+        activeClassName = _getClassNames.activeClassName,
+        doneClassName = _getClassNames.doneClassName;
+
+    className && removeClass(node, className);
+    activeClassName && removeClass(node, activeClassName);
+    doneClassName && removeClass(node, doneClassName);
+  };
+
+  CSSTransition.prototype.reflowAndAddClass = function reflowAndAddClass(node, className) {
+    // This is for to force a repaint,
+    // which is necessary in order to transition styles when adding a class name.
+    /* eslint-disable no-unused-expressions */
+    node && node.scrollTop;
+    /* eslint-enable no-unused-expressions */
+    addClass(node, className);
+  };
+
+  CSSTransition.prototype.render = function render() {
+    var props = _extends({}, this.props);
+
+    delete props.classNames;
+
+    return _react2.default.createElement(_Transition2.default, _extends({}, props, {
+      onEnter: this.onEnter,
+      onEntered: this.onEntered,
+      onEntering: this.onEntering,
+      onExit: this.onExit,
+      onExiting: this.onExiting,
+      onExited: this.onExited
+    }));
+  };
+
+  return CSSTransition;
+}(_react2.default.Component);
+
+CSSTransition.propTypes =  true ? propTypes : {};
+
+exports.default = CSSTransition;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/react-transition-group/Transition.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.EXITING = exports.ENTERED = exports.ENTERING = exports.EXITED = exports.UNMOUNTED = undefined;
+
+var _propTypes = __webpack_require__("./node_modules/next/node_modules/prop-types/index.js");
+
+var PropTypes = _interopRequireWildcard(_propTypes);
+
+var _react = __webpack_require__("./node_modules/react/cjs/react.development.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__("./node_modules/react-dom/cjs/react-dom.development.js");
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _PropTypes = __webpack_require__("./node_modules/react-transition-group/utils/PropTypes.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UNMOUNTED = exports.UNMOUNTED = 'unmounted';
+var EXITED = exports.EXITED = 'exited';
+var ENTERING = exports.ENTERING = 'entering';
+var ENTERED = exports.ENTERED = 'entered';
+var EXITING = exports.EXITING = 'exiting';
+
+/**
+ * The Transition component lets you describe a transition from one component
+ * state to another _over time_ with a simple declarative API. Most commonly
+ * it's used to animate the mounting and unmounting of a component, but can also
+ * be used to describe in-place transition states as well.
+ *
+ * By default the `Transition` component does not alter the behavior of the
+ * component it renders, it only tracks "enter" and "exit" states for the components.
+ * It's up to you to give meaning and effect to those states. For example we can
+ * add styles to a component when it enters or exits:
+ *
+ * ```jsx
+ * import Transition from 'react-transition-group/Transition';
+ *
+ * const duration = 300;
+ *
+ * const defaultStyle = {
+ *   transition: `opacity ${duration}ms ease-in-out`,
+ *   opacity: 0,
+ * }
+ *
+ * const transitionStyles = {
+ *   entering: { opacity: 0 },
+ *   entered:  { opacity: 1 },
+ * };
+ *
+ * const Fade = ({ in: inProp }) => (
+ *   <Transition in={inProp} timeout={duration}>
+ *     {(state) => (
+ *       <div style={{
+ *         ...defaultStyle,
+ *         ...transitionStyles[state]
+ *       }}>
+ *         I'm a fade Transition!
+ *       </div>
+ *     )}
+ *   </Transition>
+ * );
+ * ```
+ *
+ * As noted the `Transition` component doesn't _do_ anything by itself to its child component.
+ * What it does do is track transition states over time so you can update the
+ * component (such as by adding styles or classes) when it changes states.
+ *
+ * There are 4 main states a Transition can be in:
+ *  - `'entering'`
+ *  - `'entered'`
+ *  - `'exiting'`
+ *  - `'exited'`
+ *
+ * Transition state is toggled via the `in` prop. When `true` the component begins the
+ * "Enter" stage. During this stage, the component will shift from its current transition state,
+ * to `'entering'` for the duration of the transition and then to the `'entered'` stage once
+ * it's complete. Let's take the following example:
+ *
+ * ```jsx
+ * state = { in: false };
+ *
+ * toggleEnterState = () => {
+ *   this.setState({ in: true });
+ * }
+ *
+ * render() {
+ *   return (
+ *     <div>
+ *       <Transition in={this.state.in} timeout={500} />
+ *       <button onClick={this.toggleEnterState}>Click to Enter</button>
+ *     </div>
+ *   );
+ * }
+ * ```
+ *
+ * When the button is clicked the component will shift to the `'entering'` state and
+ * stay there for 500ms (the value of `timeout`) before it finally switches to `'entered'`.
+ *
+ * When `in` is `false` the same thing happens except the state moves from `'exiting'` to `'exited'`.
+ *
+ * ## Timing
+ *
+ * Timing is often the trickiest part of animation, mistakes can result in slight delays
+ * that are hard to pin down. A common example is when you want to add an exit transition,
+ * you should set the desired final styles when the state is `'exiting'`. That's when the
+ * transition to those styles will start and, if you matched the `timeout` prop with the
+ * CSS Transition duration, it will end exactly when the state changes to `'exited'`.
+ *
+ * > **Note**: For simpler transitions the `Transition` component might be enough, but
+ * > take into account that it's platform-agnostic, while the `CSSTransition` component
+ * > [forces reflows](https://github.com/reactjs/react-transition-group/blob/5007303e729a74be66a21c3e2205e4916821524b/src/CSSTransition.js#L208-L215)
+ * > in order to make more complex transitions more predictable. For example, even though
+ * > classes `example-enter` and `example-enter-active` are applied immediately one after
+ * > another, you can still transition from one to the other because of the forced reflow
+ * > (read [this issue](https://github.com/reactjs/react-transition-group/issues/159#issuecomment-322761171)
+ * > for more info). Take this into account when choosing between `Transition` and
+ * > `CSSTransition`.
+ *
+ * ## Example
+ *
+ * <iframe src="https://codesandbox.io/embed/741op4mmj0?fontsize=14" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+ *
+ */
+
+var Transition = function (_React$Component) {
+  _inherits(Transition, _React$Component);
+
+  function Transition(props, context) {
+    _classCallCheck(this, Transition);
+
+    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props, context));
+
+    var parentGroup = context.transitionGroup;
+    // In the context of a TransitionGroup all enters are really appears
+    var appear = parentGroup && !parentGroup.isMounting ? props.enter : props.appear;
+
+    var initialStatus = void 0;
+    _this.nextStatus = null;
+
+    if (props.in) {
+      if (appear) {
+        initialStatus = EXITED;
+        _this.nextStatus = ENTERING;
+      } else {
+        initialStatus = ENTERED;
+      }
+    } else {
+      if (props.unmountOnExit || props.mountOnEnter) {
+        initialStatus = UNMOUNTED;
+      } else {
+        initialStatus = EXITED;
+      }
+    }
+
+    _this.state = { status: initialStatus };
+
+    _this.nextCallback = null;
+    return _this;
+  }
+
+  Transition.prototype.getChildContext = function getChildContext() {
+    return { transitionGroup: null }; // allows for nested Transitions
+  };
+
+  Transition.prototype.componentDidMount = function componentDidMount() {
+    this.updateStatus(true);
+  };
+
+  Transition.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+    var _ref = this.pendingState || this.state,
+        status = _ref.status;
+
+    if (nextProps.in) {
+      if (status === UNMOUNTED) {
+        this.setState({ status: EXITED });
+      }
+      if (status !== ENTERING && status !== ENTERED) {
+        this.nextStatus = ENTERING;
+      }
+    } else {
+      if (status === ENTERING || status === ENTERED) {
+        this.nextStatus = EXITING;
+      }
+    }
+  };
+
+  Transition.prototype.componentDidUpdate = function componentDidUpdate() {
+    this.updateStatus();
+  };
+
+  Transition.prototype.componentWillUnmount = function componentWillUnmount() {
+    this.cancelNextCallback();
+  };
+
+  Transition.prototype.getTimeouts = function getTimeouts() {
+    var timeout = this.props.timeout;
+
+    var exit = void 0,
+        enter = void 0,
+        appear = void 0;
+
+    exit = enter = appear = timeout;
+
+    if (timeout != null && typeof timeout !== 'number') {
+      exit = timeout.exit;
+      enter = timeout.enter;
+      appear = timeout.appear;
+    }
+    return { exit: exit, enter: enter, appear: appear };
+  };
+
+  Transition.prototype.updateStatus = function updateStatus() {
+    var mounting = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+    var nextStatus = this.nextStatus;
+
+    if (nextStatus !== null) {
+      this.nextStatus = null;
+      // nextStatus will always be ENTERING or EXITING.
+      this.cancelNextCallback();
+      var node = _reactDom2.default.findDOMNode(this);
+
+      if (nextStatus === ENTERING) {
+        this.performEnter(node, mounting);
+      } else {
+        this.performExit(node);
+      }
+    } else if (this.props.unmountOnExit && this.state.status === EXITED) {
+      this.setState({ status: UNMOUNTED });
+    }
+  };
+
+  Transition.prototype.performEnter = function performEnter(node, mounting) {
+    var _this2 = this;
+
+    var enter = this.props.enter;
+
+    var appearing = this.context.transitionGroup ? this.context.transitionGroup.isMounting : mounting;
+
+    var timeouts = this.getTimeouts();
+
+    // no enter animation skip right to ENTERED
+    // if we are mounting and running this it means appear _must_ be set
+    if (!mounting && !enter) {
+      this.safeSetState({ status: ENTERED }, function () {
+        _this2.props.onEntered(node);
+      });
+      return;
+    }
+
+    this.props.onEnter(node, appearing);
+
+    this.safeSetState({ status: ENTERING }, function () {
+      _this2.props.onEntering(node, appearing);
+
+      // FIXME: appear timeout?
+      _this2.onTransitionEnd(node, timeouts.enter, function () {
+        _this2.safeSetState({ status: ENTERED }, function () {
+          _this2.props.onEntered(node, appearing);
+        });
+      });
+    });
+  };
+
+  Transition.prototype.performExit = function performExit(node) {
+    var _this3 = this;
+
+    var exit = this.props.exit;
+
+    var timeouts = this.getTimeouts();
+
+    // no exit animation skip right to EXITED
+    if (!exit) {
+      this.safeSetState({ status: EXITED }, function () {
+        _this3.props.onExited(node);
+      });
+      return;
+    }
+    this.props.onExit(node);
+
+    this.safeSetState({ status: EXITING }, function () {
+      _this3.props.onExiting(node);
+
+      _this3.onTransitionEnd(node, timeouts.exit, function () {
+        _this3.safeSetState({ status: EXITED }, function () {
+          _this3.props.onExited(node);
+        });
+      });
+    });
+  };
+
+  Transition.prototype.cancelNextCallback = function cancelNextCallback() {
+    if (this.nextCallback !== null) {
+      this.nextCallback.cancel();
+      this.nextCallback = null;
+    }
+  };
+
+  Transition.prototype.safeSetState = function safeSetState(nextState, callback) {
+    var _this4 = this;
+
+    // We need to track pending updates for instances where a cWRP fires quickly
+    // after cDM and before the state flushes, which would double trigger a
+    // transition
+    this.pendingState = nextState;
+
+    // This shouldn't be necessary, but there are weird race conditions with
+    // setState callbacks and unmounting in testing, so always make sure that
+    // we can cancel any pending setState callbacks after we unmount.
+    callback = this.setNextCallback(callback);
+    this.setState(nextState, function () {
+      _this4.pendingState = null;
+      callback();
+    });
+  };
+
+  Transition.prototype.setNextCallback = function setNextCallback(callback) {
+    var _this5 = this;
+
+    var active = true;
+
+    this.nextCallback = function (event) {
+      if (active) {
+        active = false;
+        _this5.nextCallback = null;
+
+        callback(event);
+      }
+    };
+
+    this.nextCallback.cancel = function () {
+      active = false;
+    };
+
+    return this.nextCallback;
+  };
+
+  Transition.prototype.onTransitionEnd = function onTransitionEnd(node, timeout, handler) {
+    this.setNextCallback(handler);
+
+    if (node) {
+      if (this.props.addEndListener) {
+        this.props.addEndListener(node, this.nextCallback);
+      }
+      if (timeout != null) {
+        setTimeout(this.nextCallback, timeout);
+      }
+    } else {
+      setTimeout(this.nextCallback, 0);
+    }
+  };
+
+  Transition.prototype.render = function render() {
+    var status = this.state.status;
+    if (status === UNMOUNTED) {
+      return null;
+    }
+
+    var _props = this.props,
+        children = _props.children,
+        childProps = _objectWithoutProperties(_props, ['children']);
+    // filter props for Transtition
+
+
+    delete childProps.in;
+    delete childProps.mountOnEnter;
+    delete childProps.unmountOnExit;
+    delete childProps.appear;
+    delete childProps.enter;
+    delete childProps.exit;
+    delete childProps.timeout;
+    delete childProps.addEndListener;
+    delete childProps.onEnter;
+    delete childProps.onEntering;
+    delete childProps.onEntered;
+    delete childProps.onExit;
+    delete childProps.onExiting;
+    delete childProps.onExited;
+
+    if (typeof children === 'function') {
+      return children(status, childProps);
+    }
+
+    var child = _react2.default.Children.only(children);
+    return _react2.default.cloneElement(child, childProps);
+  };
+
+  return Transition;
+}(_react2.default.Component);
+
+Transition.contextTypes = {
+  transitionGroup: PropTypes.object
+};
+Transition.childContextTypes = {
+  transitionGroup: function transitionGroup() {}
+};
+
+
+Transition.propTypes =  true ? {
+  /**
+   * A `function` child can be used instead of a React element.
+   * This function is called with the current transition status
+   * ('entering', 'entered', 'exiting', 'exited', 'unmounted'), which can be used
+   * to apply context specific props to a component.
+   *
+   * ```jsx
+   * <Transition timeout={150}>
+   *   {(status) => (
+   *     <MyComponent className={`fade fade-${status}`} />
+   *   )}
+   * </Transition>
+   * ```
+   */
+  children: PropTypes.oneOfType([PropTypes.func.isRequired, PropTypes.element.isRequired]).isRequired,
+
+  /**
+   * Show the component; triggers the enter or exit states
+   */
+  in: PropTypes.bool,
+
+  /**
+   * By default the child component is mounted immediately along with
+   * the parent `Transition` component. If you want to "lazy mount" the component on the
+   * first `in={true}` you can set `mountOnEnter`. After the first enter transition the component will stay
+   * mounted, even on "exited", unless you also specify `unmountOnExit`.
+   */
+  mountOnEnter: PropTypes.bool,
+
+  /**
+   * By default the child component stays mounted after it reaches the `'exited'` state.
+   * Set `unmountOnExit` if you'd prefer to unmount the component after it finishes exiting.
+   */
+  unmountOnExit: PropTypes.bool,
+
+  /**
+   * Normally a component is not transitioned if it is shown when the `<Transition>` component mounts.
+   * If you want to transition on the first mount set `appear` to `true`, and the
+   * component will transition in as soon as the `<Transition>` mounts.
+   *
+   * > Note: there are no specific "appear" states. `appear` only adds an additional `enter` transition.
+   */
+  appear: PropTypes.bool,
+
+  /**
+   * Enable or disable enter transitions.
+   */
+  enter: PropTypes.bool,
+
+  /**
+   * Enable or disable exit transitions.
+   */
+  exit: PropTypes.bool,
+
+  /**
+   * The duration of the transition, in milliseconds.
+   * Required unless `addEndListener` is provided
+   *
+   * You may specify a single timeout for all transitions like: `timeout={500}`,
+   * or individually like:
+   *
+   * ```jsx
+   * timeout={{
+   *  enter: 300,
+   *  exit: 500,
+   * }}
+   * ```
+   *
+   * @type {number | { enter?: number, exit?: number }}
+   */
+  timeout: function timeout(props) {
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    var pt = _PropTypes.timeoutsShape;
+    if (!props.addEndListener) pt = pt.isRequired;
+    return pt.apply(undefined, [props].concat(args));
+  },
+
+  /**
+   * Add a custom transition end trigger. Called with the transitioning
+   * DOM node and a `done` callback. Allows for more fine grained transition end
+   * logic. **Note:** Timeouts are still used as a fallback if provided.
+   *
+   * ```jsx
+   * addEndListener={(node, done) => {
+   *   // use the css transitionend event to mark the finish of a transition
+   *   node.addEventListener('transitionend', done, false);
+   * }}
+   * ```
+   */
+  addEndListener: PropTypes.func,
+
+  /**
+   * Callback fired before the "entering" status is applied. An extra parameter
+   * `isAppearing` is supplied to indicate if the enter stage is occurring on the initial mount
+   *
+   * @type Function(node: HtmlElement, isAppearing: bool) -> void
+   */
+  onEnter: PropTypes.func,
+
+  /**
+   * Callback fired after the "entering" status is applied. An extra parameter
+   * `isAppearing` is supplied to indicate if the enter stage is occurring on the initial mount
+   *
+   * @type Function(node: HtmlElement, isAppearing: bool)
+   */
+  onEntering: PropTypes.func,
+
+  /**
+   * Callback fired after the "entered" status is applied. An extra parameter
+   * `isAppearing` is supplied to indicate if the enter stage is occurring on the initial mount
+   *
+   * @type Function(node: HtmlElement, isAppearing: bool) -> void
+   */
+  onEntered: PropTypes.func,
+
+  /**
+   * Callback fired before the "exiting" status is applied.
+   *
+   * @type Function(node: HtmlElement) -> void
+   */
+  onExit: PropTypes.func,
+
+  /**
+   * Callback fired after the "exiting" status is applied.
+   *
+   * @type Function(node: HtmlElement) -> void
+   */
+  onExiting: PropTypes.func,
+
+  /**
+   * Callback fired after the "exited" status is applied.
+   *
+   * @type Function(node: HtmlElement) -> void
+   */
+  onExited: PropTypes.func
+} : {};
+
+// Name the function so it is clearer in the documentation
+function noop() {}
+
+Transition.defaultProps = {
+  in: false,
+  mountOnEnter: false,
+  unmountOnExit: false,
+  appear: false,
+  enter: true,
+  exit: true,
+
+  onEnter: noop,
+  onEntering: noop,
+  onEntered: noop,
+
+  onExit: noop,
+  onExiting: noop,
+  onExited: noop
+};
+
+Transition.UNMOUNTED = 0;
+Transition.EXITED = 1;
+Transition.ENTERING = 2;
+Transition.ENTERED = 3;
+Transition.EXITING = 4;
+
+exports.default = Transition;
+
+/***/ }),
+
+/***/ "./node_modules/react-transition-group/utils/PropTypes.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.classNamesShape = exports.timeoutsShape = undefined;
+exports.transitionTimeout = transitionTimeout;
+
+var _propTypes = __webpack_require__("./node_modules/next/node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function transitionTimeout(transitionType) {
+  var timeoutPropName = 'transition' + transitionType + 'Timeout';
+  var enabledPropName = 'transition' + transitionType;
+
+  return function (props) {
+    // If the transition is enabled
+    if (props[enabledPropName]) {
+      // If no timeout duration is provided
+      if (props[timeoutPropName] == null) {
+        return new Error(timeoutPropName + ' wasn\'t supplied to CSSTransitionGroup: ' + 'this can cause unreliable animations and won\'t be supported in ' + 'a future version of React. See ' + 'https://fb.me/react-animation-transition-group-timeout for more ' + 'information.');
+
+        // If the duration isn't a number
+      } else if (typeof props[timeoutPropName] !== 'number') {
+        return new Error(timeoutPropName + ' must be a number (in milliseconds)');
+      }
+    }
+
+    return null;
+  };
+}
+
+var timeoutsShape = exports.timeoutsShape = _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.shape({
+  enter: _propTypes2.default.number,
+  exit: _propTypes2.default.number
+}).isRequired]);
+
+var classNamesShape = exports.classNamesShape = _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.shape({
+  enter: _propTypes2.default.string,
+  exit: _propTypes2.default.string,
+  active: _propTypes2.default.string
+}), _propTypes2.default.shape({
+  enter: _propTypes2.default.string,
+  enterDone: _propTypes2.default.string,
+  enterActive: _propTypes2.default.string,
+  exit: _propTypes2.default.string,
+  exitDone: _propTypes2.default.string,
+  exitActive: _propTypes2.default.string
+})]);
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/harmony-module.js":
 /***/ (function(module, exports) {
 
@@ -2154,20 +3987,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_isomorphic_fetch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_facebook_auth__ = __webpack_require__("./node_modules/react-facebook-auth/es/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_facebook_auth___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_facebook_auth__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_next_link__ = __webpack_require__("./node_modules/next/link.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_next_link___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_next_link__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_next_head__ = __webpack_require__("./node_modules/next/head.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_next_head___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_next_head__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_linkit_Nav__ = __webpack_require__("./components/linkit/Nav.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_linkit_Post__ = __webpack_require__("./components/linkit/Post.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__lib_post__ = __webpack_require__("./lib/post.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__styles_linkit_scss__ = __webpack_require__("./styles/linkit.scss");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__styles_linkit_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__styles_linkit_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_responsive_modal__ = __webpack_require__("./node_modules/react-responsive-modal/lib/index.es.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_next_link__ = __webpack_require__("./node_modules/next/link.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_next_link___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_next_link__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_next_head__ = __webpack_require__("./node_modules/next/head.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_next_head___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_next_head__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_linkit_Nav__ = __webpack_require__("./components/linkit/Nav.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_linkit_Post__ = __webpack_require__("./components/linkit/Post.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__lib_post__ = __webpack_require__("./lib/post.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__styles_linkit_scss__ = __webpack_require__("./styles/linkit.scss");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__styles_linkit_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__styles_linkit_scss__);
 
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _jsxFileName = '/home/gerardvee/gerardvee-ui/pages/projects/linkit/index.js';
+var _jsxFileName = '/home/geevee/Desktop/projects/gerardvee-site/pages/projects/linkit/index.js';
 
 
 (function () {
@@ -2185,8 +4021,11 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /*
- * /linkit vs /linkit/ is very different, the latter messes up and causes SSR to mess up
+    need:
+    * fix up the entire new user dilema (i'd love to use async on the auth method) // fixed it seems
+    * better document and enforce linting
  */
+
 
 
 
@@ -2204,9 +4043,9 @@ var FacebookLogin = function FacebookLogin(_ref) {
     var onClick = _ref.onClick;
     return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
         'a',
-        { className: 'normal-link', onClick: onClick, __source: {
+        { className: 'normal-link head-link', onClick: onClick, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 19
+                lineNumber: 22
             }
         },
         'Login with Facebook'
@@ -2214,10 +4053,11 @@ var FacebookLogin = function FacebookLogin(_ref) {
 };
 
 var FacebookAuthenticate = function FacebookAuthenticate(_ref2) {
-    var callback = _ref2.callback;
-    return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_react_facebook_auth___default.a, { autoLoad: true, appId: '176820699610596', callback: callback, component: FacebookLogin, __source: {
+    var callback = _ref2.callback,
+        auto = _ref2.auto;
+    return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_react_facebook_auth___default.a, { autoLoad: auto, appId: '176820699610596', callback: callback, component: FacebookLogin, __source: {
             fileName: _jsxFileName,
-            lineNumber: 24
+            lineNumber: 27
         }
     });
 };
@@ -2236,46 +4076,60 @@ var _default = function (_Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref3 = _default.__proto__ || Object.getPrototypeOf(_default)).call.apply(_ref3, [this].concat(args))), _this), _this.state = { user: null, me: null }, _temp), _possibleConstructorReturn(_this, _ret);
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref3 = _default.__proto__ || Object.getPrototypeOf(_default)).call.apply(_ref3, [this].concat(args))), _this), _this.state = { user: null, me: null, error: '' }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(_default, [{
         key: 'auth',
         value: function auth(user) {
-            console.log(user);
+            var _this2 = this;
+
             this.setState({ user: user });
-            fetch(api + 'linkit/me', Object(__WEBPACK_IMPORTED_MODULE_8__lib_post__["a" /* default */])({ token: user.accessToken })).then(function (res) {
+            if (!user.id) {
+                return;
+            }
+            fetch(api + 'linkit/user/new', Object(__WEBPACK_IMPORTED_MODULE_9__lib_post__["a" /* default */])({ id: user.id })).then(function (res) {
                 return res.json();
-            }).catch(function (error) {
-                return console.log('error is occurring ', JSON.stringify(error));
-            }).then(function (me) {
-                console.log('me is ', JSON.stringify(me));
-            }, function (error) {
-                return console.log('error is occurring ', JSON.stringify(error));
+            }).then(function (_) {
+                fetch(api + 'linkit/me', Object(__WEBPACK_IMPORTED_MODULE_9__lib_post__["a" /* default */])({ token: user.accessToken })).then(function (res) {
+                    return res.json();
+                }).then(function (me) {
+                    _this2.setState({ me: me });
+                });
             });
+        }
+    }, {
+        key: 'setError',
+        value: function setError(error) {
+            this.setState({ error: error });
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
+            var _this3 = this;
 
-            var posts = this.props.posts;
-            var user = this.state.user;
+            var _props = this.props,
+                posts = _props.posts,
+                loggedIn = _props.loggedIn;
+            var _state = this.state,
+                user = _state.user,
+                me = _state.me,
+                error = _state.error;
 
             return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                 'div',
                 {
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 54
+                        lineNumber: 68
                     }
                 },
                 __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_5_next_head___default.a,
+                    __WEBPACK_IMPORTED_MODULE_6_next_head___default.a,
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 55
+                            lineNumber: 69
                         }
                     },
                     __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
@@ -2283,14 +4137,14 @@ var _default = function (_Component) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 56
+                                lineNumber: 70
                             }
                         },
                         'LinkIt'
                     ),
                     __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('meta', { name: 'viewport', content: 'initial-scale=1.0, width=device-width', __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 57
+                            lineNumber: 71
                         }
                     })
                 ),
@@ -2298,39 +4152,78 @@ var _default = function (_Component) {
                     'div',
                     { className: 'linkit-home', __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 59
+                            lineNumber: 73
                         }
                     },
                     __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                        __WEBPACK_IMPORTED_MODULE_6__components_linkit_Nav__["a" /* default */],
+                        __WEBPACK_IMPORTED_MODULE_7__components_linkit_Nav__["a" /* default */],
                         { picture: user ? user.picture.data.url : '', __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 60
+                                lineNumber: 74
                             }
                         },
-                        !user && __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(FacebookAuthenticate, { callback: function callback(res) {
-                                return _this2.auth(res);
+                        !user && __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(FacebookAuthenticate, { auto: !!loggedIn, callback: function callback(res) {
+                                return _this3.auth(res);
                             }, __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 61
+                                lineNumber: 75
                             }
                         }),
                         __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
-                            __WEBPACK_IMPORTED_MODULE_4_next_link___default.a,
-                            { href: './linkit/new', __source: {
+                            __WEBPACK_IMPORTED_MODULE_5_next_link___default.a,
+                            { href: './linkit/new?loggedIn=' + !!user, __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 62
+                                    lineNumber: 76
                                 }
                             },
                             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                                 'a',
-                                { className: 'normal-link', __source: {
+                                { className: 'normal-link head-link', __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 62
+                                        lineNumber: 76
                                     }
                                 },
                                 'Make a new post'
                             )
+                        )
+                    ),
+                    (posts || []).map(function (post) {
+                        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__components_linkit_Post__["a" /* default */], _extends({ alert: function alert(err) {
+                                return _this3.setError(err);
+                            }, className: 'linkit-post', key: post.id,
+                            me: me, token: !!user ? user.accessToken : '' }, post, {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 79
+                            }
+                        }));
+                    }),
+                    __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                        __WEBPACK_IMPORTED_MODULE_4_react_responsive_modal__["a" /* default */],
+                        { open: !!error, onClose: function onClose() {
+                                return _this3.setState({ error: '' });
+                            }, center: true, __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 82
+                            }
+                        },
+                        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                            'h1',
+                            { className: 'linkit-error-title', __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 83
+                                }
+                            },
+                            'Error'
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+                            'h3',
+                            { className: 'linkit-error-message', __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 84
+                                }
+                            },
+                            error
                         )
                     )
                 )
@@ -2345,25 +4238,27 @@ var _default = function (_Component) {
         key: 'getInitialProps',
         value: function () {
             var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(_ref4) {
-                var req = _ref4.req;
-                var res, posts;
+                var req = _ref4.req,
+                    query = _ref4.query;
+                var loggedIn, res, posts;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                _context.next = 2;
+                                loggedIn = query.loggedIn;
+                                _context.next = 3;
                                 return fetch(api + 'linkit/posts');
 
-                            case 2:
+                            case 3:
                                 res = _context.sent;
-                                _context.next = 5;
+                                _context.next = 6;
                                 return res.json();
 
-                            case 5:
+                            case 6:
                                 posts = _context.sent;
-                                return _context.abrupt('return', { posts: posts });
+                                return _context.abrupt('return', { posts: posts, loggedIn: loggedIn });
 
-                            case 7:
+                            case 8:
                             case 'end':
                                 return _context.stop();
                         }
@@ -2394,10 +4289,10 @@ var _default = function (_Component) {
         return;
     }
 
-    reactHotLoader.register(api, 'api', '/home/gerardvee/gerardvee-ui/pages/projects/linkit/index.js');
-    reactHotLoader.register(FacebookLogin, 'FacebookLogin', '/home/gerardvee/gerardvee-ui/pages/projects/linkit/index.js');
-    reactHotLoader.register(FacebookAuthenticate, 'FacebookAuthenticate', '/home/gerardvee/gerardvee-ui/pages/projects/linkit/index.js');
-    reactHotLoader.register(_default, 'default', '/home/gerardvee/gerardvee-ui/pages/projects/linkit/index.js');
+    reactHotLoader.register(api, 'api', '/home/geevee/Desktop/projects/gerardvee-site/pages/projects/linkit/index.js');
+    reactHotLoader.register(FacebookLogin, 'FacebookLogin', '/home/geevee/Desktop/projects/gerardvee-site/pages/projects/linkit/index.js');
+    reactHotLoader.register(FacebookAuthenticate, 'FacebookAuthenticate', '/home/geevee/Desktop/projects/gerardvee-site/pages/projects/linkit/index.js');
+    reactHotLoader.register(_default, 'default', '/home/geevee/Desktop/projects/gerardvee-site/pages/projects/linkit/index.js');
     leaveModule(module);
 })();
 
