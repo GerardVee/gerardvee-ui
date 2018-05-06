@@ -29,7 +29,7 @@ export default class extends Component
             alert('title length must shorter than 50 and longer than 4 characters');
             return;
         }
-        if (validUrl(link))
+        if (validUrl.isUri(link))
         {
             alert('only proper links allowed');
             return;
