@@ -54,7 +54,7 @@ export default class extends Component
     render()
     {
         const { posts } = this.props;
-        const { user, meo, error } = this.state;
+        const { user, me, error } = this.state;
         return (
             <div>
                 <Head>
