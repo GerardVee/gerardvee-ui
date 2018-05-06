@@ -36,11 +36,12 @@ export default class extends Component
         return { posts };
     }
     
-    async auth(user)
+    auth(user)
     {
-        const res = await fetch(api + 'linkit/me', post({ token: user.accessToken }));
-        const me = await res.json();
-        this.setState({ user, me }, () => console.log(this.state));
+        fetch(api + 'linkit/me', post({ token: user.accessToken })).then(res => res.json()).then(me =>
+        {
+            this.setState({ user, me }, () => console.log(this.state));
+        });
     }
 
     render()
@@ -55,7 +56,7 @@ export default class extends Component
                 </Head>
                 <div className='linkit-home'>
                     <Nav picture={ user ? user.picture.data.url : '' }>
-                        { !user && <FacebookAuthenticate callback={ async (res) => await this.auth(res) } /> }
+                        { !user && <FacebookAuthenticate callback={ (res) => this.auth(res) } /> }
                         <Link href='./linkit/new'><a className='normal-link'>Make a new post</a></Link>
                     </Nav>
                     {/* (posts || [] ).map((post) => 
