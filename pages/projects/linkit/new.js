@@ -19,6 +19,11 @@ export default class extends Component
         this.setState({ error });
     }
 
+    triumph(success)
+    {
+        this.setState({ success });
+    }
+
     async newPost()
     {
         const { alert } = this;
@@ -29,7 +34,7 @@ export default class extends Component
             alert('title length must shorter than 50 and longer than 4 characters');
             return;
         }
-        if (validUrl.isUri(link))
+        if (!validUrl.isUri(link))
         {
             alert('only proper links allowed');
             return;
@@ -46,7 +51,7 @@ export default class extends Component
         const result = await res.json();
         if (result)
         {
-            alert('sucessful post!');
+            triumph('sucessful post!');
         }
         else
         {
