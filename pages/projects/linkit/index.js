@@ -43,7 +43,7 @@ export default class extends Component
         fetch(api + 'linkit/me', post({ token: user.accessToken })).then(res => res.json()).then(me =>
         {
             console.log('me is ', JSON.stringify(me));
-        });
+        }, error => console.log('error is occurring ', JSON.stringify(error)));
     }
 
     render()
