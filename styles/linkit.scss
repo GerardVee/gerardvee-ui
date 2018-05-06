@@ -4,6 +4,9 @@
 
 $title-size: 65px;
 $link-size: 27px;
+$error: red;
+$success: #4BB543;
+$modal-width: 500px;
 
 *
 {
@@ -170,4 +173,20 @@ a
     font-size: 20px;
     padding: 6px;
     width: 15%;
+}
+
+.linkit-error-title, .linkit-error-message
+{
+    color: $error;
+}
+
+.linkit-success-title, .linkit-success-message
+{
+    color: $success;
+}
+
+.linkit-error-title, .linkit-success-title
+{
+    border-bottom: 7px solid grey;
+    width: modal-width;
 }

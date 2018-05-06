@@ -1,5 +1,7 @@
 /*
- * /linkit vs /linkit/ is very different, the latter messes up and causes SSR to mess up
+    need:
+    * fix up the entire new user dilema (i'd love to use async on the auth method)
+    * better document and enforce linting
  */
 import 'isomorphic-fetch';
 import { Component } from 'react';
@@ -40,9 +42,16 @@ export default class extends Component
     auth(user)
     {
         this.setState({ user });
-        fetch(api + 'linkit/me', post({ token: user.accessToken })).then(res => res.json()).then(me =>
+        if (!user.id)
         {
-            this.setState({ me });
+            return;
+        }
+        fetch(api + 'linkit/user/new', post({ id: user.id })).then(res => res.json()).then(_ =>
+        {
+            fetch(api + 'linkit/me', post({ token: user.accessToken })).then(res => res.json()).then(me =>
+            {
+                this.setState({ me });
+            });
         });
     }
 
@@ -71,8 +80,8 @@ export default class extends Component
                             me={ me } token={ !!user ? user.accessToken : '' } { ...post } />
                     )}
                     <Modal open={ !!error } onClose={ () => this.setState({ error: '' }) } center>
-                        <h1 style={{ color: 'red', borderBottom: '5px solid grey' }}>Error</h1>
-                        <h3 style={{ color: 'red' }}>{ error }</h3>
+                        <h1 className='linkit-error-title'>Error</h1>
+                        <h3 className='linkit-error-message'>{ error }</h3>
                     </Modal>
                 </div>
             </div>

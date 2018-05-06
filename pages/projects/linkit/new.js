@@ -1,5 +1,6 @@
 import 'isomorphic-fetch';
 import { Component } from 'react';
+import Modal from 'react-responsive-modal';
 import Head from 'next/head';
 import validUrl from 'valid-url';
 
@@ -11,27 +12,33 @@ const api = 'https://api.gerardvee.com/';
 
 export default class extends Component
 {
-    state = { link: '', title: '' };
+    state = { link: '', title: '', error: '', success: '' };
+
+    alert(error)
+    {
+        this.setState({ error });
+    }
 
     async newPost()
     {
+        const { alert } = this;
         const date = new Date();
         const { link, title } = this.state;
         if (title.length > 50 && title.length < 4)
         {
-            alert('Title length must shorter than 50 and longer than 4 characters.');
+            alert('title length must shorter than 50 and longer than 4 characters');
             return;
         }
         if (validUrl(link))
         {
-            alert('Only proper links allowed.');
+            alert('only proper links allowed');
             return;
         }
         const resp = await fetch(api + 'linkit/isDangerous/' + encodeURI(link));
         const isMalicious = await resp.json();
         if (isMalicious)
         {
-            alert('This link is malicious!');
+            alert('this link is malicious!');
             return;
         }
         const post = { link, title, date, dead: false };
@@ -39,18 +46,17 @@ export default class extends Component
         const result = await res.json();
         if (result)
         {
-            alert('Sucessful post!');
+            alert('sucessful post!');
         }
         else
         {
-            alert('Post failed.');
+            alert('post failed');
         }
     }
 
     render()
     {
-        const { title, link } = this.state;
-        // link messes up the getInitalProps segment?
+        const { title, link, error, success } = this.state;
         return (
             <div className='linkit-new'>
                 <Head>
@@ -69,6 +75,14 @@ export default class extends Component
                         <button className='linkit-button' onClick={ () => this.newPost() }>Submit</button>
                     </div>
                 </div>
+                <Modal open={ !!error } onClose={ () => this.setState({ error: '' }) } center>
+                    <h1 className='linkit-error-title'>Error</h1>
+                    <h3 className='linkit-error-message'>{ error }</h3>
+                </Modal>
+                <Modal open={ !!success } onClose={ () => this.setState({ success: '' }) } center>
+                    <h1 className='linkit-success-title'>Success</h1>
+                    <h3 className='linkit-success-message'>{ success }</h3>
+                </Modal>
             </div>
         )
     }
