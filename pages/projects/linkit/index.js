@@ -71,8 +71,8 @@ export default class extends Component
                             me={ me } token={ !!user ? user.accessToken : '' } { ...post } />
                     )}
                     <Modal open={ !!error } onClose={ () => this.setState({ error: '' }) } center>
-                        <h2>Error</h2>
-                        <p>{ error }</p>
+                        <h1 style={{ color: 'red', borderBottom: '5px solid grey' }}>Error</h1>
+                        <h3 style={{ color: 'red' }}>{ error }</h3>
                     </Modal>
                 </div>
             </div>
