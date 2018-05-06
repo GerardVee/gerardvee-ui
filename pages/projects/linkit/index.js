@@ -27,27 +27,20 @@ const FacebookAuthenticate = ({ callback }) =>
 export default class extends Component
 {
 
-    state = { user: null };
+    state = { user: null, me: null };
 
     static async getInitialProps({ req })
     {
-        /*const { session } = req;
-        const user = !!session && session.passport ? !!session.passport.user : false;*/
         const res = await fetch(api + 'linkit/posts');
         const posts = await res.json();
-        /*if (user)
-        {
-            const myInfo = await fetch(api + 'linkit/me', post({ id: session.passport.user.id }));
-            const me = await myInfo.json();
-            return { picture: session.passport.user.photos[0].value, posts, user, me };
-        }*/
         return { posts };
     }
     
-    auth(res)
+    auth(user)
     {
-        console.log(res);
-        this.setState({ user: res });
+        const res = await fetch(api + 'linkit/me', post({ token: user.accessToken }));
+        const me = await res.json();
+        this.setState({ user, me }, () => console.log(this.state));
     }
 
     render()
@@ -62,7 +55,6 @@ export default class extends Component
                 </Head>
                 <div className='linkit-home'>
                     <Nav picture={ user ? user.picture.data.url : '' }>
-                        { user && <Link href={ api + 'linkit/logout' }><a className='normal-link'>Logout</a></Link> }
                         { !user && <FacebookAuthenticate callback={ (res) => this.auth(res) } /> }
                         <Link href='./linkit/new'><a className='normal-link'>Make a new post</a></Link>
                     </Nav>

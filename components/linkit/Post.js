@@ -11,8 +11,8 @@ export default class extends Component
 
     async onUpvote()
     {
-        const { id, me } = this.props;
-        const res = await fetch(api + `linkit/upvote/${ id }`, post({ me }));
+        const { id, token } = this.props;
+        const res = await fetch(api + `linkit/upvote/${ id }`, post({ token }));
         const upvoted = await res.json();
         if (upvoted.error)
         {
@@ -24,8 +24,8 @@ export default class extends Component
 
     async onDownvote()
     {
-        const { id, me } = this.props;
-        const res = await fetch(api + `linkit/downvote/${ id }`, post({ me }));
+        const { id, token } = this.props;
+        const res = await fetch(api + `linkit/downvote/${ id }`, post({ token }));
         const downvoted = await res.json();
         if (downvoted.error)
         {
@@ -35,9 +35,11 @@ export default class extends Component
         this.setState(downvoted);
     }
 
-    componentDidMount()
+    async componentDidMount()
     {
-        const { me, id } = this.props;
+        const { token, id } = this.props;
+        const res = await fetch(api + 'linkit/me', post({ token }));
+        const me = await res.json();
         if (!!me)
         {
             this.setState({ upvote: me.upvotes.includes(id), downvote: me.downvotes.includes(id) });
