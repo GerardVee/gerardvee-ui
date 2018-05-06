@@ -44,6 +44,15 @@ export default class extends Component
         }
     }
 
+    async componentDidUpdate()
+    {
+        const { id, me } = this.props;
+        if (!!me)
+        {
+            this.setState({ upvote: me.upvotes.includes(id), downvote: me.downvotes.includes(id) });
+        }
+    }
+
     render()
     {
         const { upvote, downvote } = this.state;
