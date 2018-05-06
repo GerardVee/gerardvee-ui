@@ -11,7 +11,7 @@ export default class extends Component
 
     async componentDidUpdate(_props, _state, snapshot)
     {
-        const { me, id } = props;
+        const { me, id } = this.props;
         if (_props.me === me)
         {
             return;
