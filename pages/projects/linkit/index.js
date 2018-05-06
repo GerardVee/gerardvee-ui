@@ -1,6 +1,6 @@
 /*
     need:
-    * fix up the entire new user dilema (i'd love to use async on the auth method)
+    * fix up the entire new user dilema (i'd love to use async on the auth method) // fixed it seems
     * better document and enforce linting
  */
 import 'isomorphic-fetch';
