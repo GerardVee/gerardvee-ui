@@ -39,11 +39,6 @@ a
 {
     flex-direction: column;
     margin-bottom: 1em;
-    & > .options, & > .linkit-fb-picture
-    {
-        margin-right: 1em;
-        margin-bottom: 30px;
-    }
 }
 
 .heading
@@ -80,6 +75,16 @@ a
 .more, .stacked-options
 {
     align-items: center;
+}
+
+.stacked-options
+{
+    padding-right: 8px;
+}
+
+.linkit-fb-picture
+{
+    padding-bottom: 5px;
 }
 
 .subtitle
