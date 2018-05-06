@@ -1,0 +1,107 @@
+@import url(https://fonts.googleapis.com/css?family=Share);* {
+  font-family: 'Share'; }
+
+a {
+  text-decoration: none;
+  color: #90D6D6; }
+  a:visited {
+    color: #90D6D6; }
+
+.linkit-home, .linkit-new, .titles, .nav, .options {
+  display: flex; }
+
+.linkit-home, .linkit-new, .titles, .options {
+  flex-direction: column; }
+
+.nav {
+  align-items: center;
+  margin-bottom: 2em; }
+  .nav > .options, .nav > .linkit-fb-picture {
+    margin-right: 1em;
+    margin-bottom: 30px; }
+
+.titles {
+  flex: 5; }
+
+.title {
+  font-size: 65px; }
+
+.colored {
+  color: #9DEB9D; }
+
+.subtitle {
+  font-weight: normal;
+  margin-top: 0; }
+
+.normal-link {
+  font-size: 21px; }
+
+.linkit-post {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5em; }
+
+.voting-options {
+  display: flex;
+  flex-direction: column; }
+
+.upvote, .downvote {
+  cursor: pointer;
+  font-size: 19px;
+  margin: 0;
+  padding: 0; }
+
+.upvote:hover {
+  color: #4EC74E; }
+
+.downvote:hover {
+  color: #B9E85B; }
+
+.upvoted {
+  color: #2FAE2F; }
+
+.downvoted {
+  color: #99CB36; }
+
+.linkit-link {
+  font-weight: normal;
+  font-size: 27px;
+  margin-left: 0.3em;
+  padding-bottom: 0.1em; }
+
+.linkit-post-form {
+  display: flex;
+  flex-direction: column; }
+
+.inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 2em; }
+  .inputs > * {
+    margin: 10px; }
+
+.linkit-input {
+  border-style: solid;
+  border-radius: 4px;
+  font-size: 20px;
+  padding: 6px 6px 6px 10px;
+  width: 20%; }
+
+.submission {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px; }
+
+.linkit-button {
+  cursor: pointer;
+  color: white;
+  background-color: #4EC74E;
+  border-style: none;
+  border-radius: 6px;
+  font-size: 20px;
+  padding: 6px;
+  width: 15%; }
+
+/*# sourceMappingURL=style.css.map*/
