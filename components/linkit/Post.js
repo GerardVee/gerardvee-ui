@@ -7,7 +7,19 @@ const api = 'https://api.gerardvee.com/';
 
 export default class extends Component
 {
-    state = { upvote: false, downvote: false };
+    constructor(props)
+    {
+        super(props);
+        const { me, id } = props;
+        if (!!me)
+        {
+            this.state = { upvote: me.upvotes.includes(id), downvote: me.downvotes.includes(id) };
+        }
+        else
+        {
+            this.state = { upvote: false, downvote: false };
+        }
+    }
 
     async onUpvote()
     {
@@ -33,24 +45,6 @@ export default class extends Component
             return;
         }
         this.setState(downvoted);
-    }
-
-    async componentDidMount()
-    {
-        const { id, me } = this.props;
-        if (!!me)
-        {
-            this.setState({ upvote: me.upvotes.includes(id), downvote: me.downvotes.includes(id) });
-        }
-    }
-
-    async componentDidUpdate()
-    {
-        const { id, me } = this.props;
-        if (!!me)
-        {
-            this.setState({ upvote: me.upvotes.includes(id), downvote: me.downvotes.includes(id) });
-        }
     }
 
     render()
