@@ -38,9 +38,11 @@ export default class extends Component
     
     auth(user)
     {
+        this.setState({ user });
+        
         fetch(api + 'linkit/me', post({ token: user.accessToken })).then(res => res.json()).then(me =>
         {
-            this.setState({ user, me }, () => console.log(this.state));
+            console.log('me is ', JSON.stringify(me));
         });
     }
 
