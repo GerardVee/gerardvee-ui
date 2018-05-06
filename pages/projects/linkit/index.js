@@ -36,7 +36,7 @@ export default class extends Component
         const { loggedIn } = query;
         const res = await fetch(api + 'linkit/posts');
         const posts = await res.json();
-        return { posts, auto, loggedIn };
+        return { posts, loggedIn };
     }
     
     auth(user)
