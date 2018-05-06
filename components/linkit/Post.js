@@ -7,17 +7,21 @@ const api = 'https://api.gerardvee.com/';
 
 export default class extends Component
 {
-    constructor(props)
+    state = { upvote: false, downvote: false };
+
+    async componentDidUpdate(_props, _state, snapshot)
     {
-        super(props);
         const { me, id } = props;
-        if (!!me)
+        if (_props.me === me)
         {
-            this.state = { upvote: me.upvotes.includes(id), downvote: me.downvotes.includes(id) };
+            return;
         }
         else
         {
-            this.state = { upvote: false, downvote: false };
+            if (!!me)
+            {
+                this.state = { upvote: me.upvotes.includes(id), downvote: me.downvotes.includes(id) };
+            }
         }
     }
 
