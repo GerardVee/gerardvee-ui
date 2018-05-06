@@ -2,9 +2,11 @@ export default ({ picture, children }) => (
     <div className='nav'>
         <div className='heading'>
             <h1 className='title'><span className='colored'>L</span>ink<span className='colored'>I</span>t</h1>
-            { picture && <img className='linkit-fb-picture' src={ picture } height='50' width='50' /> }
-            <div className='options'>
-                { children }
+            <div className='stacked-options'>
+                { picture && <img className='linkit-fb-picture' src={ picture } height='50' width='50' /> }
+                <div className='options'>
+                    { children }
+                </div>
             </div>
         </div>
         <div className='more'>

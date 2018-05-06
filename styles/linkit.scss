@@ -25,12 +25,12 @@ a
     }
 }
 
-.linkit-home, .linkit-new, .heading, .nav, .options, .more
+.linkit-home, .linkit-new, .heading, .nav, .options, .more, .stacked-options
 {
     display: flex;
 }
 
-.linkit-home, .linkit-new, .options, .more
+.linkit-home, .linkit-new, .options, .more, .stacked-options
 {
     flex-direction: column;
 }
