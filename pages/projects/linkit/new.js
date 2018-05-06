@@ -13,6 +13,12 @@ const api = 'https://api.gerardvee.com/';
 export default class extends Component
 {
     state = { link: '', title: '', error: '', success: '' };
+    
+    static async getInitialProps({ query })
+    {
+        const { loggedIn } = query;
+        return { loggedIn };
+    }
 
     alert(error)
     {
@@ -61,6 +67,7 @@ export default class extends Component
     render()
     {
         const { title, link, error, success } = this.state;
+        const { loggedIn } = this.props;
         return (
             <div className='linkit-new'>
                 <Head>
@@ -68,7 +75,7 @@ export default class extends Component
                     <meta name='viewport' content='initial-scale=1.0, width=device-width' />
                 </Head>
                 <Nav>
-                    <a className='normal-link' href='/projects/linkit'>Home</a>
+                    <a className='normal-link' href={ `/projects/linkit${ loggedIn ? '?loggedIn=true' : '' }` }>Home</a>
                 </Nav>
                 <div className='linkit-post-form'>
                     <div className='inputs'>

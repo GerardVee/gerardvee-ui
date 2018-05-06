@@ -22,21 +22,21 @@ const FacebookLogin = ({ onClick }) =>
     <a className='normal-link' onClick={ onClick }>Login with Facebook</a>
 );
 
-const FacebookAuthenticate = ({ callback }) =>
+const FacebookAuthenticate = ({ callback, auto }) =>
 (
-    <FacebookAuth appId='176820699610596' callback={ callback } component={ FacebookLogin } />
+    <FacebookAuth autoLoad={ auto } appId='176820699610596' callback={ callback } component={ FacebookLogin } />
 );
 
 export default class extends Component
 {
-
     state = { user: null, me: null, error: '' };
 
-    static async getInitialProps({ req })
+    static async getInitialProps({ req, query })
     {
+        const { loggedIn } = query;
         const res = await fetch(api + 'linkit/posts');
         const posts = await res.json();
-        return { posts };
+        return { posts, auto, loggedIn };
     }
     
     auth(user)
@@ -62,7 +62,7 @@ export default class extends Component
 
     render()
     {
-        const { posts } = this.props;
+        const { posts, loggedIn } = this.props;
         const { user, me, error } = this.state;
         return (
             <div>
@@ -72,8 +72,8 @@ export default class extends Component
                 </Head>
                 <div className='linkit-home'>
                     <Nav picture={ user ? user.picture.data.url : '' }>
-                        { !user && <FacebookAuthenticate callback={ (res) => this.auth(res) } /> }
-                        <Link href='./linkit/new'><a className='normal-link'>Make a new post</a></Link>
+                        { !user && <FacebookAuthenticate auto={ !!loggedIn } callback={ (res) => this.auth(res) } /> }
+                        <Link href={`./linkit/new?loggedIn=${ !!user }`}><a className='normal-link'>Make a new post</a></Link>
                     </Nav>
                     {(posts || [] ).map((post) => 
                         <Post alert={ err => this.setError(err) } className='linkit-post' key={ post.id }
