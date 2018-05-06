@@ -19,7 +19,7 @@ app.prepare().then(() =>
 {
     const server = express();
     server.use(cookie(secret));
-    server.use(cors());
+    server.use(cors({ origin: 'https://gerardvee.com' }));
     server.use(bodyParser.json());
     server.use(bodyParser.urlencoded({ extended: true }));
     server.use(session(
