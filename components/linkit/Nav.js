@@ -9,7 +9,7 @@ export default ({ picture, children }) => (
         </div>
         <div className='more'>
             <h2 className='subtitle'>Relevant linking made easy.</h2>
-            <p class='undertitle'>No sub categories, comments, stats, account to post, just links.</p>
+            <p className='undertitle'>No sub categories, comments, stats, account to post, just links.</p>
         </div>
     </div>
 );
