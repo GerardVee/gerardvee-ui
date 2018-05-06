@@ -26,24 +26,23 @@ export default class extends Component
 
     async newPost()
     {
-        const { alert } = this;
         const date = new Date();
         const { link, title } = this.state;
         if (title.length > 50 || title.length < 4)
         {
-            alert('title length must shorter than 50 and longer than 4 characters');
+            this.alert('title length must shorter than 50 and longer than 4 characters');
             return;
         }
         if (!validUrl.isUri(link))
         {
-            alert('only proper links allowed');
+            this.alert('only proper links allowed');
             return;
         }
         const resp = await fetch(api + 'linkit/isDangerous/' + encodeURIComponent(link));
         const isMalicious = await resp.json();
         if (isMalicious)
         {
-            alert('this link is malicious!');
+            this.alert('this link is malicious!');
             return;
         }
         const post = { link, title, date, dead: false };
@@ -51,11 +50,11 @@ export default class extends Component
         const result = await res.json();
         if (result)
         {
-            triumph('sucessful post!');
+            this.triumph('sucessful post!');
         }
         else
         {
-            alert('post failed');
+            this.alert('post failed');
         }
     }
 
