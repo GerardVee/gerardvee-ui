@@ -2,7 +2,7 @@ import 'isomorphic-fetch';
 import { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import Head from 'next/head';
-import validUrl from 'valid-url';
+import validUrl from 'valid-url'; // not too great, but will have to do for now
 
 import Nav from '../../../components/linkit/Nav';
 import postType from '../../../lib/post';
