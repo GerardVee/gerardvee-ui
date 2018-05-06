@@ -4,6 +4,7 @@
 import 'isomorphic-fetch';
 import { Component } from 'react';
 import FacebookAuth from 'react-facebook-auth';
+import Modal from 'react-responsive-modal';
 import Link from 'next/link';
 import Head from 'next/head';
 
@@ -21,13 +22,13 @@ const FacebookLogin = ({ onClick }) =>
 
 const FacebookAuthenticate = ({ callback }) =>
 (
-    <FacebookAuth autoLoad={ true } appId='176820699610596' callback={ callback } component={ FacebookLogin } />
+    <FacebookAuth appId='176820699610596' callback={ callback } component={ FacebookLogin } />
 );
 
 export default class extends Component
 {
 
-    state = { user: null, me: null };
+    state = { user: null, me: null, error: '' };
 
     static async getInitialProps({ req })
     {
@@ -45,10 +46,15 @@ export default class extends Component
         });
     }
 
+    setError(error)
+    {
+        this.setState({ error });
+    }
+
     render()
     {
         const { posts } = this.props;
-        const { user, me } = this.state;
+        const { user, meo, error } = this.state;
         return (
             <div>
                 <Head>
@@ -61,8 +67,13 @@ export default class extends Component
                         <Link href='./linkit/new'><a className='normal-link'>Make a new post</a></Link>
                     </Nav>
                     {(posts || [] ).map((post) => 
-                        <Post { ...post } key={ post.id } me={ me } token={ !!user ? user.accessToken : '' } className='linkit-post' />
+                        <Post alert={ err => this.setError(err) } className='linkit-post' key={ post.id }
+                            me={ me } token={ !!user ? user.accessToken : '' } { ...post } />
                     )}
+                    <Modal open={ !!error } onClose={ () => this.setState({ error: '' }) } center>
+                        <h2>Error</h2>
+                        <p>{ error }</p>
+                    </Modal>
                 </div>
             </div>
         );

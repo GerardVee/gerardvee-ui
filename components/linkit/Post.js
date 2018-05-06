@@ -27,7 +27,7 @@ export default class extends Component
 
     async onUpvote()
     {
-        const { id, token } = this.props;
+        const { id, token, alert } = this.props;
         const res = await fetch(api + `linkit/upvote/${ id }`, post({ token }));
         const upvoted = await res.json();
         if (upvoted.error)
@@ -40,7 +40,7 @@ export default class extends Component
 
     async onDownvote()
     {
-        const { id, token } = this.props;
+        const { id, token, alert } = this.props;
         const res = await fetch(api + `linkit/downvote/${ id }`, post({ token }));
         const downvoted = await res.json();
         if (downvoted.error)
