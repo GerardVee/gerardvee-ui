@@ -20,7 +20,7 @@ export default class extends Component
         {
             if (!!me)
             {
-                this.state = { upvote: me.upvotes.includes(id), downvote: me.downvotes.includes(id) };
+                this.setState({ upvote: me.upvotes.includes(id), downvote: me.downvotes.includes(id) });
             }
         }
     }
