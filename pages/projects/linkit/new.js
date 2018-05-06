@@ -29,7 +29,7 @@ export default class extends Component
         const { alert } = this;
         const date = new Date();
         const { link, title } = this.state;
-        if (title.length > 50 && title.length < 4)
+        if (title.length > 50 || title.length < 4)
         {
             alert('title length must shorter than 50 and longer than 4 characters');
             return;
@@ -39,7 +39,7 @@ export default class extends Component
             alert('only proper links allowed');
             return;
         }
-        const resp = await fetch(api + 'linkit/isDangerous/' + encodeURI(link));
+        const resp = await fetch(api + 'linkit/isDangerous/' + encodeURIComponent(link));
         const isMalicious = await resp.json();
         if (isMalicious)
         {
