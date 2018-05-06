@@ -36,7 +36,7 @@ export default class extends Component
         return { posts };
     }
     
-    auth(user)
+    async auth(user)
     {
         const res = await fetch(api + 'linkit/me', post({ token: user.accessToken }));
         const me = await res.json();
@@ -55,7 +55,7 @@ export default class extends Component
                 </Head>
                 <div className='linkit-home'>
                     <Nav picture={ user ? user.picture.data.url : '' }>
-                        { !user && <FacebookAuthenticate callback={ (res) => this.auth(res) } /> }
+                        { !user && <FacebookAuthenticate callback={ async (res) => await this.auth(res) } /> }
                         <Link href='./linkit/new'><a className='normal-link'>Make a new post</a></Link>
                     </Nav>
                     {/* (posts || [] ).map((post) => 
