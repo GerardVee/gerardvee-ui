@@ -15,6 +15,7 @@ const Index = ({ content, images }) => (
         <Header content={ content } />
         <Skills content={ content } />
         <Projects content={ content } images={ images } />
+        <Contact />
     </div>
 );
 

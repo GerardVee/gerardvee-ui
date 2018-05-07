@@ -9,7 +9,7 @@ export default ({ content, images }) => (
                 { !item.finished && <button disabled>Not Ready</button> }
             </div>,
             <div className='col hidden-sm' key={ `projects-picture-${ index }` }>
-                <img src={ images.find(img => img.name === item.title).location } width="100%" />
+                <img src={ 'https://gerardvee.com' + images.find(img => img.name === item.title).location } width="100%" />
             </div> ])
         }
     </div>
