@@ -42,18 +42,15 @@ a {
   a:visited {
     color: #90D6D6; }
 
-.linkit-home, .linkit-new, .heading, .nav, .options, .more {
+.linkit-home, .linkit-new, .heading, .nav, .options, .more, .stacked-options {
   display: flex; }
 
-.linkit-home, .linkit-new, .options, .more {
+.linkit-home, .linkit-new, .options, .more, .stacked-options {
   flex-direction: column; }
 
 .nav {
   flex-direction: column;
   margin-bottom: 1em; }
-  .nav > .options, .nav > .linkit-fb-picture {
-    margin-right: 1em;
-    margin-bottom: 30px; }
 
 .heading {
   flex-direction: row;
@@ -76,8 +73,14 @@ a {
 .colored {
   color: #9DEB9D; }
 
-.more {
+.more, .stacked-options {
   align-items: center; }
+
+.stacked-options {
+  padding-right: 8px; }
+
+.linkit-fb-picture {
+  padding-bottom: 5px; }
 
 .subtitle {
   margin-top: 0;
@@ -149,13 +152,10 @@ a {
   border-radius: 4px;
   font-size: 20px;
   padding: 6px 6px 6px 10px;
-  width: 20%; }
-
-.submission {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 10px; }
+  width: 30%; }
+  @media screen and (min-width: 768px) {
+    .linkit-input {
+      width: 25%; } }
 
 .linkit-button {
   cursor: pointer;
@@ -165,7 +165,16 @@ a {
   border-radius: 6px;
   font-size: 20px;
   padding: 6px;
-  width: 15%; }
+  width: 30%; }
+  @media screen and (min-width: 768px) {
+    .linkit-button {
+      width: 15%; } }
+
+.submission {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px; }
 
 .linkit-error-title, .linkit-error-message {
   color: red; }

@@ -78,7 +78,7 @@ module.exports =
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var _jsxFileName = '/home/geevee/Desktop/projects/gerardvee-site/components/linkit/Nav.js';
+var _jsxFileName = '/mnt/c/Users/Tony/Desktop/gerardo projects/gerardvee-ui/components/linkit/Nav.js';
 
 /* harmony default export */ __webpack_exports__["a"] = (function (_ref) {
     var picture = _ref.picture,
@@ -125,42 +125,50 @@ var _jsxFileName = '/home/geevee/Desktop/projects/gerardvee-site/components/link
                 ),
                 't'
             ),
-            picture && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'linkit-fb-picture', src: picture, height: '50', width: '50', __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 5
-                }
-            }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { className: 'options', __source: {
+                { className: 'stacked-options', __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 5
+                    }
+                },
+                picture && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'linkit-fb-picture', src: picture, height: '50', width: '50', __source: {
                         fileName: _jsxFileName,
                         lineNumber: 6
                     }
-                },
-                children
+                }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'options', __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 7
+                        }
+                    },
+                    children
+                )
             )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'more', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 10
+                    lineNumber: 12
                 }
             },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'h2',
                 { className: 'subtitle', __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 11
+                        lineNumber: 13
                     }
                 },
                 'Relevant linking made easy.'
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'p',
-                { 'class': 'undertitle', __source: {
+                { className: 'undertitle', __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 12
+                        lineNumber: 14
                     }
                 },
                 'No sub categories, comments, stats, account to post, just links.'
@@ -185,7 +193,7 @@ var _jsxFileName = '/home/geevee/Desktop/projects/gerardvee-site/components/link
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_next_link___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_next_link__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__lib_post__ = __webpack_require__("./lib/post.js");
 
-var _jsxFileName = '/home/geevee/Desktop/projects/gerardvee-site/components/linkit/Post.js';
+var _jsxFileName = '/mnt/c/Users/Tony/Desktop/gerardo projects/gerardvee-ui/components/linkit/Post.js';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -482,7 +490,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _jsxFileName = '/home/geevee/Desktop/projects/gerardvee-site/pages/projects/linkit/index.js';
+var _jsxFileName = '/mnt/c/Users/Tony/Desktop/gerardo projects/gerardvee-ui/pages/projects/linkit/index.js';
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }

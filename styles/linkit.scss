@@ -197,15 +197,11 @@ a
     border-radius: 4px;
     font-size: 20px;
     padding: 6px 6px 6px 10px;
-    width: 20%;
-}
-
-.submission
-{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 10px;
+    width: 30%;
+    @media screen and (min-width: $medium)
+    {
+        width: 25%;
+    }
 }
 
 .linkit-button
@@ -217,7 +213,19 @@ a
     border-radius: 6px;
     font-size: 20px;
     padding: 6px;
-    width: 15%;
+    width: 30%;
+    @media screen and (min-width: $medium)
+    {
+        width: 15%;
+    }
+}
+
+.submission
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 .linkit-error-title, .linkit-error-message

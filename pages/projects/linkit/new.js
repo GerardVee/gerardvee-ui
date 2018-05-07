@@ -75,7 +75,7 @@ export default class extends Component
                     <meta name='viewport' content='initial-scale=1.0, width=device-width' />
                 </Head>
                 <Nav>
-                    <a className='normal-link' href={ `/projects/linkit${ loggedIn ? '?loggedIn=true' : '' }` }>Home</a>
+                    <a className='normal-link' href={ `/projects/linkit${ loggedIn ? `?loggedIn=${ loggedIn }` : '' }` }>Home</a>
                 </Nav>
                 <div className='linkit-post-form'>
                     <div className='inputs'>

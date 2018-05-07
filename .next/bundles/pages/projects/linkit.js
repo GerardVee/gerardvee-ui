@@ -10,7 +10,7 @@ module.exports =
 "use strict";
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("./node_modules/react/cjs/react.development.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var _jsxFileName = '/home/geevee/Desktop/projects/gerardvee-site/components/linkit/Nav.js';
+var _jsxFileName = '/mnt/c/Users/Tony/Desktop/gerardo projects/gerardvee-ui/components/linkit/Nav.js';
 
 
 (function () {
@@ -64,42 +64,50 @@ var _default = function _default(_ref) {
                 ),
                 't'
             ),
-            picture && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'linkit-fb-picture', src: picture, height: '50', width: '50', __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 5
-                }
-            }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { className: 'options', __source: {
+                { className: 'stacked-options', __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 5
+                    }
+                },
+                picture && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'linkit-fb-picture', src: picture, height: '50', width: '50', __source: {
                         fileName: _jsxFileName,
                         lineNumber: 6
                     }
-                },
-                children
+                }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'options', __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 7
+                        }
+                    },
+                    children
+                )
             )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'more', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 10
+                    lineNumber: 12
                 }
             },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'h2',
                 { className: 'subtitle', __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 11
+                        lineNumber: 13
                     }
                 },
                 'Relevant linking made easy.'
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'p',
-                { 'class': 'undertitle', __source: {
+                { className: 'undertitle', __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 12
+                        lineNumber: 14
                     }
                 },
                 'No sub categories, comments, stats, account to post, just links.'
@@ -120,7 +128,7 @@ var _default = function _default(_ref) {
         return;
     }
 
-    reactHotLoader.register(_default, 'default', '/home/geevee/Desktop/projects/gerardvee-site/components/linkit/Nav.js');
+    reactHotLoader.register(_default, 'default', '/mnt/c/Users/Tony/Desktop/gerardo projects/gerardvee-ui/components/linkit/Nav.js');
     leaveModule(module);
 })();
 
@@ -143,7 +151,7 @@ var _default = function _default(_ref) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_next_link___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_next_link__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__lib_post__ = __webpack_require__("./lib/post.js");
 
-var _jsxFileName = '/home/geevee/Desktop/projects/gerardvee-site/components/linkit/Post.js';
+var _jsxFileName = '/mnt/c/Users/Tony/Desktop/gerardo projects/gerardvee-ui/components/linkit/Post.js';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -412,8 +420,8 @@ var _default = function (_Component) {
         return;
     }
 
-    reactHotLoader.register(api, 'api', '/home/geevee/Desktop/projects/gerardvee-site/components/linkit/Post.js');
-    reactHotLoader.register(_default, 'default', '/home/geevee/Desktop/projects/gerardvee-site/components/linkit/Post.js');
+    reactHotLoader.register(api, 'api', '/mnt/c/Users/Tony/Desktop/gerardo projects/gerardvee-ui/components/linkit/Post.js');
+    reactHotLoader.register(_default, 'default', '/mnt/c/Users/Tony/Desktop/gerardo projects/gerardvee-ui/components/linkit/Post.js');
     leaveModule(module);
 })();
 
@@ -455,7 +463,7 @@ var _default = function _default(data) {
         return;
     }
 
-    reactHotLoader.register(_default, 'default', '/home/geevee/Desktop/projects/gerardvee-site/lib/post.js');
+    reactHotLoader.register(_default, 'default', '/mnt/c/Users/Tony/Desktop/gerardo projects/gerardvee-ui/lib/post.js');
     leaveModule(module);
 })();
 
@@ -4003,7 +4011,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _jsxFileName = '/home/geevee/Desktop/projects/gerardvee-site/pages/projects/linkit/index.js';
+var _jsxFileName = '/mnt/c/Users/Tony/Desktop/gerardo projects/gerardvee-ui/pages/projects/linkit/index.js';
 
 
 (function () {
@@ -4289,10 +4297,10 @@ var _default = function (_Component) {
         return;
     }
 
-    reactHotLoader.register(api, 'api', '/home/geevee/Desktop/projects/gerardvee-site/pages/projects/linkit/index.js');
-    reactHotLoader.register(FacebookLogin, 'FacebookLogin', '/home/geevee/Desktop/projects/gerardvee-site/pages/projects/linkit/index.js');
-    reactHotLoader.register(FacebookAuthenticate, 'FacebookAuthenticate', '/home/geevee/Desktop/projects/gerardvee-site/pages/projects/linkit/index.js');
-    reactHotLoader.register(_default, 'default', '/home/geevee/Desktop/projects/gerardvee-site/pages/projects/linkit/index.js');
+    reactHotLoader.register(api, 'api', '/mnt/c/Users/Tony/Desktop/gerardo projects/gerardvee-ui/pages/projects/linkit/index.js');
+    reactHotLoader.register(FacebookLogin, 'FacebookLogin', '/mnt/c/Users/Tony/Desktop/gerardo projects/gerardvee-ui/pages/projects/linkit/index.js');
+    reactHotLoader.register(FacebookAuthenticate, 'FacebookAuthenticate', '/mnt/c/Users/Tony/Desktop/gerardo projects/gerardvee-ui/pages/projects/linkit/index.js');
+    reactHotLoader.register(_default, 'default', '/mnt/c/Users/Tony/Desktop/gerardo projects/gerardvee-ui/pages/projects/linkit/index.js');
     leaveModule(module);
 })();
 
