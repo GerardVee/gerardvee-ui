@@ -2,10 +2,9 @@ import 'isomorphic-fetch';
 import { Component } from 'react';
 import Link from 'next/link';
 
-import Header from '../components/site/Header';
-import Skills from '../components/site/Skills';
+import Nav from '../components/site/Nav';
+import Hello from '../components/site/Hello';
 import Projects from '../components/site/Projects';
-import Contact from '../components/site/Contact';
 import '../styles/index.scss';
 
 const api = 'https://api.gerardvee.com/';
@@ -25,10 +24,9 @@ const Footer = () => (
 const Index = ({ content, images }) => (
     <div className='col' style={{ padding: 0 }}>
         <title>{ content.filter(item => item.type === 'header')[0].title }</title>
-        <Header content={ content } />
-        <Skills content={ content } />
+        <Nav />
+        <Hello header={ content.filter(item => item.type === 'header')[0] } cycle={ content.find(item => item.type === 'cycle') }/>
         <Projects content={ content } images={ images } />
-        <Contact />
         <Footer />
     </div>
 );
