@@ -1,3 +1,5 @@
+const api = 'https://api.gerardvee.com/';
+
 const pairs = (array) => array.reduce((result, _, i) =>
 {
     if (i % 2 === 0)
@@ -13,7 +15,7 @@ export default ({ content, images }) => (
             <div className='row center halign' key={ `projects-${ i }` }>
                 { pair.map((item, i) => (
                     <div className='col center' key={ `project-item-${ i }` }>
-                        <img src={ 'https://gerardvee.com' + images.find(img => img.name === item.title).location } />
+                        <img src={ `${ api + 'public' }` + images.find(img => img.name === item.title).location } />
                     </div>
                     ))
                 }
