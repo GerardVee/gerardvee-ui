@@ -73,6 +73,7 @@ export default class extends Component
                 <Head>
                     <title>LinkIt</title>
                     <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+                    <link rel='icon' href='https://vectr.com/geev/c7QLGrw2w.png?width=640&height=640&select=c7QLGrw2wpage0' />
                 </Head>
                 <Nav>
                     <a className='normal-link' href={ `/projects/linkit${ loggedIn ? `?loggedIn=${ loggedIn }` : '' }` }>Home</a>
