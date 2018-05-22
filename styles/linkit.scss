@@ -54,7 +54,7 @@ a
     font-size: $title-size - 10px;
     @media screen and (min-width: $medium)
     {
-        font-size: $title-size;
+        font-size: $title-size + 20;
     }
 }
 
@@ -242,4 +242,10 @@ a
 {
     border-bottom: 7px solid grey;
     width: $modal-width;
+}
+
+.option > *
+{
+    margin-left: 0.4em;
+    text-align: left;
 }

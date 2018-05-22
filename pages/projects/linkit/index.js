@@ -10,6 +10,8 @@ import Modal from 'react-responsive-modal';
 import Link from 'next/link';
 import Head from 'next/head';
 
+import Header from '../../../components/linkit/Header';
+import Content from '../../../components/linkit/Content';
 import Nav from '../../../components/linkit/Nav';
 import Post from '../../../components/linkit/Post';
 import post from '../../../lib/post';
@@ -27,7 +29,7 @@ const FacebookAuthenticate = ({ callback, auto }) =>
     <FacebookAuth autoLoad={ auto } appId='176820699610596' callback={ callback } component={ FacebookLogin } />
 );
 
-export default class extends Component
+class Linkit2 extends Component
 {
     state = { user: null, me: null, error: '' };
 
@@ -89,3 +91,26 @@ export default class extends Component
         );
     }
 }
+
+const LinkItInterface = () => (
+    <div>
+        <Header />
+        <Content profile={ null }/>
+    </div>
+);
+
+
+class LinkIt extends Component
+{
+    state =
+    {
+        postOrder: 'HOT', // can be HOT, NEW, RISING (FIRE/hour)
+    };
+
+    render()
+    {
+        return <LinkItInterface />;
+    }
+}
+
+export default LinkIt;

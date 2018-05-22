@@ -59,7 +59,6 @@ export default class Pay extends React.Component
                         </StripeCheckout>
                     </div>
                 }
-                <a href={ decodeURIComponent(href) }>back</a>
             </div>
         );
     }
