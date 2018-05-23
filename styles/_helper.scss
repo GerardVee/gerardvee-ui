@@ -23,6 +23,11 @@ $large: 1280px;
     flex-wrap: wrap;
 }
 
+.center
+{
+    text-align: center;
+}
+
 .halign
 {
     justify-content: center;
@@ -80,4 +85,12 @@ $large: 1280px;
 .hidden-sm
 {
     @include size-exclude($small, $medium);
+}
+
+@for $i from 1 through 10
+{
+    .flex-#{$i}
+    {
+        flex: $i;
+    }
 }

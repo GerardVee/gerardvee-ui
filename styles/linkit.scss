@@ -18,11 +18,16 @@ $modal-width: 500px;
 a
 {
     text-decoration: none;
-    color: #90D6D6;
+    color: black;
+    &:hover
+    {
+        text-decoration: underline;
+    }
+    /*color: #90D6D6;
     &:visited
     {
         color: #90D6D6;
-    }
+    }*/
 }
 
 .linkit-home, .linkit-new, .heading, .nav, .options, .more, .stacked-options
@@ -51,10 +56,10 @@ a
 .title
 {
     flex: 4;
-    font-size: $title-size - 10px;
+    font-size: $title-size - 40px;
     @media screen and (min-width: $medium)
     {
-        font-size: $title-size + 20;
+        font-size: $title-size - 20;
     }
 }
 
