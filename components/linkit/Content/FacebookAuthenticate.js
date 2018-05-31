@@ -9,6 +9,8 @@ const noProfile = 'https://transhumane-partei.de/wp-content/uploads/2016/04/blan
 
 const appId = process.env.FB_APP_ID;
 
+console.log(appId);
+
 const mapStateToProps = ({ linkit }) => ({
     loggedIn: linkit.loggedIn
 });
