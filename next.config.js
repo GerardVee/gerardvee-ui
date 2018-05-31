@@ -1,10 +1,10 @@
 const withSass = require('@zeit/next-sass');
 const webpack = require('webpack');
 
-if (process.env.NODE_ENV != 'production')
+/*if (process.env.NODE_ENV != 'production')
 {
     require('dotenv').config();
-}
+}*/
 
 /*
  * @ https://github.com/zeit/next.js/issues/159
