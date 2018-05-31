@@ -291,7 +291,10 @@ body
 .linkit-error-title, .linkit-success-title
 {
     font-size: 3em;
-    width: $modal-width;
+    @media screen and (min-width: $medium)
+    {
+        width: $modal-width;
+    }
 }
 
 .linkit-success-message, .linkit-error-message

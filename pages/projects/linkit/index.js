@@ -18,10 +18,12 @@ class LinkIt extends Component
     static async getInitialProps({ store, req, query })
     {
         const { loggedIn } = query;
+        const loginStatus = (loggedIn == null) ? false : loggedIn;
+        console.log(loginStatus);
         const res = await fetch(api + 'linkit/posts');
         const posts = await res.json();
         store.dispatch(sendPosts(posts));
-        store.dispatch(sendLoggedIn(loggedIn));
+        store.dispatch(sendLoggedIn(loginStatus));
         return {};
     }
 
