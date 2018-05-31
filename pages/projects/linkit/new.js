@@ -2,17 +2,18 @@ import 'isomorphic-fetch';
 import { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import Head from 'next/head';
-import validUrl from 'valid-url'; // not too great, but will have to do for now
 
-import Nav from '../../../components/linkit/Nav';
-import postType from '../../../lib/post';
+import Header from '../../../components/linkit/Header';
+import Content from '../../../components/linkit/new/Content';
 import '../../../styles/linkit.scss';
-
-const api = 'https://api.gerardvee.com/';
 
 export default class extends Component
 {
-    state = { link: '', title: '', error: '', success: '' };
+    state =
+    {
+        error: '',
+        success: ''
+    };
     
     static async getInitialProps({ query })
     {
@@ -30,70 +31,26 @@ export default class extends Component
         this.setState({ success });
     }
 
-    async newPost()
-    {
-        const date = new Date();
-        const { link, title } = this.state;
-        if (title.length > 50 || title.length < 4)
-        {
-            this.alert('title length must shorter than 50 and longer than 4 characters');
-            return;
-        }
-        if (!validUrl.isUri(link))
-        {
-            this.alert('only proper links allowed');
-            return;
-        }
-        const resp = await fetch(api + 'linkit/isDangerous/' + encodeURIComponent(link));
-        const isMalicious = await resp.json();
-        if (isMalicious)
-        {
-            this.alert('this link is malicious!');
-            return;
-        }
-        const post = { link, title, date, dead: false };
-        const res = await fetch(api + 'linkit/post', postType({ post }));
-        const result = await res.json();
-        if (result)
-        {
-            this.triumph('sucessful post!');
-        }
-        else
-        {
-            this.alert('post failed');
-        }
-    }
-
     render()
     {
-        const { title, link, error, success } = this.state;
+        const { error, success } = this.state;
         const { loggedIn } = this.props;
         return (
-            <div className='linkit-new'>
+            <div>
                 <Head>
-                    <title>LinkIt</title>
+                    <title>LinkIt - New Post</title>
                     <meta name='viewport' content='initial-scale=1.0, width=device-width' />
                     <link rel='icon' href='https://vectr.com/geev/c7QLGrw2w.png?width=640&height=640&select=c7QLGrw2wpage0' />
                 </Head>
-                <Nav>
-                    <a className='normal-link' href={ `/projects/linkit${ loggedIn ? `?loggedIn=${ loggedIn }` : '' }` }>Home</a>
-                </Nav>
-                <div className='linkit-post-form'>
-                    <div className='inputs'>
-                        <input className='linkit-input' placeholder='Title' value={ title } onChange={ (e) => this.setState({ title: e.target.value }) }/>
-                        <input className='linkit-input' placeholder='Url' value={ link } onChange={ (e) => this.setState({ link: e.target.value }) } />
-                    </div>
-                    <div className='submission'>
-                        <button className='linkit-button' onClick={ () => this.newPost() }>Submit</button>
-                    </div>
-                </div>
+                <Header loggedIn={ loggedIn } />
+                <Content alert={ (type, message) => type === 'success' ? this.triumph(message) : this.alert(message) } loggedIn={ loggedIn } /> 
                 <Modal open={ !!error } onClose={ () => this.setState({ error: '' }) } center>
                     <h1 className='linkit-error-title'>Error</h1>
-                    <h3 className='linkit-error-message'>{ error }</h3>
+                    <p className='linkit-error-message'>{ error }</p>
                 </Modal>
                 <Modal open={ !!success } onClose={ () => this.setState({ success: '' }) } center>
                     <h1 className='linkit-success-title'>Success</h1>
-                    <h3 className='linkit-success-message'>{ success }</h3>
+                    <p className='linkit-success-message'>{ success }</p>
                 </Modal>
             </div>
         )

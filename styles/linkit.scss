@@ -4,10 +4,13 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 $title-size: 65px;
+$title-size-sm: $title-size - 10px;
 $link-size: 35px;
 $regular-link-size: 21px;
 $error: red;
-$success: #4BB543;
+$success: #4bb543;
+$linkit-green: darken(#9DEB9D, 20%);
+$linkit-green-soft: desaturate($linkit-green, 30%);
 $modal-width: 500px;
 
 *
@@ -18,26 +21,33 @@ $modal-width: 500px;
 a
 {
     text-decoration: none;
-    color: black;
-    &:hover
-    {
-        text-decoration: underline;
-    }
-    /*color: #90D6D6;
-    &:visited
-    {
-        color: #90D6D6;
-    }*/
 }
 
-.linkit-home, .linkit-new, .heading, .nav, .options, .more, .stacked-options
+body
+{
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 50px;
+}
+
+.linkit-home, .linkit-new, .heading, .nav, .options, .linkit-post-form
 {
     display: flex;
 }
 
-.linkit-home, .linkit-new, .options, .more, .stacked-options
+.linkit-home, .linkit-new, .options, .linkit-post-form
 {
     flex-direction: column;
+}
+
+.user-controls, .user-changes
+{
+    display: none;
+    @media screen and (min-width: $medium)
+    {
+        display: flex;
+        flex-direction: column;
+    }   
 }
 
 .nav
@@ -46,71 +56,119 @@ a
     margin-bottom: 1em;
 }
 
-.heading
+%sticky
 {
-    flex-direction: row;
-    flex: 5;
-    align-items: center;
+    background-color: black;
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    padding-top: 5px;
+    z-index: 1000;
+    & > div
+    {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+}
+
+.linkit-mobile-nav
+{
+    @extend %sticky;
+    top: 0;
+}
+
+.linkit-mobile-footer
+{
+    @extend %sticky;
+    bottom: 0;
+}
+
+.linkit-mobile-photo
+{
+    width: 36px!important;
+    height: 36px!important;
+    margin-bottom: 0!important;
+}
+
+.linkit-header
+{
+    margin-top: 70px;
+    @media screen and (min-width: $medium)
+    {
+        margin-top: 0;
+    }
 }
 
 .title
 {
-    flex: 4;
-    font-size: $title-size - 40px;
-    @media screen and (min-width: $medium)
+    font-size: $title-size-sm;
+    text-align: center;
+    &:hover
     {
-        font-size: $title-size - 20;
+        cursor: pointer;
     }
-}
-
-.head-link
-{
-    font-size: $regular-link-size - 5px!important;
     @media screen and (min-width: $medium)
     {
-        font-size: $regular-link-size!important;
-    }   
+        display: inline-block;
+        text-align: left;
+        margin-left: 0.6em;
+        font-size: $title-size;
+    }
 }
 
 .colored
 {
-    color: #9DEB9D;
+    color: $linkit-green;
 }
 
-.more, .stacked-options
+.active
 {
+    color: darken($linkit-green, 5%);
+}
+
+%actionable
+{
+    display: inline-flex;
     align-items: center;
-}
-
-.stacked-options
-{
-    padding-right: 8px;
-}
-
-.linkit-fb-picture
-{
-    padding-bottom: 5px;
-}
-
-.subtitle
-{
-    margin-top: 0;
-    font-size: 1.1em;
-    font-weight: 400;
-    @media screen and (min-width: $medium)
+    &:hover
     {
-        font-size: 1.7em;
+        cursor: pointer;
     }
 }
 
-.undertitle
+.linkit-action
 {
-    margin-top: 0;
-    color: grey;
-    font-size: 0.8em;
-    @media screen and (min-width: $medium)
+    @extend %actionable;
+    padding: 0px 12px 0px 0px;
+    & > *
     {
-        font-size: 1em;
+        margin-left: 0.4em;
+        text-align: left;
+    }
+    &:hover
+    {
+        box-shadow: 4px 4px 8px 4px rgba(0,0,0,0.1);
+        color: saturate($linkit-green, 20%);
+    }
+}
+
+.linkit-post-title
+{
+    color: $linkit-green-soft;
+    font-size: 2.7em;
+    &:hover
+    {
+        text-decoration: underline;
+    }
+}
+
+.linkit-post-action
+{
+    @extend %actionable;
+    & > *
+    {
+        margin-right: 0.1em;
     }
 }
 
@@ -122,21 +180,20 @@ a
 
 .linkit-post
 {
-    display: flex;
-    align-items: center;
-    margin-left: 0.5em;
-}
-
-.voting-options
-{
-    display: flex;
-    flex-direction: column;
+    box-shadow: 4px 4px 8px 4px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    margin-bottom: 0.3em;
+    padding-bottom: 1.4em;
+    &:hover
+    {
+        box-shadow: 8px 8px 16px 8px rgba(0,0,0,0.2);
+    }
 }
 
 %vote
 {
     cursor: pointer;
-    font-size: $regular-link-size + 5px;
+    font-size: $regular-link-size;
     margin: 0;
     padding: 0;
 }
@@ -155,7 +212,16 @@ a
     @extend %vote;
     &:hover
     {
-        color: #B9E85B;
+        color: rgb(37, 162, 219);
+    }
+}
+
+.report
+{
+    @extend %vote;
+    &:hover
+    {
+        color: $error;
     }
 }
 
@@ -166,57 +232,54 @@ a
 
 .downvoted
 {
-    color: #99CB36;
+    color: rgb(0, 138, 202);
 }
 
-.linkit-link
+.linkit-profile-photo
 {
-    font-weight: normal;
-    font-size: $link-size;
-    margin-left: 0.3em;
-    padding-bottom: 0.1em;
-    // transform: scaleX(1.2); scale messed with the margin
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    margin-bottom: 20px;
 }
 
-.linkit-post-form
+.linkit-form
 {
     display: flex;
     flex-direction: column;
-}
-
-.inputs
-{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding-top: 2em;
-    & > *
-    {
-        margin: 10px;
-    }
-}
-
-.linkit-input
-{
-    border-style: solid;
-    border-radius: 4px;
-    font-size: 20px;
-    padding: 6px 6px 6px 10px;
-    width: 30%;
+    align-items: center;
+    align-self: center;
     @media screen and (min-width: $medium)
     {
-        width: 25%;
+        flex-direction: row;
+        width: 80%;
+    } 
+}
+
+.input
+{
+    text-align: center;
+    border: none;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    box-shadow: 4px 4px 8px 4px rgba(0,0,0,0.1);
+    font-size: 1.4em;
+    @media screen and (min-width: $medium)
+    {
+        width: 80%;
     }
 }
 
 .linkit-button
 {
+    align-self: center;
     cursor: pointer;
     color: white;
     background-color: #4EC74E;
     border-style: none;
     border-radius: 6px;
     font-size: 20px;
+    margin-top: 20px;
     padding: 6px;
     width: 30%;
     @media screen and (min-width: $medium)
@@ -225,32 +288,24 @@ a
     }
 }
 
-.submission
+.linkit-error-title, .linkit-success-title
 {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 10px;
+    font-size: 3em;
+    width: $modal-width;
 }
 
-.linkit-error-title, .linkit-error-message
+.linkit-success-message, .linkit-error-message
+{
+    font-size: 1.2em;
+    color: black;
+}
+
+.linkit-error-title
 {
     color: $error;
 }
 
-.linkit-success-title, .linkit-success-message
+.linkit-success-title
 {
     color: $success;
-}
-
-.linkit-error-title, .linkit-success-title
-{
-    border-bottom: 7px solid grey;
-    width: $modal-width;
-}
-
-.option > *
-{
-    margin-left: 0.4em;
-    text-align: left;
 }
