@@ -23,18 +23,18 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
             return (
                 <div className='center thirds inline-block'>
                     { !user && <FacebookAuthenticate mobile /> }
-                    { !!user && <img className='linkit-mobile-photo linkit-profile-photo' src={ user.picture } /> }
+                    { !!user && <img className='linkit-mobile-photo linkit-profile-photo' src={ user.picture.data.url } /> }
                 </div>
             );
         }
         return (
             <>
                 <div className='row'>
-                    <img className='linkit-profile-photo' src={ !!user ? user.picture : noProfile } />
+                    <img className='linkit-profile-photo' src={ !!user ? user.picture.data.url : noProfile } />
                 </div>
                 { !user && <FacebookAuthenticate />}
                 { !!user && <Option icon='person_outline'>
-                    <p>{ `Welcome, ${ user.firstName }` }</p>
+                    <p>{ `Welcome, ${ user.name.split(' ')[0] }` }</p>
                 </Option> }
             </>
         )
