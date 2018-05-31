@@ -47,8 +47,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
         const { mobile, loggedIn } = this.props;
         if (mobile)
         {
-            return <FacebookAuth autoLoad={ loggedIn } appId={ appId } callback={ () => this.login() } component={ ({ onClick }) => this.mobileLogin({ onClick }) } />;
+            return <FacebookAuth autoLoad={ loggedIn } appId={ appId } callback={ (user) => this.login(user) } component={ ({ onClick }) => this.mobileLogin({ onClick }) } />;
         }
-        return <FacebookAuth autoLoad={ loggedIn } appId={ appId } callback={ () => this.login() } component={ ({ onClick }) => this.desktopLogin({ onClick }) } />;
+        return <FacebookAuth autoLoad={ loggedIn } appId={ appId } callback={ (user) => this.login(user) } component={ ({ onClick }) => this.desktopLogin({ onClick }) } />;
     }
 });
