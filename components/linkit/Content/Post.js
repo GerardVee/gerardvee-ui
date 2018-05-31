@@ -79,13 +79,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
                 <div className='row halign-children'>
                     <div className='row valign flex-1'>
                         <div className='linkit-post-action upvote' onClick={ () => this.onUpvote() }>
-                            <i className='material-icons'>keyboard_arrow_up</i>
+                            <i className={ (upvote ? 'upvoted ' : '') + 'material-icons' }>keyboard_arrow_up</i>
                             Upvote
                         </div>
                     </div>
                     <div className='row valign flex-1'>
                         <div className='linkit-post-action downvote' onClick={ () => this.onDownvote() }>
-                            <i className='material-icons'>keyboard_arrow_down</i>
+                            <i className={ (downvote ? 'downvoted ' : '') + 'material-icons' }>keyboard_arrow_down</i>
                             Downvote
                         </div>
                     </div>
