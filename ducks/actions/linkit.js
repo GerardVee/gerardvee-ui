@@ -31,7 +31,7 @@ export const sendLoggedIn = (loggedIn) => dispatch => dispatch({ type: actionTyp
 
 export const getPosts = (order) => dispatch =>
 {
-    fetch(order === 'HOT' ? api + 'linkit/posts' : api + 'linkit/posts?order?=' + order.toLowerCase())
+    fetch(order === 'HOT' ? api + 'linkit/posts' : api + 'linkit/posts?order=' + order.toLowerCase())
         .then(res =>
         {
             if (!res.ok)
@@ -54,7 +54,7 @@ export const getPosts = (order) => dispatch =>
 
 export const refreshPosts = (order) => dispatch =>
 {
-    fetch(order === 'HOT' ? api + 'linkit/posts' : api + 'linkit/posts?order?=' + order.toLowerCase())
+    fetch(order === 'HOT' ? api + 'linkit/posts' : api + 'linkit/posts?order=' + order.toLowerCase())
         .then(res =>
         {
             if (!res.ok)

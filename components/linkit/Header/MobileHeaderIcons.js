@@ -1,19 +1,16 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { sendUser, sendMe, sendPostOrder, sendPosts } from '../../../ducks/actions/linkit';
-
-const api = 'https://api.gerardvee.com/';
+import { getPosts, refreshPosts } from '../../../ducks/actions/linkit';
 
 const mapStateToProps = ({ linkit }) => (
 {
     postOrder: linkit.postOrder
 });
 
-const mapDispatchToProps = (dispatch) => (
-{
-    setPostOrder: (order) => dispatch(sendPostOrder(order)),
-    setPosts: (posts) => dispatch(sendPosts(posts))
+const mapDispatchToProps = (dispatch) => ({
+    getPosts: (order) => dispatch(getPosts(order)),
+    refreshPosts: (order) => dispatch(refreshPosts(order))
 });
 
 const icons =
@@ -27,15 +24,16 @@ const activeClass = (postOrder, order) => postOrder === order ? 'active' : 'md-l
 
 export default connect(mapStateToProps, mapDispatchToProps)(class extends Component
 {
-    async fetchPosts(order)
+    fetchPosts(order)
     {
         const { postOrder } = this.props;
-        const res = order === 'HOT' ? await fetch(api + 'linkit/posts') : await fetch(api + 'linkit/posts?order=' + order.toLowerCase());
-        const posts = await res.json();
-        this.props.setPosts(posts);
-        if (postOrder !== order)
+        if (postOrder === order)
         {
-            this.props.setPostOrder(order);
+            this.props.refreshPosts(order);
+        }
+        else
+        {
+            this.props.getPosts(order);
         }
     }
 
