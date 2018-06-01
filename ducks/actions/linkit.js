@@ -4,13 +4,13 @@ const api = 'https://api.gerardvee.com/';
 
 export const actionTypes =
 {
-    SET_ERROR: 'SET_ERROR',
-    SET_SUCCESS: 'SET_SUCCESS',
-    SET_POST_ORDER: 'SET_POST_ORDER',
-    SET_USER: 'SET_USER',
-    SET_ME: 'SET_ME',
-    SET_POSTS: 'SET_POSTS',
-    SET_LOGIN_STATUS: 'SET_LOGIN'
+    SET_ERROR: 'LINKIT_SET_ERROR',
+    SET_SUCCESS: 'LINKIT_SET_SUCCESS',
+    SET_POST_ORDER: 'LINKIT_SET_POST_ORDER',
+    SET_USER: 'LINKIT_SET_USER',
+    SET_ME: 'LINKIT_SET_ME',
+    SET_POSTS: 'LINKIT_SET_POSTS',
+    SET_LOGIN_STATUS: 'LINKIT_SET_LOGIN'
 };
 
 export const sendError = (error) => dispatch => dispatch({ type: actionTypes.SET_ERROR, error });

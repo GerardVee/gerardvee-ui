@@ -13,13 +13,22 @@ import '../../../styles/linkit.scss';
 
 const api = 'https://api.gerardvee.com/';
 
-class LinkIt extends Component
+const mapStateToProps = ({ linkit }) => (
+{
+    error: linkit.error
+});
+
+const mapDispatchToProps = (dispatch) => (
+{
+    clearError: () => dispatch(clearError())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(class extends Component
 {
     static async getInitialProps({ store, req, query })
     {
         const { loggedIn } = query;
         const loginStatus = (loggedIn == null) ? false : loggedIn;
-        console.log(loginStatus);
         const res = await fetch(api + 'linkit/posts');
         const posts = await res.json();
         store.dispatch(sendPosts(posts));
@@ -52,16 +61,4 @@ class LinkIt extends Component
             </div>
         );
     }
-}
-
-const mapStateToProps = ({ linkit }) => (
-{
-    error: linkit.error
 });
-
-const mapDispatchToProps = (dispatch) => (
-{
-    clearError: () => dispatch(clearError())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(LinkIt);

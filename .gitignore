@@ -1,4 +1,5 @@
 node_modules
+public/images/
 .env
 .next
 yarn-error.log
