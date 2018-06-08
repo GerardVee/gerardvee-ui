@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const names =
 [
     'About', 'Pricing', 'Contact', 'Donate'
@@ -7,7 +9,7 @@ export default () =>
 (
     <div className='row valign' style={{ justifyContent: 'space-evenly' }}>
     { names.map((name, i) =>
-        <a href={ `/${ name.toLowerCase() }` } style={{ order: i }}>{ name }</a>
+        <Link href={ `/${ name.toLowerCase() }` }><a style={{ order: i }}>{ name }</a></Link>
     )}
     <h1 style={{ order: 1 }}>Gerardo Valenzuela</h1>
         {/*<div className='row' style={{ flex: 1 }}>

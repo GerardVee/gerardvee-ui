@@ -54,6 +54,17 @@ $large: 1280px;
     }
 }
 
+img.responsive
+{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    @media screen and (min-width: $medium)
+    {
+        height: 600px;
+    }
+}
+
 @mixin size-exclude($size, $max: false)
 {
     @if ($max)

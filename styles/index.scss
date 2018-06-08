@@ -20,3 +20,23 @@ $font-size: 22px; // 45
     display: flex;
     flex-direction: column-reverse;
 }
+
+.opacity-hover
+{
+    & > h1
+    {
+        opacity: 0;
+    }
+    &:hover
+    {
+        & > img
+        {
+            transition-duration: 0.4s;
+            opacity: 0.1;
+        }
+        & > h1
+        {
+            opacity: 1;
+        }
+    }
+}
