@@ -1,5 +1,5 @@
 require('dotenv').config();
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MergeFilesPlugin = require('merge-files-webpack-plugin');
 const withSass = require('@zeit/next-sass');
 const webpack = require('webpack');
 
@@ -17,8 +17,9 @@ const webpack = require('webpack');
 
 const web =
 {
-    webpack: (config) =>
+    webpack: (config, options) =>
     {
+        const { isServer } = options;
         config.plugins.push(
             new webpack.DefinePlugin({
                 'process.env.HOST': JSON.stringify(process.env.HOST),
@@ -26,14 +27,17 @@ const web =
             })
             
         );
-        config.plugins.push(
-            new ExtractTextPlugin({
-                filename: (getPath) =>
-                    `static/${ getPath('[name].css')
-                        .replace('bundles/pages/', '')
-                        .replace('.js.css', '.css') }`
-            })
-        );
+        if (!isServer)
+        {
+            options.extractCSSPlugin.filename = 'static/[name].css';
+            config.plugins.push(
+                new MergeFilesPlugin({
+                    filename: 'static/style.css',
+                    test: /\.css/,
+                    deleteSourceFiles: true,
+                })
+            );
+        }
         return config;
     }
 };

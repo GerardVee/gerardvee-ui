@@ -2141,7 +2141,7 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-extract-text-webpack-plugin@3.0.2, extract-text-webpack-plugin@^3.0.2:
+extract-text-webpack-plugin@3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/extract-text-webpack-plugin/-/extract-text-webpack-plugin-3.0.2.tgz#5f043eaa02f9750a9258b78c0a6e0dc1408fb2f7"
   dependencies:
@@ -3350,6 +3350,10 @@ meow@^3.7.0:
 merge-descriptors@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/merge-descriptors/-/merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61"
+
+merge-files-webpack-plugin@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/merge-files-webpack-plugin/-/merge-files-webpack-plugin-1.1.2.tgz#875f4e6af008444890014cbd5a7f0169a0049c5c"
 
 methods@~1.1.2:
   version "1.1.2"
