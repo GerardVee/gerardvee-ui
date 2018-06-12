@@ -25,7 +25,11 @@ const web =
             })
         );
         return config;
-    }
+    },
+    filename: (getPath) =>
+        `static/${ getPath('[name].css')
+            .replace('bundles/pages/', '')
+            .replace('.js.css', '.css') }`
 };
 
 module.exports = withSass(web);
