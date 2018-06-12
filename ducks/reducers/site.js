@@ -1,7 +1,10 @@
 import { actionTypes } from '../actions/site';
 
+const apiImageLocation = 'https://api.gerardvee.com/public/images/';
+
 const initialState =
 {
+    error: '',
     projects: [],
     images: []
 };
@@ -19,10 +22,16 @@ export const reducer = (state = initialState, action) =>
 {
     switch(action.type)
     {
+        case actionTypes.SET_ERROR:
+            return Object.assign({}, state, { error: action.error });
         case actionTypes.SET_PROJECTS:
             return Object.assign({}, state, { projects: action.projects });
         case actionTypes.SET_IMAGES:
             return Object.assign({}, state, { images: action.images });
+        case actionTypes.APPEND_IMAGE:
+            return Object.assign({}, state, { images: [ ...state.images, action.image ] });
+        case actionTypes.DELETE_IMAGE:
+            return Object.assign({}, state, { images: state.images.filter(image => image.location !== apiImageLocation + action.imageUrl ) });
         default:
             return state;
     }

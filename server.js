@@ -30,6 +30,10 @@ app.prepare().then(() =>
         }
     ));
 
+    server.get('/projects/piclife/user/:id', (req, res) =>
+        app.render(req, res, '/projects/piclife/user', { id: req.params.id })
+    );
+
     server.get('*', (req, res) =>
     {
         handle(req, res);

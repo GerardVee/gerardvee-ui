@@ -4,15 +4,9 @@ const api = 'https://api.gerardvee.com/';
  * New database:
  *  projects: (below)
  *   @schema: { _id, title, description: (put technologies used and achievements here too, as well as purpose), url, image, finished }
- *   "[{"_id":"5a2796bda2323b4599a68a92","name":"header","location":"/images/20171112_145800.jpg"},
- *     {"_id":"5a2796bda2323b4599a68a93","name":"LocalWeather","location":"/images/20171115_145900.png"},
- *     {"_id":"5a2796bda2323b4599a68a94","name":"RandomQuote","location":"/images/20171115_145901.png"},
- *     {"_id":"5a2796bda2323b4599a68a95","name":"WikiViewer","location":"/images/20171115_145902.png"},
- *      {"_id":"5a2796bda2323b4599a68a96","name":"Calculated","location":"/images/20171205_153913.jpg"}]"
  *  images:
  *   @schema: { _id, location: /images/name_of_img.jgp or png }
- *   @description: upload one, and get back an id, which is _id, that can be embedded into any db as a supporting img
- * mongoimport --db gerardvee --collection siteprojects --file projects.json --jsonArray
+ *   @description: upload one, and get back an id, which is _id, that can be embedded into any db as a supporting img (or just return the url)
  */
 
 /*

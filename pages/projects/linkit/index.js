@@ -49,7 +49,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
                 <Head>
                     <title>LinkIt</title>
                     <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-                    <link rel='icon' href='https://vectr.com/geev/c7QLGrw2w.png?width=640&height=640&select=c7QLGrw2wpage0' />
+                    <link rel='icon' href='https://api.gerardvee.com/public/images/1528500158997.png' />
                 </Head>
                 <Header extra />
                 <Content />
