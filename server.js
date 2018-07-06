@@ -19,6 +19,7 @@ const handle = app.getRequestHandler();
 app.prepare().then(() =>
 {
     const server = express();
+
     server.use(cookie(secret));
     server.use(cors());
     server.use(bodyParser.json());
@@ -31,12 +32,14 @@ app.prepare().then(() =>
         }
     ));
 
+    server.set('views', './static');
+
     server.get('/projects/piclife/user/:id', (req, res) =>
         app.render(req, res, '/projects/piclife/user', { id: req.params.id })
     );
 
     server.get('/projects/delano-farms', (req, res) =>
-        res.sendFile(path.join(___dirname + '/static/delano-farms.html'))
+        res.render('delano-farms')
     );
 
     server.get('*', (req, res) =>
