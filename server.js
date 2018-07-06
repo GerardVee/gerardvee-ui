@@ -2,6 +2,7 @@ require('dotenv/config');
 const express = require('express');
 const next = require('next');
 const cors = require('cors');
+const path = require('path');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookie = require('cookie-parser');
@@ -32,6 +33,10 @@ app.prepare().then(() =>
 
     server.get('/projects/piclife/user/:id', (req, res) =>
         app.render(req, res, '/projects/piclife/user', { id: req.params.id })
+    );
+
+    server.get('/projects/delano-farms', (req, res) =>
+        res.sendFile(path.join(___dirname + '/static/delano-farms.html'))
     );
 
     server.get('*', (req, res) =>
