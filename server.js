@@ -32,14 +32,12 @@ app.prepare().then(() =>
         }
     ));
 
-    server.set('views', './static');
-
     server.get('/projects/piclife/user/:id', (req, res) =>
         app.render(req, res, '/projects/piclife/user', { id: req.params.id })
     );
 
     server.get('/projects/delano-farms', (req, res) =>
-        res.render('delano-farms')
+        res.sendFile(path.join(__dirname + '/static/delano-farms.html'))
     );
 
     server.get('*', (req, res) =>
