@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Page from '../../../components/piclife/Page';
@@ -27,9 +28,12 @@ const likesPosts = () =>
     </Page>*/
 
 export default () => (
-    <Router>
+    <div>
+        <Head>
+            <link href="https://fonts.googleapis.com/css?family=Coming+Soon" rel="stylesheet" />
+        </Head>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#001148' }}>
-            <img src='https://api.gerardvee.com/public/images/1531090596198.svg' />
+            <h2 style={{ color: 'white', fontFamily: "'Coming Soon', cursive", fontWeight: '400' }}>piclife</h2>
         </div>
-    </Router>
+    </div>
 );
