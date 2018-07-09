@@ -17,7 +17,6 @@
     "react-facebook-auth": "^1.4.0",
     "react-redux": "^5.0.7",
     "react-responsive-modal": "^3.0.0",
-    "react-router-dom": "^4.3.1",
     "react-stripe-checkout": "^2.6.3",
     "react-type": "^0.1.0",
     "redux": "^4.0.0",

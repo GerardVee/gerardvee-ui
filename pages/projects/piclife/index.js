@@ -1,5 +1,5 @@
+import { Component } from 'react';
 import Head from 'next/head';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Page from '../../../components/piclife/Page';
 
@@ -27,13 +27,66 @@ const likesPosts = () =>
         </div>
     </Page>*/
 
+class Router extends Component
+{
+    state =
+    {
+        activePath: '/'
+    }
+
+    static navigate(path)
+    {
+        this.setState({ activePath: path });
+    }
+
+    render()
+    {
+        const { children } = this.props;
+        const { activePath } = this.state;
+        return children.find(element => element.props.path === activePath) || null;
+    }
+}
+
+const Route = ({ path, children }) =>
+(
+    <>
+    { children }
+    </>
+);
+
+class Link extends Component
+{
+    pushPath()
+    {
+        const { to } = this.props;
+        Router.navigate(to);
+    }
+
+    render()
+    {
+        const { children } = this.props;
+        return (
+            <p onClick={ () => this.pushPath() }>{ children }</p>
+        );
+    }
+}
+
 export default () => (
     <div>
         <Head>
-            <link href="https://fonts.googleapis.com/css?family=Coming+Soon" rel="stylesheet" />
+            <link href='https://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' />
         </Head>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: '#001148' }}>
             <h2 style={{ color: 'white', fontFamily: "'Coming Soon', cursive", fontWeight: '400' }}>piclife</h2>
         </div>
+        <Link to='/next'>here to go next</Link>
+        <Router>
+            <Route path='/'>
+                <div>root</div>
+            </Route>
+            <Route path='/next'>
+                <div>next</div>
+            </Route>
+        </Router>
     </div>
 );
