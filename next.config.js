@@ -19,22 +19,21 @@ const web =
 {
     webpack: (config, options) =>
     {
-        const { isServer } = options;
+        const { isServer, dev } = options;
         config.plugins.push(
             new webpack.DefinePlugin({
                 'process.env.HOST': JSON.stringify(process.env.HOST),
                 'process.env.FB_APP_ID': JSON.stringify(process.env.FB_APP_ID)
             })
-            
         );
-        if (!isServer)
+        if (!isServer && !dev)
         {
             options.extractCSSPlugin.filename = 'static/[name].css';
             config.plugins.push(
                 new MergeFilesPlugin({
                     filename: 'static/style.css',
                     test: /\.css/,
-                    deleteSourceFiles: true,
+                    deleteSourceFiles: true
                 })
             );
         }
