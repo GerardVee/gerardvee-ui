@@ -27,6 +27,27 @@ const likesPosts = () =>
         </div>
     </Page>*/
 
+const ActivePathObject = ((path) =>
+{
+    let state =
+    {
+        activePath: path
+    };
+    return Object.assign({}, {
+        navigate: (otherPath) => state.activePath = otherPath,
+        getPath: () => state.activePath
+    });
+})('/');
+
+class ActivePath
+{
+    state =
+    {
+        activePathObject: ActivePathObject
+    }
+    render
+}
+
 class Router extends Component
 {
     state =
