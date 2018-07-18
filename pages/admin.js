@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import ModifyImages from '../components/site/admin/Images';
 import { sendProjects, sendImages } from '../ducks/actions/site';
 
+import '../styles/admin.scss';
+
 const api = 'https://api.gerardvee.com/';
 
 const mapStateToProps = ({ site }) =>
@@ -31,6 +33,7 @@ export default connect(mapStateToProps)(class extends Component
         return (
             <div className='col' style={{ padding: 0 }}>
                 <ModifyImages />
+                <p className='admin-header-name'>GeeVee</p>
                 <p>{ JSON.stringify(error) }</p>
             </div>
         );
