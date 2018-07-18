@@ -32,8 +32,8 @@ export default connect(mapStateToProps)(class extends Component
         const { error } = this.props;
         return (
             <div className='col' style={{ padding: 0 }}>
-                <ModifyImages />
                 <p className='admin-header-name'>GeeVee</p>
+                <ModifyImages />
                 <p>{ JSON.stringify(error) }</p>
             </div>
         );
