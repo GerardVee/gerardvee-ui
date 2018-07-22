@@ -8,7 +8,8 @@ export const actionTypes =
     SET_PROJECTS: 'SITE_SET_PROJECTS',
     SET_IMAGES: 'SITE_SET_IMAGES',
     APPEND_IMAGE: 'SITE_APPEND_IMAGE',
-    DELETE_IMAGE: 'SITE_DELETE_IMAGE'
+    DELETE_IMAGE: 'SITE_DELETE_IMAGE',
+    SET_USER: 'SITE_SET_USER',
 };
 
 export const sendError = (error) => dispatch => dispatch({ type: actionTypes.SET_ERROR, error });
@@ -19,6 +20,8 @@ export const sendProjects = (projects) => dispatch => dispatch({ type: actionTyp
 export const sendImages = (images) => dispatch => dispatch({ type: actionTypes.SET_IMAGES, images });
 export const deleteImage = (imageUrl) => dispatch => dispatch({ type: actionTypes.DELETE_IMAGE, imageUrl });
 export const appendImage = (imageObject) => dispatch => dispatch({ type: actionTypes.APPEND_IMAGE, image: imageObject });
+
+export const sendUser = (user) => dispatch => dispatch({ type: actionTypes.SET_USER, user });
 
 export const deleteCertainImage = (imageUrl) => dispatch =>
 {
@@ -76,4 +79,20 @@ export const appendCertainImage = (data) => dispatch =>
         {
             dispatch(sendError(text));
         });
+};
+
+export const login = (user) => dispatch =>
+{
+    const isDefined = !!user;
+    if (!isDefined)
+    {
+        dispatch(sendUser(null));
+        return;
+    }
+    if (!user.id)
+    {
+        dispatch(sendUser(null));
+        return;
+    }
+    dispatch(sendUser(user));
 };

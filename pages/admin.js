@@ -2,6 +2,7 @@ import 'isomorphic-fetch';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 
+import FacebookAuthenticate from '../components/site/admin/FacebookAuthenticate';
 import ModifyImages from '../components/site/admin/Images';
 import { sendProjects, sendImages } from '../ducks/actions/site';
 
@@ -11,7 +12,8 @@ const api = 'https://api.gerardvee.com/';
 
 const mapStateToProps = ({ site }) =>
 ({
-    error: site.error
+    error: site.error,
+    user: site.user,
 });
 
 export default connect(mapStateToProps)(class extends Component
@@ -29,10 +31,14 @@ export default connect(mapStateToProps)(class extends Component
 
     render()
     {
-        const { error } = this.props;
+        const { error, user } = this.props;
         return (
             <div className='col' style={{ padding: 0 }}>
-                <p className='admin-header-name'>GeeVee</p>
+                { !user && <FacebookAuthenticate /> }
+                { !!user && <>
+                    <img src={ user.picture.data.url } />
+                    <p className='admin-header-name'>{ user.name }</p>
+                </> }
                 <ModifyImages />
                 <p>{ JSON.stringify(error) }</p>
             </div>
