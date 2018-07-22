@@ -6,7 +6,8 @@ const initialState =
 {
     error: '',
     projects: [],
-    images: []
+    images: [],
+    user: null,
 };
 
 /*
@@ -32,6 +33,8 @@ export const reducer = (state = initialState, action) =>
             return Object.assign({}, state, { images: [ ...state.images, action.image ] });
         case actionTypes.DELETE_IMAGE:
             return Object.assign({}, state, { images: state.images.filter(image => image.location !== apiImageLocation + action.imageUrl ) });
+        case actionTypes.SET_USER:
+            return Object.assign({}, state, { user: action.user });
         default:
             return state;
     }
