@@ -6,11 +6,14 @@ import { login } from '../../../ducks/actions/site';
 
 const appId = process.env.FB_APP_ID;
 
+const mapStateToProps = (state) => ({
+});
+
 const mapDispatchToProps = (dispatch) => ({
     login: (user) => dispatch(login(user))
 });
 
-export default connect(mapDispatchToProps)(class extends Component
+export default connect(mapStateToProps, mapDispatchToProps)(class extends Component
 {
     login(user)
     {
