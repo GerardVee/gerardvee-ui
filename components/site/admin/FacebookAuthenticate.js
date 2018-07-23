@@ -14,6 +14,7 @@ export default connect(mapDispatchToProps)(class extends Component
 {
     login(user)
     {
+        console.log('logging in ', user);
         this.props.login(user);
     }
 
