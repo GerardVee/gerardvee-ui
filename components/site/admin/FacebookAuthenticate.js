@@ -17,7 +17,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
 {
     login(user)
     {
-        console.log('logging in ', user);
         this.props.login(user);
     }
 

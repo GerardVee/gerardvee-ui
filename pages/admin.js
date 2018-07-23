@@ -34,10 +34,16 @@ export default connect(mapStateToProps)(class extends Component
         const { error, user } = this.props;
         return (
             <div className='col' style={{ padding: 0 }}>
-                { !user && <FacebookAuthenticate /> }
+                { !user && <>
+                    <FacebookAuthenticate />
+                    <img src='' />
+                    <h1 className='admin-header-name'>Unknown</h1>
+                    <h2>> No role</h2>
+                </> }
                 { !!user && <>
                     <img src={ user.picture.data.url } />
-                    <p className='admin-header-name'>{ user.name }</p>
+                    <h1 className='admin-header-name'>{ user.name }</h1>
+                    <h2>> Admin</h2>
                 </> }
                 <ModifyImages />
                 <p>{ JSON.stringify(error) }</p>
