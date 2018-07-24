@@ -19,14 +19,6 @@ const mapStateToProps = ({ site }) =>
     images: site.images,
 });
 
-const projectResource = ({ image, _id, title, description, url, finished }) => (
-    <div className='col'>
-        <div className='row'>
-            <img src={ image } />
-        </div>
-    </div>
-);
-
 export default connect(mapStateToProps)(class extends Component
 {
     state =
@@ -51,11 +43,26 @@ export default connect(mapStateToProps)(class extends Component
         this.setState({ activeId: id });
     }
 
+    projectResource({ _id, image, title, description, url, finished })
+    {
+        const { activeId } = this.state;
+        return (
+            <div className={ 'row admin-selection-panel-selection-container valign' + (activeId === _id ? ' active' : '' ) } onClick={ () => this.setAsActive(_id) }>
+                <img className='admin-selection-panel-image-picture' src={ image } />
+                <div className='col admin-selection-panel-image-info' style={{ justifyContent: 'space-between', alignContent: 'space-between', height: 'auto' }}>
+                    <p style={{ margin: 0 }}>{ finished ? '.' : 'o' }</p>
+                    <p className='admin-selection-panel-project-title'>{ title }</p>
+                    <p className='admin-selection-panel-image-id'>{ _id }</p>
+                </div>
+            </div>
+        );
+    }
+
     imageResource({ _id, location })
     {
         const { activeId } = this.state;
         return (
-            <div className={ 'admin-selection-panel-selection-container row valign' + (activeId === _id ? ' active' : '' ) } onClick={ () => this.setAsActive(_id) }>
+            <div className={ 'row admin-selection-panel-selection-container valign' + (activeId === _id ? ' active' : '' ) } onClick={ () => this.setAsActive(_id) }>
                 <img className='admin-selection-panel-image-picture' src={ location } />
                 <div className='col admin-selection-panel-image-info'>
                     <p className='admin-selection-panel-image-id'>{ _id }</p>
@@ -64,7 +71,7 @@ export default connect(mapStateToProps)(class extends Component
         );
     }
 
-    // go here if there is no login, and if the login is not ME
+    // go here if there is no login or if the login is not ME
     userUnknown()
     {
         return (
@@ -116,7 +123,7 @@ export default connect(mapStateToProps)(class extends Component
                     <div className='col admin-panel admin-selection-panel'>
                         <h1 className='admin-selection-panel-selection'>{ activeResource } ({ site[activeResource].length })</h1>
                         { site[activeResource].map(resource => (
-                            activeResource === 'images' ? this.imageResource(resource) : projectResource(resource)
+                            activeResource === 'images' ? this.imageResource(resource) : this.projectResource(resource)
                         ))}
                     </div>
                 </>}
