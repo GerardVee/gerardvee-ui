@@ -1,6 +1,173 @@
+@import './_helper.scss';
 @import url('https://use.typekit.net/iqj6qnq.css');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-.admin-header-name
+.admin-panel
+{
+    height: 100vh;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 2em;
+}
+
+.admin-user-panel, .admin-selection-panel
+{
+    border-right: 1px solid #F6F7F9;
+}
+
+.admin-selection-panel
+{
+    padding-top: 0.7em;
+}
+
+.admin-user-panel-picture
+{
+    border-radius: 50%;
+    width: 100px;
+    height: auto;
+    display: inline;
+}
+
+.admin-user-panel-name
+{
+    display: inline;
+    font-family: 'parisplus-clair', sans-serif;
+    padding-left: 1em;
+    margin: 0;
+}
+
+.admin-user-panel-role
+{
+    display: inline;
+    font-family: 'parisplus-clair', sans-serif;
+    font-style: italic;
+    font-weight: 300;
+    padding-left: 1em;
+    margin: 0;
+}
+
+.admin-user-panel-resource
 {
     font-family: 'parisplus-clair', sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.6em;
+    color: #000000;
+}
+
+.admin-user-panel-resource-list
+{
+    display: flex;
+    justify-content: center;
+}
+
+.admin-user-panel-resource-list-button.active
+{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'parisplus-clair', sans-serif;
+    border: none;
+    border-radius: 5%;
+    margin-left: 2em;
+    font-size: 1.1em;
+    font-weight: 700;
+    padding: 0.5em 1.5em;
+    background-color: #4161FF;
+    color: #FFFFFF;
+    & > i
+    {
+        padding-right: 0.4em;
+        color: #FFFFFF;
+    }
+}
+
+.admin-user-panel-resource-list-button
+{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'parisplus-clair', sans-serif;
+    border: none;
+    margin-left: 2em;
+    font-size: 1.1em;
+    font-weight: 700;
+    padding: 0.5em 1.5em;
+    background-color: transparent;
+    color: #848484;
+    & > i
+    {
+        padding-right: 0.4em;
+        color: #848484;
+    }
+}
+
+.admin-selection-panel-selection
+{
+    justify-content: center;
+    font-family: 'parisplus-clair', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 3em;
+    font-weight: 700;
+    margin: 0;
+    padding: 0.5em 1.5em;
+    color: #848484;
+}
+
+.admin-selection-panel-selection-container.active
+{
+    background-color: #F9F9F9;
+}
+
+.admin-selection-panel-selection-container
+{
+    border-radius: 5%;
+    padding: 5em 1em;
+}
+
+.admin-selection-panel-image-picture
+{
+    height: 100px;
+    width: auto;
+    display: inline;
+}
+
+.admin-selection-panel-image-info
+{
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 100px;
+    width: 100%;
+}
+
+.admin-selection-panel-image-id
+{
+    display: inline;
+    font-family: 'parisplus-clair', sans-serif;
+    color: #848484;
+    margin: 0;
+}
+
+// leave at the absolute bottom
+
+.admin-no-access-icon, .admin-no-access-message
+{
+    color: #848484;
+    font-size: 8em;
+}
+
+.admin-no-access-message
+{
+    font-family: 'parisplus-clair', sans-serif;
+    font-size: 4em;
+    font-weight: 700;
 }
