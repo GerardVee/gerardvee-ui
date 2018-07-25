@@ -47,12 +47,13 @@ export default connect(mapStateToProps)(class extends Component
     {
         const { activeId } = this.state;
         return (
-            <div className={ 'row admin-selection-panel-selection-container valign' + (activeId === _id ? ' active' : '' ) } onClick={ () => this.setAsActive(_id) }>
-                <img className='admin-selection-panel-image-picture' src={ image } />
-                <div className='col admin-selection-panel-image-info' style={{ justifyContent: 'space-between', alignContent: 'space-between', height: 'auto' }}>
-                    <p style={{ margin: 0 }}>{ finished ? '.' : 'o' }</p>
+            <div className={ 'row admin-selection-panel-selection-container valign' + (activeId === _id ? ' active' : '' ) }
+                onClick={ () => this.setAsActive(_id) }>
+                <img className='admin-selection-panel-project-picture' src={ image } />
+                <div className='col admin-selection-panel-project-info'>
+                    <span className={ 'admin-selection-panel-project-circle' + (finished ? ' active' : '') } />
                     <p className='admin-selection-panel-project-title'>{ title }</p>
-                    <p className='admin-selection-panel-image-id'>{ _id }</p>
+                    <p className='admin-selection-panel-project-id'>{ _id }</p>
                 </div>
             </div>
         );
@@ -62,7 +63,8 @@ export default connect(mapStateToProps)(class extends Component
     {
         const { activeId } = this.state;
         return (
-            <div className={ 'row admin-selection-panel-selection-container valign' + (activeId === _id ? ' active' : '' ) } onClick={ () => this.setAsActive(_id) }>
+            <div className={ 'row admin-selection-panel-selection-container valign' + (activeId === _id ? ' active' : '' ) }
+                onClick={ () => this.setAsActive(_id) }>
                 <img className='admin-selection-panel-image-picture' src={ location } />
                 <div className='col admin-selection-panel-image-info'>
                     <p className='admin-selection-panel-image-id'>{ _id }</p>
@@ -85,8 +87,9 @@ export default connect(mapStateToProps)(class extends Component
     render()
     {
         const { error, user, projects, images } = this.props;
-        const { activeResource } = this.state;
+        const { activeId, activeResource } = this.state;
         const site = { projects, images };
+        const activeSpecificResource = activeId ? site[activeResource].find(({ _id }) => _id === activeId) : null;
         /*if (!user)
         {
             return this.productionUnknown();
@@ -125,6 +128,11 @@ export default connect(mapStateToProps)(class extends Component
                         { site[activeResource].map(resource => (
                             activeResource === 'images' ? this.imageResource(resource) : this.projectResource(resource)
                         ))}
+                    </div>
+                </>}
+                { activeSpecificResource && <>
+                    <div className='col admin-panel admin-selection-panel'>
+                        <h1 className='admin-selection-panel-selection'>{ activeResource === 'images' ? activeSpecificResource._id : activeSpecificResource.title }</h1>
                     </div>
                 </>}
                 
