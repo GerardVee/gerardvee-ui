@@ -156,7 +156,7 @@ export default connect(mapStateToProps)(class extends Component
         console.log(JSON.stringify(user));
         if (user)
         {
-            if (superusers.includes(user.id))
+            if (superusers.includes(user.userID))
             {
                 return this.superuser();
             }
