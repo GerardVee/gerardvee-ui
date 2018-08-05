@@ -144,7 +144,6 @@ export default connect(mapStateToProps)(class extends Component
                     <h1 className='admin-user-panel-name'>{ user.name }</h1>
                     <h2 className='admin-user-panel-role'>> Admin</h2>
                 </> }
-                {/*<ModifyImages />*/}
                 {/*<p>{ JSON.stringify(error) }</p>*/}
             </div>
         );
