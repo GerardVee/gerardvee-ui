@@ -90,7 +90,7 @@
 
 .admin-user-panel-resource-list-button.active
 {
-    @include admin-button('auto auto auto 4em', #FFFFFF, #4161FF);
+    @include admin-button('auto auto auto 6em', #FFFFFF, #4161FF);
     & > i
     {
         padding-right: 0.4em;
@@ -100,7 +100,7 @@
 
 .admin-user-panel-resource-list-button
 {
-    @include admin-button('auto auto auto 4em', #848484, transparent);
+    @include admin-button('auto auto auto 6em', #848484, transparent);
     & > i
     {
         padding-right: 0.4em;
