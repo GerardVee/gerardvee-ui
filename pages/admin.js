@@ -48,7 +48,7 @@ export default connect(mapStateToProps)(class extends Component
     {
         const { activeId } = this.state;
         return (
-            <div className={ 'row valign admin-selection-panel-selection-container ' + (activeId === _id ? ' active' : '' ) }
+            <div className={ 'row valign admin-selection-panel-selection-container' + (activeId === _id ? ' active' : '' ) }
                 onClick={ () => this.setAsActive(_id) }>
                 <img className='admin-selection-panel-project-picture' src={ image } />
                 <div className='col admin-selection-panel-project-info'>
@@ -64,7 +64,7 @@ export default connect(mapStateToProps)(class extends Component
     {
         const { activeId } = this.state;
         return (
-            <div className={ 'row valign admin-selection-panel-selection-container ' + (activeId === _id ? ' active' : '' ) }
+            <div className={ 'row valign admin-selection-panel-selection-container' + (activeId === _id ? ' active' : '' ) }
                 onClick={ () => this.setAsActive(_id) }>
                 <img className='admin-selection-panel-image-picture' src={ location } />
                 <div className='col admin-selection-panel-image-info'>
