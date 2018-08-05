@@ -2,6 +2,25 @@
 @import url('https://use.typekit.net/iqj6qnq.css');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+@mixin admin-button($margin, $color, $background-color)
+{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'parisplus-clair', sans-serif;
+    color: $color;
+    background-color: $background-color;
+    border: none;
+    border-radius: 1%;
+    margin: #{ $margin };
+    font-size: 1.1em;
+    font-weight: 700;
+    padding: 0.5em 1.5em;
+}
+
 .admin-panel
 {
     height: 100vh;
@@ -18,6 +37,14 @@
 .admin-selection-panel
 {
     padding-top: 0.7em;
+}
+
+.admin-edit-panel
+{
+    height: 100%!important;
+    width: 100%;
+    padding-top: 0.7em;
+    padding-right: 0;
 }
 
 .admin-user-panel-picture
@@ -51,8 +78,8 @@
     font-family: 'parisplus-clair', sans-serif;
     text-align: center;
     text-transform: uppercase;
-    font-size: 1.6em;
     color: #000000;
+    font-size: 1.6em;
 }
 
 .admin-user-panel-resource-list
@@ -63,22 +90,7 @@
 
 .admin-user-panel-resource-list-button.active
 {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'parisplus-clair', sans-serif;
-    border: none;
-    border-radius: 5%;
-    margin-left: 2em;
-    font-size: 1.1em;
-    font-weight: 700;
-    padding: 0.5em 1.5em;
-    background-color: #4161FF;
-    color: #FFFFFF;
+    @include admin-button('auto auto auto 4em', #FFFFFF, #4161FF);
     & > i
     {
         padding-right: 0.4em;
@@ -88,21 +100,7 @@
 
 .admin-user-panel-resource-list-button
 {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'parisplus-clair', sans-serif;
-    border: none;
-    margin-left: 2em;
-    font-size: 1.1em;
-    font-weight: 700;
-    padding: 0.5em 1.5em;
-    background-color: transparent;
-    color: #848484;
+    @include admin-button('auto auto auto 4em', #848484, transparent);
     & > i
     {
         padding-right: 0.4em;
@@ -187,6 +185,36 @@
     font-family: 'parisplus-clair', sans-serif;
     color: #848484;
     margin: 0;
+}
+
+.admin-edit-panel-selection
+{
+    justify-content: center;
+    font-family: 'parisplus-clair', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 700;
+    margin: 0;
+    padding: 0.5em 1.5em;
+    color: #848484;
+}
+
+.admin-edit-panel-selection-image
+{
+    align-self: center;
+    max-width: 24em;
+    margin-top: 2em;
+}
+
+.admin-edit-panel-selection-replace-button
+{
+    @include admin-button('2em auto auto auto', #FFFFFF , #848484);
+}
+
+.admin-edit-panel-selection-delete-button
+{
+    @include admin-button('1em auto auto auto', #FFFFFF, #FF4151);
 }
 
 // leave at the absolute bottom

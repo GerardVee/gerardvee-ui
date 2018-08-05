@@ -9,6 +9,7 @@ import { sendProjects, sendImages } from '../ducks/actions/site';
 import '../styles/admin.scss';
 
 const api = 'https://api.gerardvee.com/';
+const superusers = process.env.FB_SUPERUSERS.split(',');
 const noProfile = 'https://transhumane-partei.de/wp-content/uploads/2016/04/blank-profile-picture-973461_960_720.png';
 
 const mapStateToProps = ({ site }) =>
@@ -84,16 +85,12 @@ export default connect(mapStateToProps)(class extends Component
         );
     }
 
-    render()
+    superuser()
     {
-        const { error, user, projects, images } = this.props;
+        const { error, projects, images } = this.props;
         const { activeId, activeResource } = this.state;
         const site = { projects, images };
         const activeSpecificResource = activeId ? site[activeResource].find(({ _id }) => _id === activeId) : null;
-        /*if (!user)
-        {
-            return this.productionUnknown();
-        }*/
         return (
             <div className='row' style={{ padding: 0 }}>
                 <div className='col admin-panel admin-user-panel'>
@@ -131,8 +128,13 @@ export default connect(mapStateToProps)(class extends Component
                     </div>
                 </>}
                 { activeSpecificResource && <>
-                    <div className='col admin-panel admin-selection-panel'>
-                        <h1 className='admin-selection-panel-selection'>{ activeResource === 'images' ? activeSpecificResource._id : activeSpecificResource.title }</h1>
+                    <div className='col admin-panel admin-edit-panel'>
+                        <h1 className='admin-edit-panel-selection'>{ activeResource === 'images' ? activeSpecificResource._id : activeSpecificResource.title }</h1>
+                        { (activeResource === 'images') && <>
+                            <img className='admin-edit-panel-selection-image' src={ activeSpecificResource.location } />
+                            <button className='admin-edit-panel-selection-replace-button'>Replace Image</button>
+                            <button className='admin-edit-panel-selection-delete-button'>Delete</button>
+                        </> }
                     </div>
                 </>}
                 
@@ -145,5 +147,18 @@ export default connect(mapStateToProps)(class extends Component
                 {/*<p>{ JSON.stringify(error) }</p>*/}
             </div>
         );
+    }
+
+    render()
+    {
+        const {user } = this.props;
+        if (user)
+        {
+            if (superusers.includes(user.id))
+            {
+                return this.superuser();
+            }
+        }
+        return this.userUnknown();
     }
 });

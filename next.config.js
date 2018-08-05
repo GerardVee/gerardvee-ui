@@ -23,7 +23,8 @@ const web =
         config.plugins.push(
             new webpack.DefinePlugin({
                 'process.env.HOST': JSON.stringify(process.env.HOST),
-                'process.env.FB_APP_ID': JSON.stringify(process.env.FB_APP_ID)
+                'process.env.FB_APP_ID': JSON.stringify(process.env.FB_APP_ID),
+                'process.env.FB_SUPERUSERS': JSON.stringify(process.env.FB_SUPERUSERS)
             })
         );
         if (!isServer && !dev)
