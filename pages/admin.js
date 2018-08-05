@@ -131,6 +131,9 @@ export default connect(mapStateToProps)(class extends Component
                 { activeSpecificResource && <>
                     <div className='col admin-panel admin-edit-panel'>
                         <h1 className='admin-edit-panel-selection'>{ activeResource === 'images' ? activeSpecificResource._id : activeSpecificResource.title }</h1>
+                        { (activeResource === 'projects') && <>
+
+                        </> }
                         { (activeResource === 'images') && <>
                             <img className='admin-edit-panel-selection-image' src={ activeSpecificResource.location } />
                             <button className='admin-edit-panel-selection-replace-button'>Replace Image</button>
