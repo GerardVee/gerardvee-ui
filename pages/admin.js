@@ -97,10 +97,10 @@ export default connect(mapStateToProps)(class extends Component
                 <div className='col admin-panel admin-user-panel'>
                     <FacebookAuthenticate />
                     <div className='row valign'>
-                        <img className='admin-user-panel-picture' src={ noProfile } />
+                        <img className='admin-user-panel-picture' src={ user.picture.data.url } />
                         <div className='col'>
-                            <h1 className='admin-user-panel-name'>Unknown</h1>
-                            <h2 className='admin-user-panel-role'>> No role</h2>
+                            <h1 className='admin-user-panel-name'>{ user.name }</h1>
+                            <h2 className='admin-user-panel-role'>> Admin</h2>
                         </div>
                     </div>
                     <h2 className='admin-user-panel-resource'>Projects</h2>
@@ -138,12 +138,6 @@ export default connect(mapStateToProps)(class extends Component
                         </> }
                     </div>
                 </>}
-                
-                { !!user && <>
-                    <img className='admin-user-panel-picture' src={ user.picture.data.url } />
-                    <h1 className='admin-user-panel-name'>{ user.name }</h1>
-                    <h2 className='admin-user-panel-role'>> Admin</h2>
-                </> }
                 {/*<p>{ JSON.stringify(error) }</p>*/}
             </div>
         );
