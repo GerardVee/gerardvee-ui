@@ -79,6 +79,7 @@ export default connect(mapStateToProps)(class extends Component
     {
         return (
             <div className='col halign valign full-height full-width'>
+                <FacebookAuthenticate />
                 <i className='material-icons admin-no-access-icon'>visibility_off</i>
                 <h1 className='admin-no-access-message'>No Access</h1>
             </div>
@@ -151,7 +152,8 @@ export default connect(mapStateToProps)(class extends Component
 
     render()
     {
-        const {user } = this.props;
+        const { user } = this.props;
+        alert(JSON.stringify(user));
         if (user)
         {
             if (superusers.includes(user.id))
