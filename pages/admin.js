@@ -88,7 +88,7 @@ export default connect(mapStateToProps)(class extends Component
 
     superuser()
     {
-        const { error, projects, images } = this.props;
+        const { error, user, projects, images } = this.props;
         const { activeId, activeResource } = this.state;
         const site = { projects, images };
         const activeSpecificResource = activeId ? site[activeResource].find(({ _id }) => _id === activeId) : null;
