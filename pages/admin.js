@@ -153,7 +153,7 @@ export default connect(mapStateToProps)(class extends Component
     render()
     {
         const { user } = this.props;
-        alert(JSON.stringify(user));
+        console.log(JSON.stringify(user));
         if (user)
         {
             if (superusers.includes(user.id))
