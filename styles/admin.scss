@@ -41,8 +41,9 @@
 
 .admin-edit-panel
 {
+    justify-content: center;
     height: 100%!important;
-    width: 100%;
+    flex-grow: 100;
     padding-top: 0.7em;
     padding-right: 0;
 }
