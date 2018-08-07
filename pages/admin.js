@@ -159,9 +159,8 @@ export default connect(mapStateToProps)(class extends Component
         return (
             <div className='row' style={{ padding: 0 }}>
                 <div className='col admin-panel admin-user-panel'>
-                    <FacebookAuthenticate />
                     <div className='row valign'>
-                        <img className='admin-user-panel-picture' src={ user.picture.data.url } />
+                        <img className='admin-user-panel-picture' src={ noProfile } />
                         <div className='col'>
                             <h1 className='admin-user-panel-name'>{ user.name }</h1>
                             <h2 className='admin-user-panel-role'>> Admin</h2>
@@ -194,14 +193,17 @@ export default connect(mapStateToProps)(class extends Component
                 </>}
                 { activeSpecificResource && <>
                     <div className='col admin-panel admin-edit-panel'>
-                        <h1 className='admin-edit-panel-selection'>{ activeResource === 'images' ? activeSpecificResource._id : activeSpecificResource.title }</h1>
+                        <div className='row halign'>
+                            <h1 className='admin-edit-panel-selection'>{ activeResource === 'images' ? activeSpecificResource._id : activeSpecificResource.title }</h1>
+                            <UploadImage />
+                        </div>
                         { (activeResource === 'projects') && <>
 
                         </> }
                         { (activeResource === 'images') && <>
                             <img className='admin-edit-panel-selection-image' src={ activeSpecificResource.location } />
-                            <ReplaceImage />
-                            <button className='admin-edit-panel-selection-delete-button'>Delete</button>
+                            {/*<ReplaceImage />*/}
+                            <DeleteImage />
                         </> }
                     </div>
                 </>}
