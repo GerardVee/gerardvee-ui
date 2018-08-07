@@ -160,7 +160,7 @@ export default connect(mapStateToProps)(class extends Component
             <div className='row' style={{ padding: 0 }}>
                 <div className='col admin-panel admin-user-panel'>
                     <div className='row valign'>
-                        <img className='admin-user-panel-picture' src={ noProfile } />
+                        <img className='admin-user-panel-picture' src={ user.picture.data.url } />
                         <div className='col'>
                             <h1 className='admin-user-panel-name'>{ user.name }</h1>
                             <h2 className='admin-user-panel-role'>> Admin</h2>
