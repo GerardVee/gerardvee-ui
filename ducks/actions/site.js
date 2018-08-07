@@ -23,9 +23,9 @@ export const appendImage = (imageObject) => dispatch => dispatch({ type: actionT
 
 export const sendUser = (user) => dispatch => dispatch({ type: actionTypes.SET_USER, user });
 
-export const deleteCertainImage = (imageUrl) => dispatch =>
+export const deleteCertainImage = (imageUrl, token) => dispatch =>
 {
-    fetch(api + 'site/image/delete', post({ fileName: imageUrl }))
+    fetch(api + 'site/image/delete', post({ fileName: imageUrl, token }))
         .then(res =>
         {
             if (!res.ok)

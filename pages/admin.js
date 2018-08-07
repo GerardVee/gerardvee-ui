@@ -3,7 +3,8 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 
 import FacebookAuthenticate from '../components/site/admin/FacebookAuthenticate';
-import ModifyImages from '../components/site/admin/Images';
+import UploadImage from '../components/site/admin/Images/UploadImage';
+import DeleteImage from '../components/site/admin/Images/DeleteImage';
 import { sendProjects, sendImages } from '../ducks/actions/site';
 
 import '../styles/admin.scss';
@@ -11,6 +12,7 @@ import '../styles/admin.scss';
 const api = 'https://api.gerardvee.com/';
 const superusers = process.env.FB_SUPERUSERS.split(',');
 const noProfile = 'https://transhumane-partei.de/wp-content/uploads/2016/04/blank-profile-picture-973461_960_720.png';
+const prod = true;
 
 const mapStateToProps = ({ site }) =>
 ({
@@ -86,6 +88,68 @@ export default connect(mapStateToProps)(class extends Component
         );
     }
 
+    development()
+    {
+        const { error, projects, images } = this.props;
+        const { activeId, activeResource } = this.state;
+        const site = { projects, images };
+        const activeSpecificResource = activeId ? site[activeResource].find(({ _id }) => _id === activeId) : null;
+        return (
+            <div className='row' style={{ padding: 0 }}>
+                <div className='col admin-panel admin-user-panel'>
+                    <div className='row valign'>
+                        <img className='admin-user-panel-picture' src={ noProfile } />
+                        <div className='col'>
+                            <h1 className='admin-user-panel-name'>Unknown</h1>
+                            <h2 className='admin-user-panel-role'>> None</h2>
+                        </div>
+                    </div>
+                    <h2 className='admin-user-panel-resource'>Projects</h2>
+                    <div className='admin-user-panel-resource-list'>
+                        <button className={ 'admin-user-panel-resource-list-button' + (activeResource === 'projects' ? ' active' : '' ) }
+                            onClick={ () => this.setState({ activeResource: 'projects' }) }>
+                            <i className='material-icons'>folder</i>
+                            Projects
+                        </button>
+                    </div>
+                    <h2 className='admin-user-panel-resource'>Images</h2>
+                    <div className='admin-user-panel-resource-list'>
+                        <button className={ 'admin-user-panel-resource-list-button' + (activeResource === 'images' ? ' active' : '') }
+                        onClick={ () => this.setState({ activeResource: 'images' }) }>
+                            <i className='material-icons'>filter</i>
+                            Images
+                        </button>
+                    </div>
+                </div>
+                { activeResource && <>
+                    <div className='col admin-panel admin-selection-panel'>
+                        <h1 className='admin-selection-panel-selection'>{ activeResource } ({ site[activeResource].length })</h1>
+                        { site[activeResource].map(resource => (
+                            activeResource === 'images' ? this.imageResource(resource) : this.projectResource(resource)
+                        ))}
+                    </div>
+                </>}
+                { activeSpecificResource && <>
+                    <div className='col admin-panel admin-edit-panel'>
+                        <div className='row halign'>
+                            <h1 className='admin-edit-panel-selection'>{ activeResource === 'images' ? activeSpecificResource._id : activeSpecificResource.title }</h1>
+                            <UploadImage />
+                        </div>
+                        { (activeResource === 'projects') && <>
+
+                        </> }
+                        { (activeResource === 'images') && <>
+                            <img className='admin-edit-panel-selection-image' src={ activeSpecificResource.location } />
+                            {/*<ReplaceImage />*/}
+                            <DeleteImage />
+                        </> }
+                    </div>
+                </>}
+                {/*<p>{ JSON.stringify(error) }</p>*/}
+            </div>
+        );
+    }
+
     superuser()
     {
         const { error, user, projects, images } = this.props;
@@ -136,7 +200,7 @@ export default connect(mapStateToProps)(class extends Component
                         </> }
                         { (activeResource === 'images') && <>
                             <img className='admin-edit-panel-selection-image' src={ activeSpecificResource.location } />
-                            <button className='admin-edit-panel-selection-replace-button'>Replace Image</button>
+                            <ReplaceImage />
                             <button className='admin-edit-panel-selection-delete-button'>Delete</button>
                         </> }
                     </div>
@@ -149,8 +213,10 @@ export default connect(mapStateToProps)(class extends Component
     render()
     {
         const { user } = this.props;
-        console.log(JSON.stringify(superusers));
-        console.log(JSON.stringify(user));
+        if (!prod)
+        {
+            return this.development();
+        }
         if (user)
         {
             if (superusers.includes(user.email))

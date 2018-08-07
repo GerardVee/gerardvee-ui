@@ -203,6 +203,11 @@
     color: #848484;
 }
 
+.admin-edit-panel-selection-new-button
+{
+    @include admin-button('1em 0em', #FFFFFF , #4161FF);
+}
+
 .admin-edit-panel-selection-image
 {
     align-self: center;
@@ -212,7 +217,7 @@
 
 .admin-edit-panel-selection-replace-button
 {
-    @include admin-button('2em auto auto auto', #FFFFFF , #848484);
+    @include admin-button('1em 0em', #FFFFFF , #848484);
 }
 
 .admin-edit-panel-selection-delete-button
