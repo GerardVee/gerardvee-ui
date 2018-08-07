@@ -21,7 +21,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
     {
         const { user } = this.props;
         const token = !!user ? user.accessToken : '';
-        console.log(token);
         e.preventDefault();
         const data = new FormData();
         const imageName = 'image.' + extensionCapture(this.uploadInput.files[0].name);
