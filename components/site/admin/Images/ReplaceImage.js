@@ -26,7 +26,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
         const imageName = 'image.' + extensionCapture(this.uploadInput.files[0].name);
         data.append('image', this.uploadInput.files[0]);
         data.append('filename', imageName);
-        data.append('data', { token, fileName });
+        data.append('data', JSON.stringify({ token, fileName }));
         this.props.replaceImage(data);
     }
 
