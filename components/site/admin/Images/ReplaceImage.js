@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { appendCertainImage } from '../../../../ducks/actions/site';
+import { replaceCertainImage } from '../../../../ducks/actions/site';
 
 const mapStateToProps = ({ site }) => (
 {
@@ -10,7 +10,7 @@ const mapStateToProps = ({ site }) => (
     
 const mapDispatchToProps = (dispatch) => (
 {
-    uploadImage: (data) => dispatch(appendCertainImage(data)),
+    replaceImage: (data) => dispatch(replaceCertainImage(data)),
 });
 
 const extensionCapture = (file) => /(?:\.([^.]+))?$/.exec(file)[1];
@@ -34,7 +34,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
     {
         return (
             <label className='admin-edit-panel-selection-replace-button'>
-                <input className='none' ref={ (ref) => { this.uploadInput = ref; } } type='file' />
+                <input className='none' ref={ (ref) => { this.uploadInput = ref; } } type='file'
+                    onChange={ (e) => this.handleUpload(e) } />
                 Replace
             </label>
         );
