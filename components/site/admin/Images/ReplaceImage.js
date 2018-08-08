@@ -20,6 +20,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
     async handleUpload(e)
     {
         const { fileName, user } = this.props;
+        console.log(this.props);
         const token = !!user ? user.accessToken : '';
         e.preventDefault();
         const data = new FormData();
