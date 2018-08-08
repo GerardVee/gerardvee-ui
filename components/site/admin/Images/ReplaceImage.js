@@ -19,9 +19,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
 {
     async handleUpload(e)
     {
+        // remove ?t= so we won't err
         const { fileName, user } = this.props;
-        const fn = fileName.substr(fileName.lastIndexOf('/') + 1);
-        console.log(this.props);
+        const fn = fileName.substr(fileName.lastIndexOf('/') + 1).split('?')[0];
         const token = !!user ? user.accessToken : '';
         e.preventDefault();
         const data = new FormData();
