@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import FacebookAuthenticate from '../components/site/admin/FacebookAuthenticate';
 import UploadImage from '../components/site/admin/Images/UploadImage';
+import ReplaceImage from '../components/site/admin/Images/ReplaceImage';
 import DeleteImage from '../components/site/admin/Images/DeleteImage';
 import { sendProjects, sendImages } from '../ducks/actions/site';
 
