@@ -52,6 +52,31 @@ export const deleteCertainImage = (imageUrl, token) => dispatch =>
         });
 };
 
+export const replaceCertainImage = (data) => dispatch =>
+{
+    fetch(api + 'site/image/replace', { body: data, method: 'POST' })
+        .then(res =>
+        {
+            if (!res.ok)
+            {
+                throw Error(res.statusText);
+            }
+            return res;
+        })
+        .then(res => res.json())
+        .then(res =>
+        {
+            if (!res.success)
+            {
+                throw Error(res.error);
+            }
+        })
+        .catch((text) =>
+        {
+            dispatch(sendError(text));
+        });
+};
+
 export const appendCertainImage = (data) => dispatch =>
 {
     fetch(api + 'site/image/upload', { body: data, method: 'POST' })

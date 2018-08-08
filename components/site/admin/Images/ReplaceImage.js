@@ -19,15 +19,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
 {
     async handleUpload(e)
     {
-        const { user } = this.props;
+        const { fileName, user } = this.props;
         const token = !!user ? user.accessToken : '';
         e.preventDefault();
         const data = new FormData();
         const imageName = 'image.' + extensionCapture(this.uploadInput.files[0].name);
         data.append('image', this.uploadInput.files[0]);
         data.append('filename', imageName);
-        data.append('data', JSON.stringify(token));
-        this.props.uploadImage(data);
+        data.append('data', { token, fileName });
+        this.props.replaceImage(data);
     }
 
     render()

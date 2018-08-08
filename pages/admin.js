@@ -202,7 +202,7 @@ export default connect(mapStateToProps)(class extends Component
                         </> }
                         { (activeResource === 'images') && <>
                             <img className='admin-edit-panel-selection-image' src={ activeSpecificResource.location } />
-                            {/*<ReplaceImage />*/}
+                            <ReplaceImage fileName={ activeSpecificResource.location } />
                             <DeleteImage fileName={ activeSpecificResource.location } />
                         </> }
                     </div>
