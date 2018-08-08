@@ -19,17 +19,17 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
 {
     async handleUpload(e)
     {
-        // remove ?t= so we won't err
         const { fileName, user } = this.props;
-        const fn = fileName.substr(fileName.lastIndexOf('/') + 1).split('?')[0];
         const token = !!user ? user.accessToken : '';
+        const noTime = fileName.split('?')[0];
+        const fn = noTime.substr(fileName.lastIndexOf('/') + 1);
         e.preventDefault();
         const data = new FormData();
         const imageName = 'image.' + extensionCapture(this.uploadInput.files[0].name);
         data.append('image', this.uploadInput.files[0]);
         data.append('filename', imageName);
         data.append('data', JSON.stringify({ token, fileName: fn }));
-        this.props.replaceImage(data, fileName);
+        this.props.replaceImage(data, noTime);
     }
 
     render()
