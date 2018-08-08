@@ -7,6 +7,7 @@ export const actionTypes =
     SET_ERROR: 'SITE_SET_ERROR',
     SET_PROJECTS: 'SITE_SET_PROJECTS',
     SET_IMAGES: 'SITE_SET_IMAGES',
+    EDIT_IMAGE: 'SITE_EDIT_IMAGE',
     APPEND_IMAGE: 'SITE_APPEND_IMAGE',
     DELETE_IMAGE: 'SITE_DELETE_IMAGE',
     SET_USER: 'SITE_SET_USER',
@@ -18,6 +19,7 @@ export const clearError = () => dispatch => dispatch({ type: actionTypes.SET_ERR
 export const sendProjects = (projects) => dispatch => dispatch({ type: actionTypes.SET_PROJECTS, projects });
 
 export const sendImages = (images) => dispatch => dispatch({ type: actionTypes.SET_IMAGES, images });
+export const editImage = (imageUrl) => dispatch => dispatch({ type: actionTypes.EDIT_IMAGE, imageUrl });
 export const deleteImage = (imageUrl) => dispatch => dispatch({ type: actionTypes.DELETE_IMAGE, imageUrl });
 export const appendImage = (imageObject) => dispatch => dispatch({ type: actionTypes.APPEND_IMAGE, image: imageObject });
 
@@ -52,7 +54,7 @@ export const deleteCertainImage = (imageUrl, token) => dispatch =>
         });
 };
 
-export const replaceCertainImage = (data) => dispatch =>
+export const replaceCertainImage = (data, url) => dispatch =>
 {
     fetch(api + 'site/image/replace', { body: data, method: 'POST' })
         .then(res =>
@@ -66,6 +68,10 @@ export const replaceCertainImage = (data) => dispatch =>
         .then(res => res.json())
         .then(res =>
         {
+            if (res.success)
+            {
+                dispatch(editImage(url));
+            }
             if (!res.success)
             {
                 throw Error(res.error);

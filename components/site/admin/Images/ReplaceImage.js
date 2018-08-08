@@ -10,7 +10,7 @@ const mapStateToProps = ({ site }) => (
     
 const mapDispatchToProps = (dispatch) => (
 {
-    replaceImage: (data) => dispatch(replaceCertainImage(data)),
+    replaceImage: (data, fileName) => dispatch(replaceCertainImage(data, fileName)),
 });
 
 const extensionCapture = (file) => /(?:\.([^.]+))?$/.exec(file)[1];
@@ -29,7 +29,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
         data.append('image', this.uploadInput.files[0]);
         data.append('filename', imageName);
         data.append('data', JSON.stringify({ token, fileName: fn }));
-        this.props.replaceImage(data);
+        this.props.replaceImage(data, fileName);
     }
 
     render()

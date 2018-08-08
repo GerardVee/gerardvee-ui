@@ -29,6 +29,8 @@ export const reducer = (state = initialState, action) =>
             return Object.assign({}, state, { projects: action.projects });
         case actionTypes.SET_IMAGES:
             return Object.assign({}, state, { images: action.images });
+        case actionTypes.EDIT_IMAGE:
+            return Object.assign({}, state, { images: state.images.map(image => image.location.split('?')[0] === action.imageUrl ? action.imageUrl + '?t=' + new Date().getTime().toString() : image.location) });
         case actionTypes.APPEND_IMAGE:
             return Object.assign({}, state, { images: [ ...state.images, action.image ] });
         case actionTypes.DELETE_IMAGE:
