@@ -1,6 +1,7 @@
 import 'isomorphic-fetch';
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import Switch from 'react-switch';
 
 import FacebookAuthenticate from '../components/site/admin/FacebookAuthenticate';
 import UploadImage from '../components/site/admin/Images/UploadImage';
@@ -10,10 +11,12 @@ import { sendProjects, sendImages } from '../ducks/actions/site';
 
 import '../styles/admin.scss';
 
+// clean this nasty up
+
 const api = 'https://api.gerardvee.com/';
 const superusers = process.env.FB_SUPERUSERS.split(',');
 const noProfile = 'https://transhumane-partei.de/wp-content/uploads/2016/04/blank-profile-picture-973461_960_720.png';
-const prod = true;
+const prod = false;
 
 const mapStateToProps = ({ site }) =>
 ({
@@ -29,6 +32,8 @@ export default connect(mapStateToProps)(class extends Component
     {
         activeResource: '',
         activeId: null,
+        editedProject: {},
+        newProject: {},
     };
 
     static async getInitialProps({ store, req })
@@ -42,9 +47,35 @@ export default connect(mapStateToProps)(class extends Component
         return {};
     }
 
+    editProjectState(e)
+    {
+        const target = e.target;
+        const value = target.value;
+        const name = target.name;
+        const editedProject = Object.assign({}, this.state.editedProject, { [name]: value });
+        this.setState({ editedProject });
+    }
+
+    editNewProjectState(e)
+    {
+        const target = e.target;
+        const value = target.value;
+        const name = target.name;
+        const newProject = Object.assign({}, this.state.newProject, { [name]: value });
+        this.setState({ newProject });
+    }
+
     setAsActive(id)
     {
-        this.setState({ activeId: id });
+        this.setState({ activeId: id }, () =>
+        {
+            const { projects } = this.props;
+            const { activeId, activeResource } = this.state;
+            if (activeResource === 'projects')
+            {
+                this.setState({ editedProject: projects.find(({ _id }) => _id === activeId) });
+            }
+        });
     }
 
     projectResource({ _id, image, title, description, url, finished })
@@ -77,7 +108,6 @@ export default connect(mapStateToProps)(class extends Component
         );
     }
 
-    // go here if there is no login or if the login is not ME
     userUnknown()
     {
         return (
@@ -91,80 +121,51 @@ export default connect(mapStateToProps)(class extends Component
 
     development()
     {
-        const { error, projects, images } = this.props;
-        const { activeId, activeResource } = this.state;
-        const site = { projects, images };
-        const activeSpecificResource = activeId ? site[activeResource].find(({ _id }) => _id === activeId) : null;
-        return (
-            <div className='row' style={{ padding: 0 }}>
-                <div className='col admin-panel admin-user-panel'>
-                    <div className='row valign'>
-                        <img className='admin-user-panel-picture' src={ noProfile } />
-                        <div className='col'>
-                            <h1 className='admin-user-panel-name'>Unknown</h1>
-                            <h2 className='admin-user-panel-role'>> None</h2>
-                        </div>
-                    </div>
-                    <h2 className='admin-user-panel-resource'>Projects</h2>
-                    <div className='admin-user-panel-resource-list'>
-                        <button className={ 'admin-user-panel-resource-list-button' + (activeResource === 'projects' ? ' active' : '' ) }
-                            onClick={ () => this.setState({ activeResource: 'projects' }) }>
-                            <i className='material-icons'>folder</i>
-                            Projects
-                        </button>
-                    </div>
-                    <h2 className='admin-user-panel-resource'>Images</h2>
-                    <div className='admin-user-panel-resource-list'>
-                        <button className={ 'admin-user-panel-resource-list-button' + (activeResource === 'images' ? ' active' : '') }
-                        onClick={ () => this.setState({ activeResource: 'images' }) }>
-                            <i className='material-icons'>filter</i>
-                            Images
-                        </button>
-                    </div>
-                </div>
-                { activeResource && <>
-                    <div className='col admin-panel admin-selection-panel'>
-                        <h1 className='admin-selection-panel-selection'>{ activeResource } ({ site[activeResource].length })</h1>
-                        { site[activeResource].map(resource => (
-                            activeResource === 'images' ? this.imageResource(resource) : this.projectResource(resource)
-                        ))}
-                    </div>
-                </>}
-                { activeSpecificResource && <>
-                    <div className='col admin-panel admin-edit-panel'>
-                        <div className='row halign'>
-                            <h1 className='admin-edit-panel-selection'>{ activeResource === 'images' ? activeSpecificResource._id : activeSpecificResource.title }</h1>
-                            <UploadImage />
-                        </div>
-                        { (activeResource === 'projects') && <>
-
-                        </> }
-                        { (activeResource === 'images') && <>
-                            <img className='admin-edit-panel-selection-image' src={ activeSpecificResource.location } />
-                            {/*<ReplaceImage />*/}
-                            <DeleteImage />
-                        </> }
-                    </div>
-                </>}
-                {/*<p>{ JSON.stringify(error) }</p>*/}
-            </div>
-        );
+        return this.ui(noProfile, 'Unknown', 'None');
     }
 
     superuser()
     {
-        const { error, user, projects, images } = this.props;
-        const { activeId, activeResource } = this.state;
+        const { user } = this.props;
+        return this.ui(user.picture.data.url, user.name, 'Admin');
+    }
+
+    newProjectInput(labelName, name, value)
+    {
+        const { newProject } = this.state;
+        return (
+            <label className='col admin-edit-panel-selection-project-input-group'>
+                <h1 className='admin-edit-panel-selection-project-label'>{ labelName }</h1>
+                <input className='admin-edit-panel-selection-project-input' type='text' name={ name } value={ newProject[value] } onChange={ (e) => this.editNewProjectState(e) } />
+            </label>
+        );
+    }
+
+    projectInput(labelName, name, value)
+    {
+        const { editedProject } = this.state;
+        return (
+            <label className='col admin-edit-panel-selection-project-input-group'>
+                <h1 className='admin-edit-panel-selection-project-label'>{ labelName }</h1>
+                <input className='admin-edit-panel-selection-project-input' type='text' name={ name } value={ editedProject[value] } onChange={ (e) => this.editProjectState(e) } />
+            </label>
+        );
+    }
+
+    ui(photo, name, role)
+    {
+        const { error, projects, images } = this.props;
+        const { activeId, activeResource, editedProject, newProject } = this.state;
         const site = { projects, images };
         const activeSpecificResource = activeId ? site[activeResource].find(({ _id }) => _id === activeId) : null;
         return (
             <div className='row' style={{ padding: 0 }}>
                 <div className='col admin-panel admin-user-panel'>
                     <div className='row valign'>
-                        <img className='admin-user-panel-picture' src={ user.picture.data.url } />
+                        <img className='admin-user-panel-picture' src={ photo } />
                         <div className='col'>
-                            <h1 className='admin-user-panel-name'>{ user.name }</h1>
-                            <h2 className='admin-user-panel-role'>> Admin</h2>
+                            <h1 className='admin-user-panel-name'>{ name }</h1>
+                            <h2 className='admin-user-panel-role'>> { role }</h2>
                         </div>
                     </div>
                     <h2 className='admin-user-panel-resource'>Projects</h2>
@@ -196,10 +197,48 @@ export default connect(mapStateToProps)(class extends Component
                     <div className='col admin-panel admin-edit-panel'>
                         <div className='row halign'>
                             <h1 className='admin-edit-panel-selection'>{ activeResource === 'images' ? activeSpecificResource._id : activeSpecificResource.title }</h1>
-                            <UploadImage />
+                            { (activeResource === 'images') && <UploadImage /> }
+                            { (activeResource === 'projects' && Object.keys(newProject).length == 0) && <button className='admin-edit-panel-selection-new-button' onClick={ () => this.setState({ newProject: { finished: false } }) }>New</button>}
                         </div>
-                        { (activeResource === 'projects') && <>
-
+                        { (activeResource === 'projects' && Object.keys(newProject).length > 0) && <>
+                            <div className='row halign valign valign-children admin-edit-panel-selection-project-active-group'>
+                                <h1 className='admin-edit-panel-selection-project-active'>Active</h1>
+                                <Switch className='admin-edit-panel-selection-project-active-checkbox' checked={ newProject.finished }
+                                    onChange={ (finished) => this.setState({ newProject: Object.assign({}, newProject, { finished })  })  } 
+                                    uncheckedIcon={ false } checkedIcon={ false } handleDiameter={ 30 } boxShadow='0px 1px 5px rgba(0, 0, 0, 0.6)' onHandleColor='#FFFFFF' onColor='#2CC841' />
+                            </div>
+                            { this.newProjectInput('Title', 'title', 'title') }
+                            { this.newProjectInput('Image Url', 'image', 'image') }
+                            { this.newProjectInput('Project Url', 'url', 'url') }
+                            <label className='col admin-edit-panel-selection-project-input-group'>
+                                <h1 className='admin-edit-panel-selection-project-label'>Description</h1>
+                                <textarea rows={ 4 } className='admin-edit-panel-selection-project-textarea' name='description'
+                                    value={ newProject.description } onChange={ (e) => this.editNewProjectState(e) } />
+                            </label>
+                            <div className='row admin-edit-panel-selection-project-button-group'>
+                                <button className='admin-edit-panel-selection-new-button'>Create</button>
+                                <button className='admin-edit-panel-selection-delete-button'>Discard</button>
+                            </div>
+                        </> }
+                        { (activeResource === 'projects' && Object.keys(newProject).length == 0) && <>
+                            <div className='row halign valign valign-children admin-edit-panel-selection-project-active-group'>
+                                <h1 className='admin-edit-panel-selection-project-active'>Active</h1>
+                                <Switch className='admin-edit-panel-selection-project-active-checkbox' checked={ editedProject.finished }
+                                    onChange={ (finished) => this.setState({ editedProject: Object.assign({}, editedProject, { finished })  })  } 
+                                    uncheckedIcon={ false } checkedIcon={ false } handleDiameter={ 30 } boxShadow='0px 1px 5px rgba(0, 0, 0, 0.6)' onHandleColor='#FFFFFF' onColor='#2CC841' />
+                            </div>
+                            { this.projectInput('Title', 'title', 'title') }
+                            { this.projectInput('Image Url', 'image', 'image') }
+                            { this.projectInput('Project Url', 'url', 'url') }
+                            <label className='col admin-edit-panel-selection-project-input-group'>
+                                <h1 className='admin-edit-panel-selection-project-label'>Description</h1>
+                                <textarea rows={ 4 } className='admin-edit-panel-selection-project-textarea' name='description'
+                                    value={ editedProject.description } onChange={ (e) => this.editProjectState(e) } />
+                            </label>
+                            <div className='row admin-edit-panel-selection-project-button-group'>
+                                <button className='admin-edit-panel-selection-new-button'>Save</button>
+                                <button className='admin-edit-panel-selection-delete-button'>Delete</button>
+                            </div>
                         </> }
                         { (activeResource === 'images') && <>
                             <img className='admin-edit-panel-selection-image' src={ activeSpecificResource.location } />
