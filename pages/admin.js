@@ -165,7 +165,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
         const { user } = this.props;
         const token = !!user ? user.accessToken : '';
         this.props.addProject(token, newProject);
-        this.setState({ newProject: { finished: false } });
+        this.setState({ newProject: {} });
     }
 
     updateProject()
