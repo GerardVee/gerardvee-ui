@@ -16,7 +16,7 @@ import '../styles/admin.scss';
 const api = 'https://api.gerardvee.com/';
 const superusers = process.env.FB_SUPERUSERS.split(',');
 const noProfile = 'https://transhumane-partei.de/wp-content/uploads/2016/04/blank-profile-picture-973461_960_720.png';
-const prod = false;
+const prod = true;
 
 const mapStateToProps = ({ site }) =>
 ({
