@@ -6,6 +6,9 @@ export const actionTypes =
 {
     SET_ERROR: 'SITE_SET_ERROR',
     SET_PROJECTS: 'SITE_SET_PROJECTS',
+    EDIT_PROJECT: 'SITE_EDIT_PROJECT',
+    APPEND_PROJECT: 'SITE_APPEND_PROJECT',
+    DELETE_PROJECT: 'SITE_DELETE_PROJECT',
     SET_IMAGES: 'SITE_SET_IMAGES',
     EDIT_IMAGE: 'SITE_EDIT_IMAGE',
     APPEND_IMAGE: 'SITE_APPEND_IMAGE',
@@ -17,17 +20,20 @@ export const sendError = (error) => dispatch => dispatch({ type: actionTypes.SET
 export const clearError = () => dispatch => dispatch({ type: actionTypes.SET_ERROR, error: '' });
 
 export const sendProjects = (projects) => dispatch => dispatch({ type: actionTypes.SET_PROJECTS, projects });
+export const appendProject = (project) => dispatch => dispatch({ type: actionTypes.APPEND_PROJECT, project });
+export const editProject = (project) => dispatch => dispatch({ type: actionTypes.EDIT_PROJECT, project });
+export const deleteProject = (id) => dispatch => dispatch({ type: actionTypes.DELETE_PROJECT, id });
 
 export const sendImages = (images) => dispatch => dispatch({ type: actionTypes.SET_IMAGES, images });
+export const appendImage = (imageObject) => dispatch => dispatch({ type: actionTypes.APPEND_IMAGE, image: imageObject });
 export const editImage = (imageUrl) => dispatch => dispatch({ type: actionTypes.EDIT_IMAGE, imageUrl });
 export const deleteImage = (imageUrl) => dispatch => dispatch({ type: actionTypes.DELETE_IMAGE, imageUrl });
-export const appendImage = (imageObject) => dispatch => dispatch({ type: actionTypes.APPEND_IMAGE, image: imageObject });
 
 export const sendUser = (user) => dispatch => dispatch({ type: actionTypes.SET_USER, user });
 
-export const deleteCertainImage = (imageUrl, token) => dispatch =>
+export const appendCertainProject = (project, token) => dispatch =>
 {
-    fetch(api + 'site/image/delete', post({ fileName: imageUrl, token }))
+    fetch(api + 'site/project/upload', post({ project, token }))
         .then(res =>
         {
             if (!res.ok)
@@ -41,7 +47,94 @@ export const deleteCertainImage = (imageUrl, token) => dispatch =>
         {
             if (res.success)
             {
-                dispatch(deleteImage(imageUrl));
+                dispatch(appendProject(res.project));
+            }
+            else
+            {
+                throw Error(res.error);
+            }
+        })
+        .catch((text) =>
+        {
+            dispatch(sendError(text));
+        });
+};
+
+export const replaceCertainProject = (project, token) => dispatch =>
+{
+    fetch(api + 'site/project/replace', post({ project, token }))
+        .then(res =>
+        {
+            if (!res.ok)
+            {
+                throw Error(res.statusText);
+            }
+            return res;
+        })
+        .then(res => res.json())
+        .then(res =>
+        {
+            if (res.success)
+            {
+                dispatch(editProject(res.project));
+            }
+            if (!res.success)
+            {
+                throw Error(res.error);
+            }
+        })
+        .catch((text) =>
+        {
+            dispatch(sendError(text));
+        });
+};
+
+export const deleteCertainProject = (id, token) => dispatch =>
+{
+    fetch(api + 'site/project/delete', post({ id, token }))
+        .then(res =>
+        {
+            if (!res.ok)
+            {
+                throw Error(res.statusText);
+            }
+            return res;
+        })
+        .then(res => res.json())
+        .then(res =>
+        {
+            if (res.success)
+            {
+                dispatch(deleteProject(id));
+            }
+            else
+            {
+                throw Error(res.error);
+            }
+        })
+        .catch((text) =>
+        {
+            dispatch(sendError(text));
+        });
+};
+
+export const appendCertainImage = (data) => dispatch =>
+{
+    fetch(api + 'site/image/upload', { body: data, method: 'POST' })
+        .then(res =>
+        {
+            if (!res.ok)
+            {
+                throw Error(res.statusText);
+            }
+            return res;
+        })
+        .then(res => res.json())
+        .then(res =>
+        {
+            if (res.success)
+            {
+                dispatch(appendImage(res.image));
             }
             else
             {
@@ -83,9 +176,9 @@ export const replaceCertainImage = (data, url) => dispatch =>
         });
 };
 
-export const appendCertainImage = (data) => dispatch =>
+export const deleteCertainImage = (imageUrl, token) => dispatch =>
 {
-    fetch(api + 'site/image/upload', { body: data, method: 'POST' })
+    fetch(api + 'site/image/delete', post({ fileName: imageUrl, token }))
         .then(res =>
         {
             if (!res.ok)
@@ -99,7 +192,7 @@ export const appendCertainImage = (data) => dispatch =>
         {
             if (res.success)
             {
-                dispatch(appendImage(res.image));
+                dispatch(deleteImage(imageUrl));
             }
             else
             {

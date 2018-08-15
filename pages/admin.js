@@ -7,7 +7,7 @@ import FacebookAuthenticate from '../components/site/admin/FacebookAuthenticate'
 import UploadImage from '../components/site/admin/Images/UploadImage';
 import ReplaceImage from '../components/site/admin/Images/ReplaceImage';
 import DeleteImage from '../components/site/admin/Images/DeleteImage';
-import { sendProjects, sendImages } from '../ducks/actions/site';
+import { sendProjects, sendImages, appendCertainProject, replaceCertainProject, deleteCertainProject } from '../ducks/actions/site';
 
 import '../styles/admin.scss';
 
@@ -26,7 +26,14 @@ const mapStateToProps = ({ site }) =>
     images: site.images,
 });
 
-export default connect(mapStateToProps)(class extends Component
+const mapDispatchToProps = (dispatch) =>
+({
+    addProject: (token, project) => dispatch(appendCertainProject(project, token)),
+    editProject: (token, project) => dispatch(replaceCertainProject(project, token)),
+    deleteProject: (token, id) => dispatch(deleteCertainProject(id, token)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(class extends Component
 {
     state =
     {
@@ -152,6 +159,32 @@ export default connect(mapStateToProps)(class extends Component
         );
     }
 
+    uploadProject()
+    {
+        const { newProject } = this.state;
+        const { user } = this.props;
+        const token = !!user ? user.accessToken : '';
+        this.props.addProject(token, newProject);
+        this.setState({ newProject: { finished: false } });
+    }
+
+    updateProject()
+    {
+        const { editedProject } = this.state;
+        const { user } = this.props;
+        const token = !!user ? user.accessToken : '';
+        this.props.editProject(token, editedProject);
+    }
+
+    deleteProject()
+    {
+        const { editedProject } = this.state;
+        const { user } = this.props;
+        const token = !!user ? user.accessToken : '';
+        this.props.deleteProject(token, editedProject._id);
+        this.setState({ editedProject: {} });
+    }
+
     ui(photo, name, role)
     {
         const { error, projects, images } = this.props;
@@ -203,7 +236,7 @@ export default connect(mapStateToProps)(class extends Component
                         { (activeResource === 'projects' && Object.keys(newProject).length > 0) && <>
                             <div className='row halign valign valign-children admin-edit-panel-selection-project-active-group'>
                                 <h1 className='admin-edit-panel-selection-project-active'>Active</h1>
-                                <Switch className='admin-edit-panel-selection-project-active-checkbox' checked={ newProject.finished }
+                                <Switch className='admin-edit-panel-selection-project-active-checkbox' checked={ newProject.finished ? newProject.finished : false }
                                     onChange={ (finished) => this.setState({ newProject: Object.assign({}, newProject, { finished })  })  } 
                                     uncheckedIcon={ false } checkedIcon={ false } handleDiameter={ 30 } boxShadow='0px 1px 5px rgba(0, 0, 0, 0.6)' onHandleColor='#FFFFFF' onColor='#2CC841' />
                             </div>
@@ -216,8 +249,8 @@ export default connect(mapStateToProps)(class extends Component
                                     value={ newProject.description } onChange={ (e) => this.editNewProjectState(e) } />
                             </label>
                             <div className='row admin-edit-panel-selection-project-button-group'>
-                                <button className='admin-edit-panel-selection-new-button'>Create</button>
-                                <button className='admin-edit-panel-selection-delete-button'>Discard</button>
+                                <button className='admin-edit-panel-selection-new-button' onClick={ () => this.uploadProject() }>Create</button>
+                                <button className='admin-edit-panel-selection-delete-button' onClick={ () => this.setState({ newProject: {} }) }>Discard</button>
                             </div>
                         </> }
                         { (activeResource === 'projects' && Object.keys(newProject).length == 0) && <>
@@ -236,8 +269,8 @@ export default connect(mapStateToProps)(class extends Component
                                     value={ editedProject.description } onChange={ (e) => this.editProjectState(e) } />
                             </label>
                             <div className='row admin-edit-panel-selection-project-button-group'>
-                                <button className='admin-edit-panel-selection-new-button'>Save</button>
-                                <button className='admin-edit-panel-selection-delete-button'>Delete</button>
+                                <button className='admin-edit-panel-selection-new-button' onClick={ () => this.updateProject() }>Save</button>
+                                <button className='admin-edit-panel-selection-delete-button' onClick={ () => this.deleteProject() }>Delete</button>
                             </div>
                         </> }
                         { (activeResource === 'images') && <>
