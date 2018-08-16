@@ -30,7 +30,7 @@ export const reducer = (state = initialState, action) =>
         case actionTypes.APPEND_PROJECT:
             return Object.assign({}, state, { projects: [ ...state.projects, action.project ] });
         case actionTypes.EDIT_PROJECT:
-            return Object.assign({}, state, { images: state.projects.map(project => project._id === action.project._id ? action.project : project) });
+            return Object.assign({}, state, { projects: state.projects.map(project => project._id === action.project._id ? action.project : project) });
         case actionTypes.DELETE_PROJECT:
             return Object.assign({}, state, { projects: state.projects.filter(project => project._id !== action.id ) });
         case actionTypes.SET_IMAGES:
