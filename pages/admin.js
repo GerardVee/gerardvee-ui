@@ -77,7 +77,6 @@ export default connect(mapStateToProps)(class extends Component
     render()
     {
         const { user } = this.props;
-        return this.superuser();
         if (user)
         {
             if (superusers.includes(user.email))
