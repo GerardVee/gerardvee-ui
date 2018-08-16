@@ -49,7 +49,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
         const { user } = this.props;
         const token = !!user ? user.accessToken : '';
         this.props.addProject(token, newProject);
-        this.setState({ newProject: {} });
+        this.setState({ newProject: {} }, () => this.props.setAsNewProject(false));
     }
 
     render()
