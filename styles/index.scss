@@ -1,27 +1,57 @@
 // https://stackoverflow.com/questions/18008700/using-include-vs-extend-in-sass
 @import './_helper.scss';
-@import url('https://fonts.googleapis.com/css?family=Share');
+@import url('https://use.typekit.net/iqj6qnq.css');
 
-$font-family: 'Share';
-$font-size: 22px; // 45
+$primary-color: #4161ff;
+$secondary-color: desaturate(#41FFdF, 30%);
+$tertiary-color: desaturate(#9041FF, 30%);
+$font-family: 'parisplus-clair', sans-serif;
 
-.col-md-row-sm
+.site-header-name
 {
-    display: flex;
-    flex-direction: column;
-    @media screen and (min-width: $medium)
+    font-family: $font-family;
+    color: $primary-color;
+    text-align: center;
+    font-style: italic;
+    font-size: 2.5em;
+    font-weight: 600;
+}
+
+.site-header-link
+{
+    text-decoration: none;
+    font-family: $font-family;
+    transition-duration: 0.4s;
+    border-bottom: 2px solid $primary-color;
+    color: #000000;
+    font-weight: 600;
+    &:hover
     {
-        flex-direction: row;
+        border-bottom-color: $tertiary-color;
     }
 }
 
-.posts
+.site-intro-about-me
 {
-    display: flex;
-    flex-direction: column-reverse;
+    font-family: $font-family;
+    color: #000000;
+    text-align: center;
+    align-self: center;
+    font-size: 1.6em;
+    font-weight: 800;
+    width: 100%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    @media screen and (min-width: $medium)
+    {
+        font-size: 2.2em;
+        width: 60%;
+        margin-top: 1.8em;
+        margin-bottom: 0;
+    }
 }
 
-.opacity-hover
+.site-card-opacity-hover
 {
     & > h1
     {
@@ -32,11 +62,111 @@ $font-size: 22px; // 45
         & > img
         {
             transition-duration: 0.4s;
-            opacity: 0.1;
+            opacity: 0.05;
         }
         & > h1
         {
             opacity: 1;
         }
+    }
+    @media screen and (min-width: $medium)
+    {
+        margin-right: 30px;    
+    }
+}
+
+.site-card-title
+{
+    font-family: $font-family;
+    color: $secondary-color;
+    font-weight: 800;
+}
+
+.site-card-title-lg
+{
+    position: relative;
+    text-align: center;
+    top: 35%;
+}
+
+.site-card-image
+{
+    max-height: 680px;
+    margin-bottom: 2em;
+    width: 280px;
+    @media screen and (min-width: $medium)
+    {
+        max-height: auto;
+        margin-bottom: 0;
+        width: 360px;
+    }
+}
+
+.site-card-description
+{
+    font-family: $font-family;
+    word-wrap: break-word;
+    color: #000000;
+    font-weight: 200;
+    width: 300px;
+}
+
+.site-footer-title
+{
+    font-family: $font-family;
+    color: #000000;
+    font-size: 2.2em;
+    font-weight: 600;
+    margin-bottom: 0.7em;
+}
+
+%external-button
+{
+    font-family: $font-family;
+    border: none;
+    color: #FFFFFF;
+    padding: 0.5em 1em;
+    font-size: 0.85em;
+    border-radius: 8%;
+    font-weight: 600;
+}
+
+.site-footer-github-button, .site-footer-linkedin-button, .site-footer-codepen-button
+{
+    @extend %external-button;
+}
+
+.site-footer-github-button
+{
+    background-color: #333;
+    margin-right: 0.5em;
+}
+
+.site-footer-linkedin-button
+{
+    background-color: #0077B5;
+    margin-right: 0.5em;
+}
+
+.site-footer-codepen-button
+{
+    background-color: #000000;
+}
+
+.site-footer-copyright
+{
+    font-family: $font-family;
+    color: #000000;
+    font-size: 1em;
+    font-weight: 200;
+}
+
+.col-md-row-sm
+{
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: $medium)
+    {
+        flex-direction: row;
     }
 }

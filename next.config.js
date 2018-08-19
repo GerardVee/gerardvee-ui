@@ -1,12 +1,13 @@
 require('dotenv').config();
-const MergeFilesPlugin = require('merge-files-webpack-plugin');
+const withCSS = require('@zeit/next-css')
 const withSass = require('@zeit/next-sass');
+const commonsChunkConfig = require('@zeit/next-css/commons-chunk-config');
 const webpack = require('webpack');
 
 /*if (process.env.NODE_ENV != 'production')
 {
     require('dotenv').config();
-}*/
+}
 
 /*
  * @ https://github.com/zeit/next.js/issues/159
@@ -15,8 +16,8 @@ const webpack = require('webpack');
  * !! whatever is included in webpack is included in the server
  */
 
-const web =
-{
+
+module.exports = withCSS(withSass({
     webpack: (config, options) =>
     {
         const { isServer, dev } = options;
@@ -27,19 +28,10 @@ const web =
                 'process.env.FB_SUPERUSERS': JSON.stringify(process.env.FB_SUPERUSERS)
             })
         );
-        if (!isServer && !dev)
+        if (!isServer)
         {
-            options.extractCSSPlugin.filename = 'static/[name].css';
-            config.plugins.push(
-                new MergeFilesPlugin({
-                    filename: 'static/style.css',
-                    test: /\.css/,
-                    deleteSourceFiles: true
-                })
-            );
+            config = commonsChunkConfig(config, /\.(sass|scss|css)$/);
         }
         return config;
     }
-};
-
-module.exports = withSass(web);
+}));

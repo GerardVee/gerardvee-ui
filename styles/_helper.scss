@@ -74,6 +74,21 @@ body
     width: 100vw;
 }
 
+.space-evenly
+{
+    justify-content: space-evenly;
+}
+
+.self-center
+{
+    align-self: center;
+}
+
+.padding-0
+{
+    padding: 0;
+}
+
 img.responsive
 {
     max-width: 100%;

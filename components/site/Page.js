@@ -1,22 +1,19 @@
-import Nav from './Nav';
+import Head from 'next/head';
 
-const Footer = () => (
-    <div className='col'>
-        <h3 className='center'>Keep in touch</h3>
-        <div className='row halign'>
-            <button>Github</button>
-            <button>LinkedIn</button>
-            <button>CodePen</button>
-        </div>
-        <p className='center'>Crafted by me ©, 2017 </p>
-    </div>
-);
+import Nav from './Nav';
+import Footer from './Footer';
 
 export default ({ children, title }) => (
-    <div className='col' style={{ padding: 0 }}>
-        <title>{ title }</title>
-        <Nav />
-        { children }
-        <Footer />
-    </div>
+    <>
+        <Head>
+            <title>{ title }</title>
+            <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+            <link rel='icon' href='https://api.gerardvee.com/public/images/1534371055736.png' />
+        </Head>
+        <div className='col padding-0'>
+            <Nav />
+            { children }
+            <Footer />
+        </div>
+    </>
 );

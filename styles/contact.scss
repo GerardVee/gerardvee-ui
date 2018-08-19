@@ -1,0 +1,89 @@
+@import './index.scss';
+
+$primary-color: #4161ff;
+$secondary-color: desaturate(#41FFdF, 30%);
+$tertiary-color: desaturate(#9041FF, 30%);
+$font-family: 'parisplus-clair', sans-serif;
+
+.site-contact-preface-title
+{
+    font-family: $font-family;
+    color: #000000;
+    font-size: 3em;
+    margin-bottom: 0.4em;
+    font-weight: 900;
+}
+
+.site-contact-preface-description
+{
+    font-family: $font-family;
+    color: #000000;
+    font-size: 1.5em;
+    margin-bottom: 2em;
+    @media screen and (min-width: $medium)
+    {
+        margin-bottom: 3em;
+    }
+}
+
+.site-contact-form-pair-input
+{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    padding: 0.4em;
+    width: 80%;
+    @media screen and (min-width: $medium)
+    {
+        flex-direction: row;
+        width: 40%;
+    }
+}
+
+.site-contact-form-input-base
+{
+    font-family: $font-family;
+    border: none;
+    align-self: center;
+    color: #000000;
+    border-bottom: 1px solid #CCC;
+    font-size: 1.5em;
+    margin-bottom: 0.7em;
+    padding: 0.4em;
+    font-weight: 600;
+    width: 80%;
+    &:focus
+    {
+        outline: none;
+    }
+    .site-contact-form-pair-input &
+    {
+        width: 100%;
+        @media screen and (min-width: $medium)
+        {
+            margin-right: 0.5em;
+        }
+    }
+    @media screen and (min-width: $medium)
+    {
+        width: 39%;
+    }
+}
+
+.site-contact-form-input-pair-last
+{
+    margin-right: 0!important;
+}
+
+.site-contact-form-submit
+{
+    font-family: $font-family;
+    background-color: transparent;
+    color: $tertiary-color;
+    border: 1px solid $tertiary-color;
+    padding: 0.3em 0.7em;
+    font-size: 1.38em;
+    margin-top: 0.7em;
+    font-weight: 800;
+    border-radius: 3%;
+}
