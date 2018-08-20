@@ -5,6 +5,8 @@ const mapStateToProps = ({ site }) => (
 {
     projects: site.projects
 });
+
+const finishedProjects = (projects) => projects.filter(project => project.finished);
     
 const pair = (array) => array.reduce((result, _, i) =>
 {
@@ -24,7 +26,8 @@ export default connect(mapStateToProps)(class extends Component
 
     render()
     {
-        const { projects } = this.props;
+        const { projects: allProjects } = this.props;
+        const projects = finishedProjects(allProjects);
         const pairs = pair(projects);
         return (
             <>

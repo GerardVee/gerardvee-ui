@@ -17,6 +17,7 @@ const validObject = (obj) =>
     return true;
 };
 
+// https://stackoverflow.com/questions/46155/how-to-validate-an-email (OregonTrail)
 const isEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 const intialState =
