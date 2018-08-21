@@ -3,6 +3,8 @@ import Head from 'next/head';
 import Nav from './Nav';
 import Footer from './Footer';
 
+import '../../styles/index.scss';
+
 export default ({ children, title }) => (
     <>
         <Head>

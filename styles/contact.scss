@@ -1,9 +1,5 @@
-@import './index.scss';
-
-$primary-color: #4161ff;
-$secondary-color: desaturate(#41FFdF, 30%);
-$tertiary-color: desaturate(#9041FF, 30%);
-$font-family: 'parisplus-clair', sans-serif;
+@import './_helper.scss';
+@import url('https://use.typekit.net/iqj6qnq.css');
 
 .site-contact-preface-title
 {

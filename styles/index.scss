@@ -2,19 +2,15 @@
 @import './_helper.scss';
 @import url('https://use.typekit.net/iqj6qnq.css');
 
-$primary-color: #4161ff;
-$secondary-color: desaturate(#41FFdF, 30%);
-$tertiary-color: desaturate(#9041FF, 30%);
-$font-family: 'parisplus-clair', sans-serif;
-
 .site-header-name
 {
     font-family: $font-family;
     color: $primary-color;
     text-align: center;
     font-style: italic;
+    cursor: pointer;
     font-size: 2.5em;
-    font-weight: 600;
+    font-weight: 600;   
 }
 
 .site-header-link

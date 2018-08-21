@@ -1,4 +1,3 @@
-import 'isomorphic-fetch';
 import { Component } from 'react';
 
 import Page from '../components/site/Page';
@@ -11,14 +10,6 @@ export default class extends Component
     {
         return (
             <Page title='About'>
-                <div className='col'>
-                    <div className='row halign'>
-                        <h1>Pricing</h1>
-                    </div>
-                    <div className='row halign'>
-                        
-                    </div>
-                </div>
             </Page>
         );
     }

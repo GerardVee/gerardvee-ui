@@ -1,0 +1,8 @@
+@import './_helper.scss';
+@import url('https://use.typekit.net/iqj6qnq.css');
+
+.site-pricing-header-title
+{
+    @extend %text;
+    font-size: 2.5em;
+}

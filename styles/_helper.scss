@@ -2,6 +2,11 @@ $small: 1px;
 $medium: 768px;
 $large: 1280px;
 
+$primary-color: #4161ff;
+$secondary-color: desaturate(#41FFdF, 30%);
+$tertiary-color: desaturate(#9041FF, 30%);
+$font-family: 'parisplus-clair', sans-serif;
+
 body
 {
     margin: 0;
@@ -100,6 +105,11 @@ img.responsive
     }
 }
 
+%text
+{
+    font-family: $font-family;
+}
+
 @mixin size-exclude($size, $max: false)
 {
     @if ($max)
@@ -164,3 +174,4 @@ img.responsive
 .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
