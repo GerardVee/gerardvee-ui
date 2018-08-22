@@ -156,13 +156,3 @@
     font-size: 1em;
     font-weight: 200;
 }
-
-.col-md-row-sm
-{
-    display: flex;
-    flex-direction: column;
-    @media screen and (min-width: $medium)
-    {
-        flex-direction: row;
-    }
-}

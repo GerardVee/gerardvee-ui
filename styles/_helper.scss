@@ -33,6 +33,16 @@ body
     @include container(row);
 }
 
+.col-sm-row-md
+{
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: $medium)
+    {
+        flex-direction: row;
+    }
+}
+
 .wrap
 {
     flex-wrap: wrap;
