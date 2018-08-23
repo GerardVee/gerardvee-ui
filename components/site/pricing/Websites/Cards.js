@@ -9,7 +9,7 @@ const websiteCards =
     },
     {
         price: '$350',
-        description: 'Dynamic, static page site',
+        description: 'Dynamic, single page site',
     },
     {
         price: '$500',

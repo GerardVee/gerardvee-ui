@@ -43,6 +43,16 @@ body
     }
 }
 
+.row-sm-col-md
+{
+    display: flex;
+    flex-direction: row;
+    @media screen and (min-width: $medium)
+    {
+        flex-direction: column;
+    }
+}
+
 .wrap
 {
     flex-wrap: wrap;

@@ -1,0 +1,85 @@
+@import './_helper.scss';
+@import url('https://use.typekit.net/iqj6qnq.css');
+
+.site-donate-thank-you
+{
+    @extend %text;
+    color: transparent;
+    font-weight: bold;
+    -webkit-text-stroke: 2px $tertiary-color;
+    text-stroke: 2px $tertiary-color;
+    text-align: center;
+    font-size: 3em;
+    margin: 1em 0;
+    width: 100%;
+    @media screen and (min-width: $medium)
+    {
+        font-size: 4em;
+        margin: 2em 0;
+        width: 70%;
+    }
+}
+
+.site-donate-preface-title
+{
+    @extend %text;
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 0.4em;
+    font-weight: 900;
+}
+
+.site-donate-preface-subtitle
+{
+    @extend %text;
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 2em;
+    width: 100%;
+    @media screen and (min-width: $medium)
+    {
+        margin-bottom: 1.3em;
+        width: 50%;
+    }
+}
+
+.site-donate-input
+{
+    border-bottom: 1px solid #CCC;
+    padding: 0.3em;
+    margin-bottom: 2.4em;
+    max-width: 220px;
+}
+
+.site-donate-input-dollar-sign
+{
+    @extend %text;
+    font-weight: bold;
+    font-size: 3.5em;
+}
+
+.site-donate-input-payment
+{
+    @extend %text;
+    border: none;
+    font-weight: bold;
+    font-size: 3em;
+    width: 80%;
+    &:focus
+    {
+        outline: none;
+    }
+}
+
+.site-donate-donate-button
+{
+    @extend %text;
+    background-color: transparent;
+    color: $tertiary-color;
+    border: 1px solid $tertiary-color;
+    padding: 0.3em 0.7em;
+    font-size: 1.38em;
+    margin-top: 0.7em;
+    font-weight: 800;
+    border-radius: 3%;
+}
