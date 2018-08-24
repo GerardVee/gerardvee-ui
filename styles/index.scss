@@ -87,14 +87,14 @@
 
 .site-card-image
 {
-    max-height: 680px;
+    width: auto;
+    max-height: 160px;
     margin-bottom: 2em;
-    width: 280px;
     @media screen and (min-width: $medium)
     {
-        max-height: auto;
+        width: auto;
+        max-height: 250px;
         margin-bottom: 0;
-        width: 360px;
     }
 }
 
