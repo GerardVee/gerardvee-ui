@@ -9,7 +9,7 @@ export default ({ page, suggestions, songDetails, setSongFromSearch }) => (
             <div className='osbeats-suggestions-suggestion col halign' onClick={ () => setSongFromSearch(details) }>
                 <div className='row halign valign'>
                     <img className='osbeats-suggestions-image' src={ details.src } />
-                    <h2 className={ `osbeats-suggestions-title${ details.title === songDetails.title ? ' osbeats-active-blue' : '' }` }>{ details.title }</h2>
+                    <h3 className={ `osbeats-suggestions-title${ details.title === songDetails.title ? ' osbeats-active-blue' : '' }` }>{ details.title }</h3>
                 </div>
             </div>)}
         { suggestions.length === 0 && <div className='col halign valign'>
