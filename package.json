@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "@zeit/next-css": "^0.2.0",
-    "@zeit/next-sass": "^0.1.2",
+    "@zeit/next-css": "^1.0.0",
+    "@zeit/next-sass": "^1.0.0",
     "body-parser": "^1.18.2",
     "cheerio": "^1.0.0-rc.2",
     "cookie-parser": "^1.4.3",
@@ -11,7 +11,7 @@
     "express-session": "^1.15.6",
     "gsap": "^1.20.4",
     "merge-files-webpack-plugin": "^1.1.2",
-    "next": "^6.0.3",
+    "next": "^7.0.0",
     "next-redux-wrapper": "^2.0.0-beta.6",
     "node-sass": "^4.8.3",
     "rc-slider": "^8.6.1",
@@ -37,5 +37,9 @@
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "start-server": "pm2 gracefulReload server.js --name gerardvee.com"
+  },
+  "devDependencies": {
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "webpack": "^4.19.1"
   }
 }

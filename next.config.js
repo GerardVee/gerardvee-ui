@@ -1,23 +1,8 @@
 require('dotenv').config();
-const withCSS = require('@zeit/next-css')
 const withSass = require('@zeit/next-sass');
-const commonsChunkConfig = require('@zeit/next-css/commons-chunk-config');
 const webpack = require('webpack');
 
-/*if (process.env.NODE_ENV != 'production')
-{
-    require('dotenv').config();
-}
-
-/*
- * @ https://github.com/zeit/next.js/issues/159
- * adding to webpack exposes it the browser/client
- * keep only things supposed to be known below
- * !! whatever is included in webpack is included in the server
- */
-
-
-module.exports = withCSS(withSass({
+module.exports = withSass({
     webpack: (config, options) =>
     {
         const { isServer, dev } = options;
@@ -29,10 +14,6 @@ module.exports = withCSS(withSass({
                 'process.env.STRIPE_KEY': JSON.stringify(process.env.STRIPE_KEY)
             })
         );
-        if (!isServer)
-        {
-            config = commonsChunkConfig(config, /\.(sass|scss|css)$/);
-        }
         return config;
     }
-}));
+});
