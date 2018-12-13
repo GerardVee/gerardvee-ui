@@ -247,13 +247,6 @@ export const login = (user) => dispatch =>
                     sessionToken: AWS.config.credentials.sessionToken,
                 };
                 dispatch(sendCognitoInfo(cognito));
-                var opts =
-                {
-                    host: 'pngzn5evv9.execute-api.us-east-1.amazonaws.com',
-                    path: 'gerardvee/site/image/upload'
-                };
-                aws4.sign(opts, cognito);
-                console.log(opts);
             }
         })
     }

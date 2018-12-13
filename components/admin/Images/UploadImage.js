@@ -1,11 +1,13 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { post } from '../../../lib/methods';
 import { appendCertainImage } from '../../../ducks/actions/site';
 
 const mapStateToProps = ({ site }) => (
 {
     user: site.user,
+    cognito: site.cognito
 });
     
 const mapDispatchToProps = (dispatch) => (
@@ -30,12 +32,25 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
         this.props.uploadImage(data);
     }
 
+    async post()
+    {
+        const { cognito } = this.props;
+        console.log(cognito);
+        var opts =
+        {
+            host: 'pngzn5evv9.execute-api.us-east-1.amazonaws.com',
+            path: 'gerardvee/site/image/upload'
+        };
+        aws4.sign(opts, cognito);
+        fetch('https://pngzn5evv9.execute-api.us-east-1.amazonaws.com/gerardvee/site/image/upload', post({ filename: 'tracer.png', filetype: 'image/png' }, opts));
+    }
+
     render()
     {
         return (
             <label className='admin-edit-panel-selection-new-button'>
                 <input className='none' ref={ (ref) => { this.uploadInput = ref; } } type='file'
-                    onChange={ (e) => this.handleUpload(e) } />
+                    onChange={ (e) => this.handleUpload(e) } onClick={ () => this.post() }/>
                 New
             </label>
         );
