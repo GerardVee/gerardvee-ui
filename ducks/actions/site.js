@@ -1,5 +1,4 @@
 import AWS from 'aws-sdk';
-import aws4 from 'aws4';
 import post from '../../lib/post';
 
 const api = process.env.API;

@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import aws4 from 'aws4';
 
 import { post } from '../../../lib/methods';
 import { appendCertainImage } from '../../../ducks/actions/site';
