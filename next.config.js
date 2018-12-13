@@ -8,6 +8,7 @@ module.exports = withSass({
         const { isServer, dev } = options;
         config.plugins.push(
             new webpack.DefinePlugin({
+                'process.env.BASE_API': JSON.stringify(process.env.BASE_API),
                 'process.env.API': JSON.stringify(process.env.API),
                 'process.env.COGNITO_POOL_ID': JSON.stringify(process.env.COGNITO_POOL_ID),
                 'process.env.FB_APP_ID': JSON.stringify(process.env.FB_APP_ID),

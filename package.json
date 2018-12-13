@@ -4,6 +4,7 @@
     "@zeit/next-sass": "^1.0.0",
     "aws-sdk": "^2.375.0",
     "aws4": "^1.8.0",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "cheerio": "^1.0.0-rc.2",
     "cookie-parser": "^1.4.3",

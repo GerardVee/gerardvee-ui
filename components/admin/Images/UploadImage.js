@@ -1,7 +1,9 @@
+import axios from 'axios';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import aws4 from 'aws4';
 
+import { post } from '../../../lib/methods';
 import { appendCertainImage } from '../../../ducks/actions/site';
 
 const mapStateToProps = ({ site }) => (
@@ -12,39 +14,59 @@ const mapStateToProps = ({ site }) => (
     
 const mapDispatchToProps = (dispatch) => (
 {
-    uploadImage: (data) => dispatch(appendCertainImage(data)),
+    appendImage: (cognito, location) => dispatch(appendCertainImage(cognito, location)),
 });
+
+const api = process.env.API;
 
 const extensionCapture = (file) => /(?:\.([^.]+))?$/.exec(file)[1];
     
 export default connect(mapStateToProps, mapDispatchToProps)(class extends Component
 {
-    async handleUpload(e)
-    {
-        const { user } = this.props;
-        const token = !!user ? user.accessToken : '';
-        e.preventDefault();
-        const data = new FormData();
-        const imageName = 'image.' + extensionCapture(this.uploadInput.files[0].name);
-        data.append('image', this.uploadInput.files[0]);
-        data.append('filename', imageName);
-        data.append('data', token);
-        this.props.uploadImage(data);
-    }
-
-    async post()
+    async getUploadUrl(filename, filetype)
     {
         const { cognito } = this.props;
-        var opts =
+        var params = post({ filename, filetype }, '/gerardvee/site/image/upload');
+        aws4.sign(params, cognito);
+        const req = await fetch(api + 'site/image/upload', params);
+        return await req.json();
+    }
+
+    async postOnline(uploadInfo, file)
+    {
+        const { signedRequest, url } = uploadInfo;
+        const req = await axios.put(signedRequest, file, { headers: { 'content-type': file.type, 'x-amz-acl': 'public-read' } });
+        if (req.status === 200)
         {
-            host: 'pngzn5evv9.execute-api.us-east-1.amazonaws.com',
-            method: 'POST',
-            body: JSON.stringify({ filename: 'tracer.png', filetype: 'image/png' }),
-            url: 'https://pngzn5evv9.execute-api.us-east-1.amazonaws.com/gerardvee/site/image/upload',
-            path: '/gerardvee/site/image/upload'
-        };
-        aws4.sign(opts, cognito);
-        fetch('https://pngzn5evv9.execute-api.us-east-1.amazonaws.com/gerardvee/site/image/upload', opts);
+            return url;
+        }
+        else
+        {
+            this.error('Photo failed to upload');
+        }
+    }
+
+    async upload(e)
+    {
+        e.preventDefault();
+        const { cognito } = this.props;
+        const file = this.uploadInput.files[0];
+        if (!(file.type.includes('image')))
+        {
+            alert('File is not an image');
+            return;
+        }
+        const currentTime = new Date().getTime().toString();
+        const extension = extensionCapture(file.name);
+        const fileName = `${ currentTime }.${ extension == null ? 'jpg' : extension }`;
+        const uploadInfo = await this.getUploadUrl(fileName, file.type);
+        if (!uploadInfo.signedRequest)
+        {
+            alert('Upload failed');
+            return;
+        }
+        const location = await this.postOnline(uploadInfo, file);
+        this.props.appendImage(cognito, location);
     }
 
     render()

@@ -1,5 +1,7 @@
 import AWS from 'aws-sdk';
-import post from '../../lib/post';
+import aws4 from 'aws4';
+
+import { post } from '../../lib/methods';
 
 const api = process.env.API;
 
@@ -29,7 +31,7 @@ export const editProject = (project) => dispatch => dispatch({ type: actionTypes
 export const deleteProject = (id) => dispatch => dispatch({ type: actionTypes.DELETE_PROJECT, id });
 
 export const sendImages = (images) => dispatch => dispatch({ type: actionTypes.SET_IMAGES, images });
-export const appendImage = (imageObject) => dispatch => dispatch({ type: actionTypes.APPEND_IMAGE, image: imageObject });
+export const appendImage = (image) => dispatch => dispatch({ type: actionTypes.APPEND_IMAGE, image });
 export const editImage = (imageUrl) => dispatch => dispatch({ type: actionTypes.EDIT_IMAGE, imageUrl });
 export const deleteImage = (imageUrl) => dispatch => dispatch({ type: actionTypes.DELETE_IMAGE, imageUrl });
 
@@ -123,9 +125,11 @@ export const deleteCertainProject = (id, token) => dispatch =>
         });
 };
 
-export const appendCertainImage = (data) => dispatch =>
+export const appendCertainImage = (cognito, location) => dispatch =>
 {
-    fetch(api + 'site/image/upload', { body: data, method: 'POST' })
+    var params = post({ location }, '/gerardvee/site/image');
+    aws4.sign(params, cognito);
+    fetch(api + 'site/image', params)
         .then(res =>
         {
             if (!res.ok)
@@ -225,6 +229,9 @@ export const login = (user) => dispatch =>
     }
     if (superusers.includes(user.email))
     {
+        // huge thanks to
+        // https://interworks.com.mk/amazon-cognito-and-api-gateway-aws-iam-authorization/,
+        // https://forums.aws.amazon.com/thread.jspa?messageID=730090
         dispatch(sendUser(user));
         AWS.config.region = 'us-east-1';
         AWS.config.credentials = new AWS.CognitoIdentityCredentials(
