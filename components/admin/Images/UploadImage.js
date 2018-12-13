@@ -42,7 +42,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
         }
         else
         {
-            this.error('Photo failed to upload');
+            alert('Photo failed to upload');
         }
     }
 
@@ -74,7 +74,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
         return (
             <label className='admin-edit-panel-selection-new-button'>
                 <input className='none' ref={ (ref) => { this.uploadInput = ref; } } type='file'
-                    onChange={ (e) => this.handleUpload(e) } onClick={ () => this.post() }/>
+                    onChange={ (e) => this.upload(e) } />
                 New
             </label>
         );
