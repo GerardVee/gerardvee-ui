@@ -2,7 +2,6 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import aws4 from 'aws4';
 
-import { post } from '../../../lib/methods';
 import { appendCertainImage } from '../../../ducks/actions/site';
 
 const mapStateToProps = ({ site }) => (
@@ -36,14 +35,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
     async post()
     {
         const { cognito } = this.props;
-        console.log(cognito);
         var opts =
         {
             host: 'pngzn5evv9.execute-api.us-east-1.amazonaws.com',
-            path: 'gerardvee/site/image/upload'
+            method: 'POST',
+            body: JSON.stringify({ filename: 'tracer.png', filetype: 'image/png' }),
+            url: 'https://pngzn5evv9.execute-api.us-east-1.amazonaws.com/gerardvee/site/image/upload',
+            path: '/gerardvee/site/image/upload'
         };
         aws4.sign(opts, cognito);
-        fetch('https://pngzn5evv9.execute-api.us-east-1.amazonaws.com/gerardvee/site/image/upload', post({ filename: 'tracer.png', filetype: 'image/png' }, opts));
+        fetch('https://pngzn5evv9.execute-api.us-east-1.amazonaws.com/gerardvee/site/image/upload', opts);
     }
 
     render()
