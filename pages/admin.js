@@ -2,16 +2,16 @@ import 'isomorphic-fetch';
 import { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Header from '../components/site/admin/Header';
-import UserPanel from '../components/site/admin/UserPanel';
-import SelectionPanel from '../components/site/admin/SelectionPanel';
-import EditPanel from '../components/site/admin/EditPanel';
-import FacebookAuthenticate from '../components/site/admin/FacebookAuthenticate';
+import Header from '../components/admin/Header';
+import UserPanel from '../components/admin/UserPanel';
+import SelectionPanel from '../components/admin/SelectionPanel';
+import EditPanel from '../components/admin/EditPanel';
+import FacebookAuthenticate from '../components/admin/FacebookAuthenticate';
 import { sendProjects, sendImages } from '../ducks/actions/site';
 
 import '../styles/admin.scss';
 
-const api = 'https://api.gerardvee.com/';
+const api = process.env.API;
 const superusers = process.env.FB_SUPERUSERS.split(',');
 
 const mapStateToProps = ({ site }) =>
@@ -51,7 +51,7 @@ export default connect(mapStateToProps)(class extends Component
         const { projects, images } = this.props;
         const { activeId, activeResource } = this.state;
         const site = { projects, images };
-        const activeSpecificResource = activeId ? site[activeResource].find(({ _id }) => _id === activeId) : null;
+        const activeSpecificResource = activeId ? (activeResource === 'projects' ? site[activeResource].find(({ project_id }) => project_id === activeId) : site[activeResource].find(({ image_id }) => image_id === activeId)) : null;
         return (
             <div className='row' style={{ padding: 0 }}>
                 <Header />

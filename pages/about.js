@@ -1,9 +1,9 @@
 import { Component } from 'react';
 
-import Page from '../components/site/Page';
-import AboutPreface from '../components/site/about/AboutPreface';
-import More from '../components/site/about/More';
-import Location from '../components/site/about/Location';
+import Page from '../components/Page';
+import AboutPreface from '../components/about/AboutPreface';
+import More from '../components/about/More';
+import Location from '../components/about/Location';
 
 import '../styles/about.scss';
 

@@ -5,13 +5,13 @@ import StripeCheckout from 'react-stripe-checkout';
 import post from '../lib/post';
 import '../styles/index.scss';
 
-const api = 'https://api.gerardvee.com/';
+const api = process.env.API;
+const stripeKey = process.env.STRIPE_KEY;
 
 const onToken = async ({ id }, amount, href) =>
 {
     const res = await fetch(api + 'charge', post({ token: id, amount }));
     const data = await res.json();
-    console.log(data);
     alert(`Thank you, $${ data.amount / 100 } charged.`);
     window.location.href = decodeURIComponent(href) + `?token=${ data.id }`
 };
@@ -34,7 +34,7 @@ export default class Pay extends React.Component
         const { payment } = this.state;
         const { href, amount } = this.props;
         return (
-            <div className='col'>
+            <div className='row halign'>
                 <Head>
                     <title>{ amount ? 'Pay' : 'Donate' } </title>
                     <meta name='viewport' content='initial-scale=1.0, width=device-width' />
@@ -43,8 +43,8 @@ export default class Pay extends React.Component
                     name='gerardvee.com'
                     image='// gv logo'
                     amount={ amount * 100 } // in cents
-                    token={ (tkn) => onToken(tkn, amount * 100, href) } stripeKey='pk_test_fwQdo6ZSLVSW9YIhSGndRtkZ'>
-                    <button>Pay ${ amount }</button>
+                    token={ (tkn) => onToken(tkn, amount * 100, href) } stripeKey={ stripeKey }>
+                    <button className='site-donate-donate-button'>Pay ${ amount }</button>
                 </StripeCheckout>
                 }
                 { !amount &&
@@ -54,8 +54,8 @@ export default class Pay extends React.Component
                             name='gerardvee.com'
                             image='// gv logo'
                             amount={ payment * 100 } // in cents
-                            token={ (tkn) => onToken(tkn, payment * 100, href) } stripeKey='pk_test_fwQdo6ZSLVSW9YIhSGndRtkZ'>
-                            <button>Donate</button>
+                            token={ (tkn) => onToken(tkn, payment * 100, href) } stripeKey={ stripeKey }>
+                            <button className='site-donate-donate-button'>Donate</button>
                         </StripeCheckout>
                     </div>
                 }

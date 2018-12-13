@@ -1,6 +1,6 @@
 import { actionTypes } from '../actions/site';
 
-const apiImageLocation = 'https://api.gerardvee.com/public/images/';
+const apiImageLocation = 'https://s3.amazonaws.com/gerardvee/site/';
 
 const initialState =
 {
@@ -8,6 +8,7 @@ const initialState =
     projects: [],
     images: [],
     user: null,
+    cognito: null
 };
 
 /*
@@ -42,6 +43,8 @@ export const reducer = (state = initialState, action) =>
                 ({ ...image, location: image.location.split('?')[0] === action.imageUrl ? action.imageUrl + '?t=' + new Date().getTime().toString() : image.location }))});
         case actionTypes.DELETE_IMAGE:
             return Object.assign({}, state, { images: state.images.filter(image => image.location !== apiImageLocation + action.imageUrl ) });
+        case actionTypes.SET_COGNITO:
+            return Object.assign({}, state, { user: action.user });
         case actionTypes.SET_USER:
             return Object.assign({}, state, { user: action.user });
         default:

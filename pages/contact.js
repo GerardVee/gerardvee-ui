@@ -1,9 +1,9 @@
 import 'isomorphic-fetch';
 import { Component } from 'react';
 
-import Page from '../components/site/Page';
-import Preface from '../components/site/contact/Preface';
-import Form from '../components/site/contact/Form';
+import Page from '../components/Page';
+import Preface from '../components/contact/Preface';
+import Form from '../components/contact/Form';
 
 import '../styles/contact.scss';
 

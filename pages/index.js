@@ -2,17 +2,14 @@ import 'isomorphic-fetch';
 import { connect } from 'react-redux';
 import { Component } from 'react';
 
-import Page from '../components/site/Page';
-import Hello from '../components/site/index/Hello';
-import Projects from '../components/site/index/Projects';
+import Page from '../components/Page';
+import Hello from '../components/index/Hello';
+import Projects from '../components/index/Projects';
 import { sendProjects } from '../ducks/actions/site';
 
 import '../styles/index.scss';
 
-// add linkit and delano farms
-// check and see if material icons have icons for github, linkedin and codepen
-
-const api = 'https://api.gerardvee.com/';
+const api = process.env.API;
 
 const mapStateToProps = ({ site }) => ({
     projects: site.projects,

@@ -1,10 +1,10 @@
 import { Component } from 'react';
 
-import Page from '../components/site/Page';
-import DonationPreface from '../components/site/donate/DonationPreface';
-import ThankYou from '../components/site/donate/ThankYou';
-import Amount from '../components/site/donate/Amount';
-import StripeDonate from '../components/site/donate/StripeDonate';
+import Page from '../components/Page';
+import DonationPreface from '../components/donate/DonationPreface';
+import ThankYou from '../components/donate/ThankYou';
+import Amount from '../components/donate/Amount';
+import StripeDonate from '../components/donate/StripeDonate';
 
 import '../styles/donate.scss';
 

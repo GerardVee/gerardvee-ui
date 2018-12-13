@@ -8,7 +8,6 @@ class MyApp extends App
 {
     static async getInitialProps({ Component, ctx })
     {
-        // can dispatch from here too, just ctx.store.dispatch
         const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
         return { pageProps };
     }
