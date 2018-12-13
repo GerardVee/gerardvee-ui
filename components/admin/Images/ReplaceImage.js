@@ -24,6 +24,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
         const fn = fileName.split('?')[0];
         e.preventDefault();
         const data = new FormData();
+        const newname = 'lol';
         const imageName = 'image.' + extensionCapture(this.uploadInput.files[0].name);
         data.append('image', this.uploadInput.files[0]);
         data.append('filename', imageName);
