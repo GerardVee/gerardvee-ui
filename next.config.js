@@ -1,6 +1,7 @@
 require('dotenv').config();
 const withSass = require('@zeit/next-sass');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = withSass({
     webpack: (config, options) =>
@@ -19,5 +20,19 @@ module.exports = withSass({
             new webpack.optimize.UglifyJsPlugin()
         );
         return config;
-    }
+    },
+    optimization: {
+        minimizer: [
+          new UglifyJsPlugin({
+            cache: true,
+            parallel: true,
+            uglifyOptions: {
+              compress: true,
+              ecma: 6,
+              mangle: true
+            },
+            sourceMap: false
+          })
+        ]
+      }
 });
