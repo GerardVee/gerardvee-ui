@@ -39,7 +39,7 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "start-server": "pm2 reload server.js --name gerardvee.com"
+    "start-server": "pm2 reload server.json"
   },
   "devDependencies": {
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
