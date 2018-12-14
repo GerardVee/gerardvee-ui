@@ -1,6 +1,9 @@
+import axios from 'axios';
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import aws4 from 'aws4';
 
+import { post } from '../../../lib/methods';
 import { replaceCertainImage } from '../../../ducks/actions/site';
 
 const mapStateToProps = ({ site }) => (
@@ -10,26 +13,57 @@ const mapStateToProps = ({ site }) => (
     
 const mapDispatchToProps = (dispatch) => (
 {
-    replaceImage: (data, fileName) => dispatch(replaceCertainImage(data, fileName)),
+    replaceImage: (cognito, location, old_location) => dispatch(replaceCertainImage(cognito, location, old_location)),
 });
 
 const extensionCapture = (file) => /(?:\.([^.]+))?$/.exec(file)[1];
     
 export default connect(mapStateToProps, mapDispatchToProps)(class extends Component
 {
-    async handleUpload(e)
+    async getUploadUrl(filename, filetype)
     {
-        const { fileName, user } = this.props;
-        const token = !!user ? user.accessToken : '';
-        const fn = fileName.split('?')[0];
+        const { cognito } = this.props;
+        var params = post({ filename, filetype }, '/gerardvee/site/image/upload');
+        aws4.sign(params, cognito);
+        const req = await fetch(api + 'site/image/upload', params);
+        return await req.json();
+    }
+
+    async postOnline(uploadInfo, file)
+    {
+        const { signedRequest, url } = uploadInfo;
+        const req = await axios.put(signedRequest, file, { headers: { 'content-type': file.type, 'x-amz-acl': 'public-read' } });
+        if (req.status === 200)
+        {
+            return url;
+        }
+        else
+        {
+            alert('Photo failed to upload');
+        }
+    }
+
+    async update()
+    {
         e.preventDefault();
-        const data = new FormData();
-        const newname = 'lol';
-        const imageName = 'image.' + extensionCapture(this.uploadInput.files[0].name);
-        data.append('image', this.uploadInput.files[0]);
-        data.append('filename', imageName);
-        data.append('data', JSON.stringify({ token, fileName: fn }));
-        this.props.replaceImage(data, noTime);
+        const { fileName, cognito } = this.props;
+        const file = this.uploadInput.files[0];
+        if (!(file.type.includes('image')))
+        {
+            alert('File is not an image');
+            return;
+        }
+        const extension = extensionCapture(file.name);
+        const shortFileName = filename.substring(fileName.lastIndexOf('/') + 1).split('?')[0].replace(/\.[^/.]+$/, '') + (extension === null ? '.jpg' : '.' + extension);
+        const uploadInfo = await this.getUploadUrl(shortFileName, file.type);
+        if (!uploadInfo.signedRequest)
+        {
+            alert('Replacement failed');
+            return;
+        }
+        const location = await this.postOnline(uploadInfo, file);
+        // new, old
+        this.props.replaceImage(cognito, location, fileName.split('?')[0]);
     }
 
     render()
@@ -37,7 +71,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
         return (
             <label className='admin-edit-panel-selection-replace-button'>
                 <input className='none' ref={ (ref) => { this.uploadInput = ref; } } type='file'
-                    onChange={ (e) => this.handleUpload(e) } />
+                    onChange={ (e) => this.update(e) } />
                 Replace
             </label>
         );

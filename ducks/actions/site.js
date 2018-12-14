@@ -1,7 +1,7 @@
 import AWS from 'aws-sdk';
 import aws4 from 'aws4';
 
-import { post } from '../../lib/methods';
+import { post, patch, deleteR } from '../../lib/methods';
 
 const api = process.env.API;
 
@@ -32,8 +32,8 @@ export const deleteProject = (id) => dispatch => dispatch({ type: actionTypes.DE
 
 export const sendImages = (images) => dispatch => dispatch({ type: actionTypes.SET_IMAGES, images });
 export const appendImage = (image) => dispatch => dispatch({ type: actionTypes.APPEND_IMAGE, image });
-export const editImage = (imageUrl) => dispatch => dispatch({ type: actionTypes.EDIT_IMAGE, imageUrl });
-export const deleteImage = (imageUrl) => dispatch => dispatch({ type: actionTypes.DELETE_IMAGE, imageUrl });
+export const editImage = (image) => dispatch => dispatch({ type: actionTypes.EDIT_IMAGE, image });
+export const deleteImage = (image) => dispatch => dispatch({ type: actionTypes.DELETE_IMAGE, image });
 
 export const sendCognitoInfo = (cognito) => dispatch => dispatch({ type: actionTypes.SET_COGNITO, cognito });
 export const sendUser = (user) => dispatch => dispatch({ type: actionTypes.SET_USER, user });
@@ -156,9 +156,11 @@ export const appendCertainImage = (cognito, location) => dispatch =>
         });
 };
 
-export const replaceCertainImage = (data, url) => dispatch =>
+export const replaceCertainImage = (cognito, location, old_location) => dispatch =>
 {
-    fetch(api + 'site/image/replace', { body: data, method: 'POST' })
+    var params = patch({ location, old_location }, '/gerardvee/site/image');
+    aws4.sign(params, cognito);
+    fetch(api + 'site/image', params)
         .then(res =>
         {
             if (!res.ok)
@@ -172,7 +174,7 @@ export const replaceCertainImage = (data, url) => dispatch =>
         {
             if (res.success)
             {
-                dispatch(editImage(url));
+                dispatch(editImage(res.image));
             }
             if (!res.success)
             {
@@ -185,9 +187,11 @@ export const replaceCertainImage = (data, url) => dispatch =>
         });
 };
 
-export const deleteCertainImage = (imageUrl, token) => dispatch =>
+export const deleteCertainImage = (cognito, location) => dispatch =>
 {
-    fetch(api + 'site/image/delete', post({ fileName: imageUrl, token }))
+    var params = deleteR({ location }, '/gerardvee/site/image');
+    aws4.sign(params, cognito);
+    fetch(api + 'site/image', params)
         .then(res =>
         {
             if (!res.ok)
@@ -201,7 +205,7 @@ export const deleteCertainImage = (imageUrl, token) => dispatch =>
         {
             if (res.success)
             {
-                dispatch(deleteImage(imageUrl));
+                dispatch(deleteImage(res.image));
             }
             else
             {

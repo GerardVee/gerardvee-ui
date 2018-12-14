@@ -10,16 +10,15 @@ const mapStateToProps = ({ site }) => (
     
 const mapDispatchToProps = (dispatch) => (
 {
-    deleteImage: (fileName, token) => dispatch(deleteCertainImage(fileName, token))
+    deleteImage: (cognito, location) => dispatch(deleteCertainImage(cognito, location))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(class extends Component
 {
-    async deleteImage(fileName)
+    async deleteImage(location)
     {
-        const { user } = this.props;
-        const token = !!user ? user.accessToken : '';
-        this.props.deleteImage(fileName, token);
+        const { cognito } = this.props;
+        this.props.deleteImage(cognito, location);
     }
 
     render()
