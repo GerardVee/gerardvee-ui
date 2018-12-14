@@ -9,6 +9,7 @@ import { replaceCertainImage } from '../../../ducks/actions/site';
 const mapStateToProps = ({ site }) => (
 {
     user: site.user,
+    cognito: site.cognito,
 });
     
 const mapDispatchToProps = (dispatch) => (
