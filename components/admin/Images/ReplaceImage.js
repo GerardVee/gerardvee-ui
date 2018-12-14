@@ -17,6 +17,8 @@ const mapDispatchToProps = (dispatch) => (
     replaceImage: (cognito, location, old_location) => dispatch(replaceCertainImage(cognito, location, old_location)),
 });
 
+const api = process.env.API;
+
 const extensionCapture = (file) => /(?:\.([^.]+))?$/.exec(file)[1];
     
 export default connect(mapStateToProps, mapDispatchToProps)(class extends Component
