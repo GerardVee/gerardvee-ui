@@ -7,4 +7,4 @@ import { reducer as siteReducer } from './reducers/site';
 export const reducer = combineReducers({ site: siteReducer });
 
 // change this dev when shipping to production
-export const makeStore = (initial) => createStore(reducer, initial, composeWithDevTools(applyMiddleware(thunk)));
+export const makeStore = (initial) => process.env.NODE_ENV === 'development' ? createStore(reducer, initial, composeWithDevTools(applyMiddleware(thunk))) : createStore(reducer, initial, applyMiddleware(thunk));
