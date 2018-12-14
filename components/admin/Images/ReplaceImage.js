@@ -59,12 +59,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
         const extension = extensionCapture(file.name);
         const shortFileName = fileName.substring(fileName.lastIndexOf('/') + 1).split('?')[0].replace(/\.[^/.]+$/, '') + (extension === null ? '.jpg' : '.' + extension);
         const uploadInfo = await this.getUploadUrl(shortFileName, file.type);
-        if (!uploadInfo.signedRequest)
+        if (!uploadInfo.signedRequest || !uploadInfo.url)
         {
             alert('Replacement failed');
             return;
         }
         const location = await this.postOnline(uploadInfo, file);
+        if (!location)
+        {
+            return;
+        }
         // new, old
         this.props.replaceImage(cognito, location, fileName.split('?')[0]);
     }
