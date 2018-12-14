@@ -42,7 +42,7 @@ export const reducer = (state = initialState, action) =>
             return Object.assign({}, state, { images: state.images.map(image =>
                 ({ ...image, location: action.image.image_id !== image.image_id ? image.location : action.image.location + '?t=' + new Date().getTime().toString() }))});
         case actionTypes.DELETE_IMAGE:
-            return Object.assign({}, state, { images: state.images.filter(image => image.image_id !== action.image.image_id ) });
+            return Object.assign({}, state, { images: state.images.filter(image => image.image_id !== action.image_id ) });
         case actionTypes.SET_COGNITO:
             return Object.assign({}, state, { cognito: action.cognito });
         case actionTypes.SET_USER:

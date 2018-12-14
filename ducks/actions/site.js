@@ -205,7 +205,7 @@ export const deleteCertainImage = (cognito, location) => dispatch =>
         {
             if (res.success)
             {
-                dispatch(deleteImage(res.image));
+                dispatch(deleteImage(res.image_id));
             }
             else
             {
