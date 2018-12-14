@@ -54,7 +54,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
             return;
         }
         const extension = extensionCapture(file.name);
-        const shortFileName = filename.substring(fileName.lastIndexOf('/') + 1).split('?')[0].replace(/\.[^/.]+$/, '') + (extension === null ? '.jpg' : '.' + extension);
+        const shortFileName = fileName.substring(fileName.lastIndexOf('/') + 1).split('?')[0].replace(/\.[^/.]+$/, '') + (extension === null ? '.jpg' : '.' + extension);
         const uploadInfo = await this.getUploadUrl(shortFileName, file.type);
         if (!uploadInfo.signedRequest)
         {
