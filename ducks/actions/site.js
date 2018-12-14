@@ -28,7 +28,7 @@ export const clearError = () => dispatch => dispatch({ type: actionTypes.SET_ERR
 export const sendProjects = (projects) => dispatch => dispatch({ type: actionTypes.SET_PROJECTS, projects });
 export const appendProject = (project) => dispatch => dispatch({ type: actionTypes.APPEND_PROJECT, project });
 export const editProject = (project) => dispatch => dispatch({ type: actionTypes.EDIT_PROJECT, project });
-export const deleteProject = (id) => dispatch => dispatch({ type: actionTypes.DELETE_PROJECT, id });
+export const deleteProject = (project_id) => dispatch => dispatch({ type: actionTypes.DELETE_PROJECT, project_id });
 
 export const sendImages = (images) => dispatch => dispatch({ type: actionTypes.SET_IMAGES, images });
 export const appendImage = (image) => dispatch => dispatch({ type: actionTypes.APPEND_IMAGE, image });
@@ -38,9 +38,11 @@ export const deleteImage = (image_id) => dispatch => dispatch({ type: actionType
 export const sendCognitoInfo = (cognito) => dispatch => dispatch({ type: actionTypes.SET_COGNITO, cognito });
 export const sendUser = (user) => dispatch => dispatch({ type: actionTypes.SET_USER, user });
 
-export const appendCertainProject = (project, token) => dispatch =>
+export const appendCertainProject = (cognito, project) => dispatch =>
 {
-    fetch(api + 'site/project/upload', post({ project, token }))
+    var params = post({ project }, '/gerardvee/site/project');
+    aws4.sign(params, cognito);
+    fetch(api + 'site/project', params)
         .then(res =>
         {
             if (!res.ok)
@@ -67,9 +69,11 @@ export const appendCertainProject = (project, token) => dispatch =>
         });
 };
 
-export const replaceCertainProject = (project, token) => dispatch =>
+export const replaceCertainProject = (cognito, project) => dispatch =>
 {
-    fetch(api + 'site/project/replace', post({ project, token }))
+    var params = patch({ project }, '/gerardvee/site/project');
+    aws4.sign(params, cognito);
+    fetch(api + 'site/project', params)
         .then(res =>
         {
             if (!res.ok)
@@ -96,9 +100,11 @@ export const replaceCertainProject = (project, token) => dispatch =>
         });
 };
 
-export const deleteCertainProject = (id, token) => dispatch =>
+export const deleteCertainProject = (cognito, project_id) => dispatch =>
 {
-    fetch(api + 'site/project/delete', post({ id, token }))
+    var params = deleteR({ project_id }, '/gerardvee/site/project');
+    aws4.sign(params, cognito);
+    fetch(api + 'site/project', params)
         .then(res =>
         {
             if (!res.ok)
@@ -112,7 +118,7 @@ export const deleteCertainProject = (id, token) => dispatch =>
         {
             if (res.success)
             {
-                dispatch(deleteProject(id));
+                dispatch(deleteProject(res.project_id));
             }
             else
             {

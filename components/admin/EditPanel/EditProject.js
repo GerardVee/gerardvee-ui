@@ -21,11 +21,12 @@ const Input = ({ label, value, editedProject, onChange }) => (
 const mapStateToProps = ({ site }) => ({
     user: site.user,
     projects: site.projects,
+    cognito: site.cognito
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    editProject: (token, project) => dispatch(replaceCertainProject(project, token)),
-    deleteProject: (token, id) => dispatch(deleteCertainProject(id, token)),
+    editProject: (cognito, project) => dispatch(replaceCertainProject(cognito, project)),
+    deleteProject: (cognito, project_id) => dispatch(deleteCertainProject(cognito, project_id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(class extends Component
@@ -60,18 +61,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
     deleteProject()
     {
         const { editedProject } = this.state;
-        const { user } = this.props;
-        const token = !!user ? user.accessToken : '';
-        this.props.deleteProject(token, editedProject.project_id);
+        const { cognito } = this.props;
+        this.props.deleteProject(cognito, editedProject.project_id);
         this.setState({ editedProject: {} });
     }
 
     updateProject()
     {
         const { editedProject } = this.state;
-        const { user } = this.props;
-        const token = !!user ? user.accessToken : '';
-        this.props.editProject(token, editedProject);
+        const { cognito } = this.props;
+        this.props.editProject(cognito, editedProject);
     }
 
     render()

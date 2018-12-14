@@ -21,10 +21,11 @@ const Input = ({ label, value, newProject, onChange }) => (
 
 const mapStateToProps = ({ site }) => ({
     user: site.user,
+    cognito: site.cognito
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    addProject: (token, project) => dispatch(appendCertainProject(project, token)),
+    addProject: (cognito, project) => dispatch(appendCertainProject(cognito, project)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(class extends Component
@@ -46,9 +47,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
     uploadProject()
     {
         const { newProject } = this.state;
-        const { user } = this.props;
-        const token = !!user ? user.accessToken : '';
-        this.props.addProject(token, newProject);
+        const { cognito } = this.props;
+        this.props.addProject(cognito, newProject);
         this.setState({ newProject: {} }, () => this.props.setAsNewProject(false));
     }
 
