@@ -33,7 +33,7 @@ export const deleteProject = (id) => dispatch => dispatch({ type: actionTypes.DE
 export const sendImages = (images) => dispatch => dispatch({ type: actionTypes.SET_IMAGES, images });
 export const appendImage = (image) => dispatch => dispatch({ type: actionTypes.APPEND_IMAGE, image });
 export const editImage = (image) => dispatch => dispatch({ type: actionTypes.EDIT_IMAGE, image });
-export const deleteImage = (image) => dispatch => dispatch({ type: actionTypes.DELETE_IMAGE, image });
+export const deleteImage = (image_id) => dispatch => dispatch({ type: actionTypes.DELETE_IMAGE, image_id });
 
 export const sendCognitoInfo = (cognito) => dispatch => dispatch({ type: actionTypes.SET_COGNITO, cognito });
 export const sendUser = (user) => dispatch => dispatch({ type: actionTypes.SET_USER, user });
