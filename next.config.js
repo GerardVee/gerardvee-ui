@@ -16,8 +16,7 @@ module.exports = withSass({
                 'process.env.FB_APP_ID': JSON.stringify(process.env.FB_APP_ID),
                 'process.env.FB_SUPERUSERS': JSON.stringify(process.env.FB_SUPERUSERS),
                 'process.env.STRIPE_KEY': JSON.stringify(process.env.STRIPE_KEY)
-            }),
-            new webpack.optimize.UglifyJsPlugin()
+            })
         );
         return config;
     },
