@@ -43,7 +43,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
         }
     }
 
-    async update()
+    async update(e)
     {
         e.preventDefault();
         const { fileName, cognito } = this.props;
