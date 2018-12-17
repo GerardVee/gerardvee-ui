@@ -1,9 +1,8 @@
-import Head from 'next/head';
-
-import Nav from './Nav';
-import Footer from './Footer';
-
 import '../styles/index.scss';
+import Footer from './Footer';
+import Head from 'next/head';
+import Nav from './Nav';
+import React from 'react';
 
 export default ({ children, title }) => (
     <>

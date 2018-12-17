@@ -1,21 +1,19 @@
 import 'isomorphic-fetch';
-import { Component } from 'react';
-import { connect } from 'react-redux';
-
-import Header from '../components/admin/Header';
-import UserPanel from '../components/admin/UserPanel';
-import SelectionPanel from '../components/admin/SelectionPanel';
+import '../styles/admin.scss';
+import React, { Component } from 'react';
+import { sendImages, sendProjects } from '../ducks/actions/site';
 import EditPanel from '../components/admin/EditPanel';
 import FacebookAuthenticate from '../components/admin/FacebookAuthenticate';
-import { sendProjects, sendImages } from '../ducks/actions/site';
+import Header from '../components/admin/Header';
+import SelectionPanel from '../components/admin/SelectionPanel';
+import UserPanel from '../components/admin/UserPanel';
+import { connect } from 'react-redux';
 
-import '../styles/admin.scss';
 
 const api = process.env.API;
 const superusers = process.env.FB_SUPERUSERS.split(',');
 
-const mapStateToProps = ({ site }) =>
-({
+const mapStateToProps = ({ site }) => ({
     error: site.error,
     user: site.user,
     projects: site.projects,
@@ -30,7 +28,7 @@ export default connect(mapStateToProps)(class extends Component
         activeId: null,
     };
 
-    static async getInitialProps({ store, req })
+    static async getInitialProps({ store })
     {
         const projectsReq = await fetch(api + 'site/projects');
         const imagesReq = await fetch(api + 'site/images');
@@ -56,7 +54,8 @@ export default connect(mapStateToProps)(class extends Component
             <div className='row' style={{ padding: 0 }}>
                 <Header />
                 <UserPanel activeResource={ activeResource } onProjectButtonClick={ () => this.setState({ activeResource: 'projects' }) }
-                    onImageButtonClick={ () => this.setState({ activeResource: 'images' }) } />
+                    onImageButtonClick={ () => this.setState({ activeResource: 'images' }) }
+                />
                 <SelectionPanel activeResource={ activeResource } site={ site } activeId={ activeId } setAsActiveId={ (id) => this.setAsActive(id) } />
                 <EditPanel activeId={ activeId } resourceCategory={ activeResource } resource={ activeSpecificResource } />
             </div>

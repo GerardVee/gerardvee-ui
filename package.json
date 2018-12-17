@@ -42,6 +42,9 @@
     "start-server": "pm2 reload server.json"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.10.0",
+    "eslint-plugin-react": "^7.11.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "webpack": "^4.19.1"
   }

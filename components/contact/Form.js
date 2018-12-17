@@ -1,9 +1,7 @@
 import 'isomorphic-fetch';
-import { Component } from 'react';
-
+import React, { Component } from 'react';
 import post from '../../lib/post';
 
-// change
 const api = process.env.API;
 
 const validObject = (obj) =>
@@ -61,8 +59,15 @@ export default class extends Component
         }
         const res = await fetch(api + 'site/contact', post({ details }));
         const sentMail = await res.json();
-        alert(`Mail${ sentMail ? '' : ' not' } sent!`);
-        if (sentMail)
+        if (sentMail.success)
+        {
+            alert('Mail sent! Please wait for a response in 1-2 business days.');
+        }
+        else
+        {
+            alert(sentMail.error);
+        }
+        if (sentMail.success)
         {
             this.setState(intialState);
         }
@@ -70,22 +75,27 @@ export default class extends Component
 
     render()
     {
-        const { details: { firstName, lastName, email, subject, query } } = this.state; 
+        const { details: { firstName, lastName, email, subject, query } } = this.state;
         return (
             <>
                 <div className='col halign center'>
                     <div className='halign center site-contact-form-pair-input'>
                         <input className='site-contact-form-input-base' placeholder='First Name'
-                            name='firstName' value={ firstName } onChange={ (e) => this.updateDetails(e) } />
+                            name='firstName' value={ firstName } onChange={ (e) => this.updateDetails(e) }
+                        />
                         <input className='site-contact-form-input-base site-contact-form-input-pair-last' placeholder='Last Name'
-                            name='lastName' value={ lastName } onChange={ (e) => this.updateDetails(e) } />
+                            name='lastName' value={ lastName } onChange={ (e) => this.updateDetails(e) }
+                        />
                     </div>
                     <input className='site-contact-form-input-base' placeholder='Email'
-                        name='email' value={ email } onChange={ (e) => this.updateDetails(e) } />
+                        name='email' value={ email } onChange={ (e) => this.updateDetails(e) }
+                    />
                     <input className='site-contact-form-input-base' placeholder='Subject'
-                        name='subject' value={ subject } onChange={ (e) => this.updateDetails(e) } />
+                        name='subject' value={ subject } onChange={ (e) => this.updateDetails(e) }
+                    />
                     <textarea className='site-contact-form-input-base' placeholder='Message' rows={ 3 }
-                        name='query' value={ query } onChange={ (e) => this.updateDetails(e) } />
+                        name='query' value={ query } onChange={ (e) => this.updateDetails(e) }
+                    />
                 </div>
                 <div className='row halign'>
                     <button className='site-contact-form-submit' onClick={ () => this.submitContactDetails() }>Submit</button>

@@ -1,17 +1,13 @@
-import { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
 import FacebookAuth from 'react-facebook-auth';
-
+import { connect } from 'react-redux';
 import { login } from '../../ducks/actions/site';
 
 const appId = process.env.FB_APP_ID;
 
-const mapStateToProps = (state) => ({
-});
+const mapStateToProps = () => ({});
 
-const mapDispatchToProps = (dispatch) => ({
-    login: (user) => dispatch(login(user))
-});
+const mapDispatchToProps = (dispatch) => ({ login: (user) => dispatch(login(user)) });
 
 export default connect(mapStateToProps, mapDispatchToProps)(class extends Component
 {

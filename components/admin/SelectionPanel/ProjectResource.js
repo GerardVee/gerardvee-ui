@@ -1,6 +1,7 @@
+import React from 'react';
+
 export default ({ project_id, image, title, activeId, finished, onClick }) => (
-    <div className={ 'row valign admin-selection-panel-selection-container' + (activeId === project_id ? ' active' : '' ) }
-        onClick={ onClick }>
+    <div className={ 'row valign admin-selection-panel-selection-container' + (activeId === project_id ? ' active' : '' ) } onClick={ onClick }>
         <img className='admin-selection-panel-project-picture' src={ image } />
         <div className='col admin-selection-panel-project-info'>
             <span className={ 'admin-selection-panel-project-circle' + (finished ? ' active' : '') } />

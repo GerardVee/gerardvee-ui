@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default () => (
     <div className='col'>
         <h3 className='center site-footer-title'>Keep in touch</h3>

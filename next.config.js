@@ -4,12 +4,11 @@ const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = withSass({
-    webpack: (config, options) =>
+    webpack: (config) =>
     {
-        const { isServer, dev } = options;
         config.plugins.push(
             new webpack.DefinePlugin({
-                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),                  
+                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
                 'process.env.BASE_API': JSON.stringify(process.env.BASE_API),
                 'process.env.API': JSON.stringify(process.env.API),
                 'process.env.COGNITO_POOL_ID': JSON.stringify(process.env.COGNITO_POOL_ID),
@@ -21,17 +20,19 @@ module.exports = withSass({
         return config;
     },
     optimization: process.env.NODE_ENV === 'development' ? {} : {
-        minimizer: [
-          new UglifyJsPlugin({
-            cache: true,
-            parallel: true,
-            uglifyOptions: {
-              compress: true,
-              ecma: 6,
-              mangle: true
-            },
-            sourceMap: false
-          })
+        minimizer:
+        [
+            new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                uglifyOptions:
+                {
+                    compress: true,
+                    ecma: 6,
+                    mangle: true
+                },
+                sourceMap: false
+            })
         ]
-      }
+    }
 });

@@ -1,21 +1,13 @@
+import '../styles/contact.scss';
 import 'isomorphic-fetch';
-import { Component } from 'react';
-
+import Form from '../components/contact/Form';
 import Page from '../components/Page';
 import Preface from '../components/contact/Preface';
-import Form from '../components/contact/Form';
+import React from 'react';
 
-import '../styles/contact.scss';
-
-export default class extends Component
-{
-    render()
-    {
-        return (
-            <Page title='Contact'>
-                <Preface />
-                <Form />
-            </Page>
-        );
-    }
-}
+export default () => (
+    <Page title='Contact'>
+        <Preface />
+        <Form />
+    </Page>
+);

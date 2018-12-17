@@ -1,4 +1,5 @@
 import '../styles/index.scss';
+import React from 'react';
 
 const Privacy = () => (
     <div className='blue-text'>

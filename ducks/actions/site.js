@@ -1,7 +1,6 @@
+import { deleteR, patch, post  } from '../../lib/methods';
 import AWS from 'aws-sdk';
 import aws4 from 'aws4';
-
-import { post, patch, deleteR } from '../../lib/methods';
 
 const api = process.env.API;
 
@@ -244,15 +243,11 @@ export const login = (user) => dispatch =>
         // https://forums.aws.amazon.com/thread.jspa?messageID=730090
         dispatch(sendUser(user));
         AWS.config.region = 'us-east-1';
-        AWS.config.credentials = new AWS.CognitoIdentityCredentials(
-        {
+        AWS.config.credentials = new AWS.CognitoIdentityCredentials({
             IdentityPoolId: process.env.COGNITO_POOL_ID,
-            Logins:
-            {
-                'graph.facebook.com': user.accessToken,
-            }
+            Logins: { 'graph.facebook.com': user.accessToken }
         });
-        AWS.config.credentials.get((err, data) =>
+        AWS.config.credentials.get((err) =>
         {
             if (!err)
             {
@@ -264,7 +259,7 @@ export const login = (user) => dispatch =>
                 };
                 dispatch(sendCognitoInfo(cognito));
             }
-        })
+        });
     }
     else
     {

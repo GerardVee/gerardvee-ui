@@ -1,26 +1,21 @@
-import axios from 'axios';
-import { Component } from 'react';
-import { connect } from 'react-redux';
-import aws4 from 'aws4';
-
-import { post } from '../../../lib/methods';
+import React, { Component } from 'react';
 import { appendCertainImage } from '../../../ducks/actions/site';
+import aws4 from 'aws4';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { post } from '../../../lib/methods';
 
-const mapStateToProps = ({ site }) => (
-{
+const mapStateToProps = ({ site }) => ({
     user: site.user,
     cognito: site.cognito
 });
-    
-const mapDispatchToProps = (dispatch) => (
-{
-    appendImage: (cognito, location) => dispatch(appendCertainImage(cognito, location)),
-});
+
+const mapDispatchToProps = (dispatch) => ({ appendImage: (cognito, location) => dispatch(appendCertainImage(cognito, location)) });
 
 const api = process.env.API;
 
 const extensionCapture = (file) => /(?:\.([^.]+))?$/.exec(file)[1];
-    
+
 export default connect(mapStateToProps, mapDispatchToProps)(class extends Component
 {
     async getUploadUrl(filename, filetype)
@@ -73,8 +68,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
     {
         return (
             <label className='admin-edit-panel-selection-new-button'>
-                <input className='none' ref={ (ref) => { this.uploadInput = ref; } } type='file'
-                    onChange={ (e) => this.upload(e) } />
+                <input className='none' ref={ (ref) => { this.uploadInput = ref; } } type='file' onChange={ (e) => this.upload(e) } />
                 New
             </label>
         );

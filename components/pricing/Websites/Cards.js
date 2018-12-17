@@ -1,4 +1,5 @@
 import Cards from '../Cards';
+import React from 'react';
 
 const websiteCards =
 [
@@ -21,7 +22,7 @@ const websiteCards =
     },
     {
         price: 'Starting $1200',
-        description: 'Eccomerce site, api included', 
+        description: 'Eccomerce site, api included',
     }
 ];
 

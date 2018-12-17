@@ -1,8 +1,7 @@
-import { combineReducers, createStore, applyMiddleware } from 'redux';
+import { applyMiddleware, combineReducers, createStore  } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
-
 import { reducer as siteReducer } from './reducers/site';
+import thunk from 'redux-thunk';
 
 export const reducer = combineReducers({ site: siteReducer });
 

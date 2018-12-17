@@ -1,4 +1,5 @@
 import Cards from '../Cards';
+import React from 'react';
 
 const AppCards =
 [

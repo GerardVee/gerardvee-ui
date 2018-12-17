@@ -1,3 +1,5 @@
+import React from 'react';
+
 const aboutMe = `
 I develop. I build. I maintain. I visualize and establish.
 My passion has always been solving problems, and
