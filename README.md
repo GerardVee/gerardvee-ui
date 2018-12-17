@@ -110,7 +110,7 @@ Enable CORS, and create and link an AWS IAM Role for Authorization with Gateway.
 
 ### Hire
 
-`gerardvee.com` was remade alongside [bookshelf](https://github.com/GerardVee/bookshelf), my newest and toughest project yet. You can expect me to follow given time constraints given I make a few projects I don't publish on Github. [Contact me](https://gerardvee.com/contact) if you're interested.
+`gerardvee.com` was remade alongside [bookshelf](https://github.com/GerardVee/bookshelf), my newest and toughest project yet. [Contact me](https://gerardvee.com/contact) if you're interested.
 
 
 ### Members
