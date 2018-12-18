@@ -1,6 +1,6 @@
 ## Open source showcase site
 
-gerardvee.com is an open source showcase site that showcases user projects. The site is built with Next.js, React and Redux. It also includes the following third party APIS: Facebook, Stripe, and AWS Cognito, Gateway, Lambda & S3.
+gerardvee.com is an open source showcase site that showcases user projects. The site is built with Next.js, React and Redux. It also includes the following third party APIs: Facebook, Stripe, and AWS Cognito, Gateway, Lambda & S3.
 
 See the site [here](https://gerardvee.com).
 
@@ -97,7 +97,7 @@ Enable CORS, and create and link an AWS IAM Role for Authorization with Gateway.
 | *PATCH* site/image | Yes | `location: String (URL), old_location: String (URL)` | `{ success: Boolean, image: ImageObject }` | Replace `Image` item in a database if the extensions differ, otherwise, do nothing. Return the modified `Image`. |
 | *DELETE* site/image | Yes | `location: String (URL)` | `{ success: Boolean, image_id: String }` | Delete `Image` item from a database, delete from S3. |
 | *POST* site/image/upload | Yes | `filename: String, filetype: String` | `{ url: String (URL), signedRequest: String (URL) }` | `url` is where the image will be, and `signedRequest` is the signed URL. Pass required info for an S3 Bucket upload, using an S3 signed URL. Afterwards, call *POST* `site/image`. |
-| *POST* site/project | Yes | `project: ProjectObject` | `{ success: Boolean, project: ProjectObject }` | Upload a `Project` item within a databse. |
+| *POST* site/project | Yes | `project: ProjectObject` | `{ success: Boolean, project: ProjectObject }` | Upload a `Project` item within a database. |
 | *PATCH* site/project | Yes | `project: ProjectObject` | `{ success: Boolean, project: ProjectObject }` | Update `Project` item in a database, return the modified `Project`. |
 | *DELETE* site/project | Yes | `project_id: String` | `{ success: Boolean, project_id: String }` | Delete `Project` item from a database. |
 
@@ -187,7 +187,7 @@ Issue resolved structure:
 ```
 ## What caused this
 
-The specifics of what caused thise.
+The specifics of what caused this.
 
 ## What was done
 
@@ -195,7 +195,7 @@ What was done to help resolve this.
 
 ## What technology was used
 
-What extra techonology if any was implemented/imported to help resolved this issue.
+What extra technology if any was implemented/imported to help resolved this issue.
 
 ### Before
 
