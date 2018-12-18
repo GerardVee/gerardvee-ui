@@ -1,6 +1,6 @@
 ## Open source showcase site
 
-gerardvee.com is an open source showcase site that showcases user projects. The site is built with Next.js, Material-UI, React and Redux. It also includes the following third party APIS: Facebook, Stripe, and AWS Cognito, Gateway, Lambda & S3.
+gerardvee.com is an open source showcase site that showcases user projects. The site is built with Next.js, React and Redux. It also includes the following third party APIS: Facebook, Stripe, and AWS Cognito, Gateway, Lambda & S3.
 
 See the site [here](https://gerardvee.com).
 
@@ -132,7 +132,6 @@ Specifics of the project. Technologies and licensing are displayed here.
 
 **Base**
 
-- [Material-UI](https://github.com/mui-org/material-ui)
 - [Next](https://github.com/zeit/next.js)
 - [React](https://github.com/facebook/react)
 - [Redux](https://github.com/reduxjs/redux)
