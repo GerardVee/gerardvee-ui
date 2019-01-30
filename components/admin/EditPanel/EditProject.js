@@ -8,6 +8,7 @@ const inputs =
     { label: 'Title', value: 'title' },
     { label: 'Image Url', value: 'image' },
     { label: 'Project Url', value: 'url' },
+    { label: 'Project Source Url', value: 'source_url' }
 ];
 
 const Input = ({ label, value, editedProject, onChange }) => (
@@ -53,6 +54,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
         const target = e.target;
         const value = target.value;
         const name = target.name;
+        if (name === 'priority')
+        {
+            const editedProject = Object.assign({}, this.state.editedProject, { [name]: parseInt(value) });
+            this.setState({ editedProject });
+            return;
+        }
         const editedProject = Object.assign({}, this.state.editedProject, { [name]: value });
         this.setState({ editedProject });
     }
@@ -95,6 +102,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(class extends Compon
                             <textarea rows={ 4 } className='admin-edit-panel-selection-project-textarea' name='description'
                                 value={ editedProject.description } onChange={ (e) => this.editProjectState(e) }
                             />
+                            <h1 className='admin-edit-panel-selection-project-label'>Project Order Number</h1>
+                            <input name='priority' value={ editedProject.priority } onChange={ (e) => this.editProjectState(e) }></input>
+                            <h1 className='admin-edit-panel-selection-project-label'>Project Tags (, separated)</h1>
+                            <input name='tags' value={ editedProject.tags } onChange={ (e) => this.editProjectState(e) }></input>
                         </label>
                         <div className='row admin-edit-panel-selection-project-button-group'>
                             <button className='admin-edit-panel-selection-new-button' onClick={ () => this.updateProject() }>Save</button>
