@@ -12,7 +12,7 @@ export default () => (
             />
             <p className='site-intro-me-text'>
                 Not only am I Front End Web Developer, I also know my way around the back end. However,
-                it{ '\'' }s easier to have a more defined area of expertise. You can get my resume <a className='site-intro-me-resume-link' href='//google.com'>here</a>.
+                it{ '\'' }s easier to have a more defined area of expertise. You can get my resume <a className='site-intro-me-resume-link' href='https://s3.amazonaws.com/gerardvee/site/resume/gerardo+valenzuela.pdf'>here</a>.
             </p>
             <p className='site-intro-me-text'>
                 I{ '\'' }m a learner at heart, and I know my away around tough situations. I am skilled,
