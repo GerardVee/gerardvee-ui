@@ -1,8 +1,7 @@
-import 'isomorphic-fetch';
-import '../styles/index.scss';
+import '../styles/projects.scss';
 import React, { Component } from 'react';
-import Hello from '../components/index/Hello';
 import Page from '../components/Page';
+import Projects from '../components/projects/';
 import { connect } from 'react-redux';
 import { sendProjects } from '../ducks/actions/site';
 
@@ -20,12 +19,10 @@ export default connect(mapStateToProps)(class extends Component
         return {};
     }
 
-    render()
-    {
-        return (
-            <Page title='GerardVee'>
-                <Hello />
-            </Page>
-        );
-    }
+    render = () => (
+        <Page title='Projects'>
+            <Projects />
+        </Page>
+    );
+
 });

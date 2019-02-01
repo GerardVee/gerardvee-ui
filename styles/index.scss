@@ -7,22 +7,28 @@
     font-family: $font-family;
     color: $primary-color;
     text-align: center;
-    font-style: italic;
     cursor: pointer;
+    transition: all 0.4s;
     font-size: 2.5em;
-    font-weight: 600;   
+    font-weight: 600;
+    &:hover
+    {
+        color: $tertiary-color;
+        transform: translateY(-1px);
+    }
 }
 
 .site-header-link
 {
     text-decoration: none;
     font-family: $font-family;
-    transition-duration: 0.4s;
+    transition: all 0.4s;
     border-bottom: 2px solid $primary-color;
     color: #000000;
     font-weight: 600;
     &:hover
     {
+        transform: translateY(-1px);
         border-bottom-color: $tertiary-color;
     }
 }
@@ -33,78 +39,75 @@
     color: #000000;
     text-align: center;
     align-self: center;
-    font-size: 1.6em;
-    font-weight: 800;
+    font-size: 1.2em;
+    font-weight: 700;
     width: 100%;
     margin-top: 2em;
     margin-bottom: 2em;
     @media screen and (min-width: $medium)
     {
-        font-size: 2.2em;
+        font-size: 1.5em;
         width: 60%;
         margin-top: 1.8em;
-        margin-bottom: 0;
+        margin-bottom: 0.5em;
     }
 }
 
-.site-card-opacity-hover
+.site-intro-me
 {
-    & > h1
+    width: 90%;
+    @media screen and (min-width: $medium)
     {
-        opacity: 0;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        width: 60%;
     }
+}
+
+.site-intro-me-image
+{
+    float: left;
+    shape-outside: cirle;
+    filter: grayscale(100%);
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-right: 1.5em;
+    margin-bottom: 0.5em;
+    transition: all 0.7s;
     &:hover
     {
-        & > img
-        {
-            transition-duration: 0.4s;
-            opacity: 0.05;
-        }
-        & > h1
-        {
-            opacity: 1;
-        }
+        filter: grayscale(0%);
     }
-    @media screen and (min-width: $medium)
+}
+
+.site-intro-me-text
+{
+    @extend %text;
+    font-size: 1.2em;
+    font-weight: 600;
+    &:first
     {
-        margin-right: 30px;    
+        margin-bottom: '1em'
     }
 }
 
-.site-card-title
+.site-intro-me-resume-link
 {
-    font-family: $font-family;
-    color: $secondary-color;
-    font-weight: 800;
-}
-
-.site-card-title-lg
-{
-    position: relative;
-    text-align: center;
-    top: 35%;
-}
-
-.site-card-image
-{
-    width: auto;
-    max-height: 160px;
-    margin-bottom: 2em;
-    @media screen and (min-width: $medium)
-    {
-        width: auto;
-        max-height: 250px;
-        margin-bottom: 0;
-    }
-}
-
-.site-card-description
-{
-    font-family: $font-family;
-    word-wrap: break-word;
+    @extend %text;
+    text-decoration: none;
+    transition: all 0.4s;
+    border-bottom: 2px solid $primary-color;
     color: #000000;
-    font-weight: 200;
-    width: 300px;
+    font-weight: 600;
+    &:hover
+    {
+        transform: translateY(-1px);
+        border-bottom-color: $tertiary-color;
+    }
+    &:visited
+    {
+    }
 }
 
 .site-footer-title

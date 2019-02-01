@@ -140,6 +140,16 @@ img.responsive
     font-family: $font-family;
 }
 
+.italic
+{
+    font-style: italic;
+}
+
+.bold
+{
+    font-style: bold;
+}
+
 @mixin size-exclude($size, $max: false)
 {
     @if ($max)

@@ -3,7 +3,11 @@ import React from 'react';
 
 const names =
 [
-    'Contact', 'Pricing', 'About', 'Donate',
+    'Projects',
+    // 'Pricing', no longer in use
+    'Contact',
+    'About',
+    'Donate',
 ];
 
 export default () => (
