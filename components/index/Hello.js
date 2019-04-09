@@ -7,7 +7,7 @@ export default () => (
             to any city within California.
         </h2>
         <div className='self-center site-intro-me'>
-            <img src='https://media.licdn.com/dms/image/C5603AQGsh5jB9P61Bg/profile-displayphoto-shrink_200_200/0?e=1554336000&v=beta&t=2rP5if8tlvuB2CJx5rOV5re7GEZk94L72bCCHC5D3ag'
+            <img src='https://s3.amazonaws.com/gerardvee/site/geevee.jpg'
                 className='site-intro-me-image'
             />
             <p className='site-intro-me-text'>
